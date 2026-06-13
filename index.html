@@ -17,7 +17,7 @@ html,body{margin:0;height:100%;overflow:hidden;background:var(--bg);color:var(--
 body{padding:env(safe-area-inset-top) 8px 0;display:flex;justify-content:center;overflow:hidden}
 #app{width:min(100vw,500px);height:calc(var(--appH,100svh) - env(safe-area-inset-top) - 4px);max-height:calc(var(--appH,100svh) - env(safe-area-inset-top) - 4px);display:flex;flex-direction:column;gap:3px;overflow:hidden}
 header{flex:0 0 auto;display:grid;grid-template-columns:58px 46px 1fr 36px;gap:6px;align-items:center;padding-top:3px}
-button,select{color:var(--text);background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:3px 3px;font-size:9px;font-weight:800;min-height:24px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+button,select{min-width:0;color:var(--text);background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:3px 3px;font-size:9px;font-weight:800;min-height:24px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 button:active{transform:scale(.97)}button.active{border-color:var(--accent2);background:rgba(0,224,164,.13)}button.primary{border-color:var(--accent);background:rgba(124,92,255,.2)}
 #recordBtn{background:rgba(255,59,92,.08);border-color:rgba(255,59,92,.35)}#recordBtn.active{background:rgba(255,59,92,.22);border-color:var(--danger);box-shadow:0 0 16px rgba(255,59,92,.25)}#loopBtn.active,#metroBtn.active{background:rgba(0,224,164,.18);border-color:var(--accent2);color:var(--accent2);box-shadow:0 0 12px rgba(0,224,164,.18)}
 .dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#65202b;margin-right:4px;vertical-align:-1px}#recordBtn.active .dot{background:var(--danger);box-shadow:0 0 10px var(--danger)}
@@ -26,9 +26,9 @@ input[type=number]{width:44px;background:#090b12;border:1px solid var(--line);bo
 #subdivTop{min-width:36px;text-align:center;color:var(--accent2);background:rgba(0,224,164,.11);border:1px solid rgba(0,224,164,.25);border-radius:8px;padding:5px 6px;font-size:12px;font-weight:900}
 .settingsWrap{position:relative}#settingsBtn{min-width:34px;padding:6px;font-size:17px;line-height:1}#settingsMenu{display:none;position:absolute;right:0;top:40px;width:180px;transform:none;padding:8px;gap:6px;grid-template-columns:1fr;background:rgba(16,19,28,.98);border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.45);z-index:40}#settingsMenu.open{display:grid}
 .timelineShell{position:relative;flex:1 1 0;min-height:0;background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-.timelineHeader{height:26px;padding:2px;display:grid;grid-template-columns:62px minmax(0,1fr) 48px 0px;align-items:center;gap:6px;padding:4px 6px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.025)}
+.timelineHeader{height:34px;padding:3px;display:grid;grid-template-columns:60px minmax(0,1fr) 46px 0px;align-items:center;gap:6px;padding:4px 6px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.025)}
 .trackSelect,.soundSelect,.colorSelect{min-width:0;height:24px;padding:0 6px;border-radius:8px;font-size:11px}.miniBtn{min-height:24px;height:24px;padding:0 7px;border-radius:8px;font-size:10px}
-#timelineViewport{position:absolute;left:0;right:0;top:30px;bottom:0;overflow:hidden;touch-action:none;background:#090b12;cursor:grab}#timelineContent{position:absolute;left:0;top:0;min-width:100%;transform-origin:0 0}
+#timelineViewport{position:absolute;left:0;right:0;top:36px;bottom:0;overflow:hidden;touch-action:none;background:#090b12;cursor:grab}#timelineContent{position:absolute;left:0;top:0;min-width:100%;transform-origin:0 0}
 .pianoKey{position:absolute;left:0;width:38px;border-right:1px solid var(--line);border-bottom:1px solid rgba(255,255,255,.045);font-size:7px;color:var(--muted);padding:1px 3px;z-index:5;background:rgba(6,7,11,.95)}.pianoKey.black{color:rgba(255,255,255,.38);background:rgba(0,0,0,.92)}.vZoomStrip{position:absolute;left:0;top:0;width:38px;bottom:0;z-index:12;pointer-events:auto;background:transparent;touch-action:none}.vZoomThumb{display:none}
 .pianoRow{position:absolute;left:38px;right:0;border-bottom:1px solid rgba(255,255,255,.035)}.pianoRow.white{background:rgba(255,255,255,.075)}.pianoRow.black{background:rgba(255,255,255,.03)}
 .gridLine{position:absolute;top:0;bottom:0;width:1px;background:rgba(255,255,255,.055);z-index:1}.gridLine.beat{background:rgba(255,255,255,.14)}.gridLine.bar{background:rgba(124,92,255,.38)}
@@ -38,14 +38,16 @@ input[type=number]{width:44px;background:#090b12;border:1px solid var(--line);bo
 .zoomControls{flex:0 0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:3px}.middleControls{flex:0 0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:3px}.statusRow{display:none;flex:0 0 auto}
 .pill{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:4px 6px;color:var(--muted);font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pill b{color:var(--text)}
 .keyboardShell{flex:1 1 0;min-height:0;overflow:hidden;display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:5px}#app.hideFretboard .keyboardShell{display:none}#app.hideFretboard .timelineShell{flex:1 1 0;min-height:0}#app.hideFretboard{gap:3px}
-.fretboardWrap{position:relative;flex:1 1 auto;min-height:0;overflow:hidden;border-radius:13px;border:1px solid var(--line);background:linear-gradient(90deg,rgba(255,255,255,.06) 0 1px,transparent 1px),linear-gradient(180deg,rgba(255,255,255,.045) 0 1px,transparent 1px),#0a0c13;touch-action:none;padding-bottom:24px}
-#fretboard{height:calc(100% - 20px);display:grid;grid-template-rows:repeat(6,1fr);grid-template-columns:repeat(13,1fr);gap:3px;padding:5px}.fret{border:1px solid #2a3044;background:linear-gradient(180deg,#171b28,#0f121b);border-radius:8px;min-width:0;min-height:0;user-select:none}.fret.open{border-color:rgba(124,92,255,.35)}.fret:active,.fret.flash{background:rgba(0,224,164,.3);border-color:var(--accent2);box-shadow:inset 0 0 18px rgba(0,224,164,.12)}.fret.stepLit{background:var(--fretLitColor,rgba(255,255,255,.88));border-color:rgba(255,255,255,.95);box-shadow:0 0 14px var(--fretLitColor,rgba(255,255,255,.24))}
-.fretMarkers{position:absolute;left:8px;right:8px;bottom:2px;height:10px;display:grid;grid-template-columns:repeat(13,1fr);gap:4px;pointer-events:none}.markerCell{display:flex;align-items:center;justify-content:center}.marker{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.48)}.fretChordLabel{position:absolute;left:10px;bottom:3px;z-index:7;color:var(--chord);font-size:8px;font-weight:700;opacity:.82;pointer-events:none;text-shadow:0 1px 4px #000;max-width:72px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.marker.double{width:14px;height:6px;background:radial-gradient(circle at 4px 50%,rgba(255,255,255,.55) 0 3px,transparent 3.5px),radial-gradient(circle at 12px 50%,rgba(255,255,255,.55) 0 3px,transparent 3.5px)}
+.fretboardWrap{position:relative;flex:1 1 auto;min-height:0;overflow:hidden;border-radius:13px;border:1px solid var(--line);background:linear-gradient(90deg,rgba(255,255,255,.06) 0 1px,transparent 1px),linear-gradient(180deg,rgba(255,255,255,.045) 0 1px,transparent 1px),#0a0c13;touch-action:none;padding-bottom:16px}
+#fretboard{height:calc(100% - 12px);display:grid;grid-template-rows:repeat(6,1fr);grid-template-columns:repeat(13,1fr);gap:3px;padding:5px}.fret{border:1px solid #2a3044;background:linear-gradient(180deg,#171b28,#0f121b);border-radius:8px;min-width:0;min-height:0;user-select:none}.fret.open{border-color:rgba(124,92,255,.35)}.fret:active,.fret.flash{background:rgba(0,224,164,.3);border-color:var(--accent2);box-shadow:inset 0 0 18px rgba(0,224,164,.12)}.fret.stepLit{background:var(--fretLitColor,rgba(255,255,255,.88));border-color:rgba(255,255,255,.95);box-shadow:0 0 14px var(--fretLitColor,rgba(255,255,255,.24))}
+.fretMarkers{position:absolute;left:8px;right:8px;bottom:0px;height:9px;display:grid;grid-template-columns:repeat(13,1fr);gap:4px;pointer-events:none}.markerCell{display:flex;align-items:center;justify-content:center}.marker{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.48)}.fretChordLabel{position:absolute;left:10px;bottom:1px;z-index:7;color:var(--chord);font-size:8px;font-weight:700;opacity:.82;pointer-events:none;text-shadow:0 1px 4px #000;max-width:72px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.marker.double{width:14px;height:6px;background:radial-gradient(circle at 4px 50%,rgba(255,255,255,.55) 0 3px,transparent 3.5px),radial-gradient(circle at 12px 50%,rgba(255,255,255,.55) 0 3px,transparent 3.5px)}
 .tsBtn{min-height:24px;height:24px;padding:0 5px;border-radius:8px;font-size:10px;color:var(--text)}
 .popupMenu{display:none;position:absolute;left:12px;top:50px;z-index:60;background:rgba(16,19,28,.98);border:1px solid var(--line);border-radius:14px;padding:10px;box-shadow:0 12px 30px rgba(0,0,0,.45);gap:7px;grid-template-columns:1fr;color:var(--text);font-size:12px}
 .popupMenu.open{display:grid}
 .popupMenu input{width:70px;background:#090b12;border:1px solid var(--line);border-radius:8px;color:var(--text);padding:5px;text-align:center}
 .popupMenu label{display:flex;align-items:center;justify-content:space-between;gap:8px;color:var(--muted)}
+.barZoomHeader{position:absolute;left:38px;right:0;top:0;height:18px;z-index:14;background:color-mix(in srgb,var(--panel) 86%,transparent);border-bottom:1px solid var(--line);touch-action:none;overflow:hidden}
+.barZoomHeader .barNumber{top:3px!important}
 .barNumber{position:absolute;top:0;font-size:8px;color:rgba(255,255,255,.72);z-index:2;pointer-events:none;transform:translateX(3px)}
 #loopMenu{left:auto!important;right:8px!important;top:76px!important;transform:none!important;width:min(72vw,270px)!important}.trackMenu{left:8px!important;right:auto!important;top:68px!important;transform:none!important;width:min(96vw,380px)!important}.themeMenu{left:8px!important;right:auto!important;top:76px!important;transform:none!important;width:min(96vw,390px)!important}.volInput{width:34px!important;font-size:9px!important;padding:1px!important}.trackMixerRow{display:grid;grid-template-columns:minmax(0,1fr) 46px 34px 26px;gap:6px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:6px;background:rgba(0,0,0,.18)}.trackColorMenu{left:8px!important;right:auto!important;top:104px!important;transform:none!important;width:min(92vw,330px)!important}
 .trackColorGrid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
@@ -81,7 +83,7 @@ button.active,.primary{background:color-mix(in srgb,var(--accent) 35%,var(--pane
 <div class="tempoBox"><button id="tsBtn" class="tsBtn">4/4</button><button id="metroBtn" class="tsBtn">Met</button><label id="bpmLabel">BPM</label><input id="tempo" type="number" min="40" max="240" value="120"/><span id="subdivTop">1/16</span></div>
 <div class="settingsWrap"><button id="settingsBtn">⚙︎</button><div id="settingsMenu"><button id="exportBtn">Export MIDI</button><button id="saveBtn">Save Local</button><button id="loadBtn">Load Local</button><button id="exportProjectBtn">Export Project</button><button id="importProjectBtn">Import Project</button><button id="newProjectBtn">New Project</button><button id="themeBtn">Themes</button><button id="hideFretBtn">Hide Fretboard</button><button id="sfBtn">Engine: SF2</button><button id="sfLoadBtn">Load SF2</button><div id="sfStatus" style="font-size:10px;color:var(--muted);line-height:1.1;padding:1px 4px;">SF2 not loaded</div></div></div>
 </header>
-<section class="timelineShell"><div class="timelineHeader"><button id="trackMenuBtn" class="miniBtn">Tracks</button><select id="soundSelect" class="soundSelect"><option value="gm:0">Piano 1</option><option value="gm:1">Bright Piano</option><option value="gm:4">EPiano</option><option value="gm:16">Organ</option><option value="gm:24">Nylon Guitar</option><option value="gm:25">Steel Guitar</option><option value="gm:26">Jazz Guitar</option><option value="gm:32">Acoustic Bass</option><option value="gm:33">Finger Bass</option><option value="gm:34">Pick Bass</option><option value="gm:48">Strings</option><option value="gm:52">Choir</option><option value="gm:56">Trumpet</option><option value="gm:61">Brass</option><option value="gm:80">Square Lead</option><option value="gm:81">Saw Lead</option><option value="gm:88">New Age Pad</option><option value="gm:89">Warm Pad</option><option value="sine">Internal Sine</option><option value="triangle">Internal Triangle</option><option value="square">Internal Square</option><option value="sawtooth">Internal Saw</option><option value="pulse">Internal Pulse</option><option value="organ">Internal Organ</option><option value="pluck">Internal Pluck</option><option value="bass">Internal Bass</option></select><button id="colorSelect" class="miniBtn">Color</button><span id="trackStatusBtn" style="display:none"></span></div><div id="timelineViewport"><div id="timelineContent"></div><div id="vZoomStrip" class="vZoomStrip"><div id="vZoomThumb" class="vZoomThumb"></div></div></div></section>
+<section class="timelineShell"><div class="timelineHeader"><button id="trackMenuBtn" class="miniBtn">Tracks</button><select id="soundSelect" class="soundSelect"><option value="gm:0">Piano 1</option><option value="gm:1">Bright Piano</option><option value="gm:4">EPiano</option><option value="gm:16">Organ</option><option value="gm:24">Nylon Guitar</option><option value="gm:25">Steel Guitar</option><option value="gm:26">Jazz Guitar</option><option value="gm:32">Acoustic Bass</option><option value="gm:33">Finger Bass</option><option value="gm:34">Pick Bass</option><option value="gm:48">Strings</option><option value="gm:52">Choir</option><option value="gm:56">Trumpet</option><option value="gm:61">Brass</option><option value="gm:80">Square Lead</option><option value="gm:81">Saw Lead</option><option value="gm:88">New Age Pad</option><option value="gm:89">Warm Pad</option><option value="sine">Internal Sine</option><option value="triangle">Internal Triangle</option><option value="square">Internal Square</option><option value="sawtooth">Internal Saw</option><option value="pulse">Internal Pulse</option><option value="organ">Internal Organ</option><option value="pluck">Internal Pluck</option><option value="bass">Internal Bass</option></select><button id="colorSelect" class="miniBtn">Color</button><span id="trackStatusBtn" style="display:none"></span></div><div id="timelineViewport"><div id="timelineContent"></div><div id="barZoomHeader" class="barZoomHeader"></div><div id="vZoomStrip" class="vZoomStrip"><div id="vZoomThumb" class="vZoomThumb"></div></div></div></section>
 <section class="zoomControls"><button id="playBtn" class="primary">▶︎ Play</button><button id="undoBtn">Undo</button><button id="redoBtn">Redo</button><button id="focusBtn">View</button></section>
 <section class="middleControls"><button id="leftBtn">◀︎ Step</button><button id="rightBtn">Step ▶︎</button><button id="chordBtn">Chord</button><button id="deleteBtn">Delete</button><button id="divDownBtn">Div −</button><button id="divUpBtn">Div +</button><button id="octDownBtn">Oct −</button><button id="octUpBtn">Oct +</button></section>
 <section class="statusRow"><div class="pill">Input: <b id="stepReadout">1/16 · Oct +0</b></div><div class="pill">Playhead: <b id="posReadout">1.1.000</b></div><div class="pill">Chord: <b id="chordReadout">—</b></div></section>
@@ -134,7 +136,7 @@ const colors={blue:"linear-gradient(180deg,rgba(53,194,255,.95),rgba(53,194,255,
 const solidColors={blue:"rgba(53,194,255,.88)",green:"rgba(0,224,164,.88)",purple:"rgba(124,92,255,.9)",orange:"rgba(255,157,58,.9)",pink:"rgba(255,81,161,.9)",yellow:"rgba(255,207,90,.9)",red:"rgba(255,72,92,.9)",cyan:"rgba(80,245,255,.9)",lime:"rgba(180,255,80,.9)",white:"rgba(255,255,255,.9)"};
 const strings=[{name:"e",midi:64,channel:6},{name:"B",midi:59,channel:5},{name:"G",midi:55,channel:4},{name:"D",midi:50,channel:3},{name:"A",midi:45,channel:2},{name:"E",midi:40,channel:1}];
 const state={armed:true,playing:false,chordMode:false,semitoneMode:false,tempo:120,timeSigNum:4,timeSigDen:4,subdivision:16,metronome:false,lastMetroStep:-1,inputOctave:0,tick:0,zoom:.9,viewAllTracks:false,hideFretboard:false,useSoundFont:true,sfReady:false,sfLoading:false,sfSynth:null,sfNode:null,sfId:null,sfProgramCache:{},loopEnabled:false,loopStart:0,loopEnd:PPQ*4,loopSetMode:0,undoStack:[],redoStack:[],scrollX:0,scrollY:250,selectedIds:new Set(),nextNoteId:1,tracks:[{id:1,name:"Track 1",sound:"gm:0",color:"blue",volume:100,notes:[]},{id:2,name:"Track 2",sound:"gm:33",color:"green",volume:100,notes:[]},{id:3,name:"Track 3",sound:"gm:48",color:"purple",volume:100,notes:[]}],activeTrackId:1,audioCtx:null,playbackStartTime:0,playbackStartTick:0,scheduledNotes:new Set(),scheduleTimer:null};
-const $=id=>document.getElementById(id),el={tempo:$("tempo"),tempoSlider:$("tempoSlider"),bpmLabel:$("bpmLabel"),bpmMenu:$("bpmMenu"),bpmCloseBtn:$("bpmCloseBtn"),subdivTop:$("subdivTop"),tsBtn:$("tsBtn"),tsMenu:$("tsMenu"),metroBtn:$("metroBtn"),loopMenu:$("loopMenu"),loopStartInput:$("loopStartInput"),loopEndInput:$("loopEndInput"),loopToggleBtn:$("loopToggleBtn"),loopApplyBtn:$("loopApplyBtn"),loopCloseBtn:$("loopCloseBtn"),settingsBtn:$("settingsBtn"),settingsMenu:$("settingsMenu"),playBtn:$("playBtn"),leftBtn:$("leftBtn"),rightBtn:$("rightBtn"),divDownBtn:$("divDownBtn"),divUpBtn:$("divUpBtn"),octDownBtn:$("octDownBtn"),octUpBtn:$("octUpBtn"),chordBtn:$("chordBtn"),recordBtn:$("recordBtn"),deleteBtn:$("deleteBtn"),newProjectBtn:$("newProjectBtn"),exportProjectBtn:$("exportProjectBtn"),importProjectBtn:$("importProjectBtn"),projectImport:$("projectImport"),trackColorMenu:$("trackColorMenu"),trackColorGrid:$("trackColorGrid"),trackColorCloseBtn:$("trackColorCloseBtn"),themeBtn:$("themeBtn"),themeMenu:$("themeMenu"),themeList:$("themeList"),randomThemeBtn:$("randomThemeBtn"),randomMonoThemeBtn:$("randomMonoThemeBtn"),themeMenuCloseBtn:$("themeMenuCloseBtn"),hideFretBtn:$("hideFretBtn"),sfBtn:$("sfBtn"),sfLoadBtn:$("sfLoadBtn"),sfStatus:$("sfStatus"),exportBtn:$("exportBtn"),saveBtn:$("saveBtn"),loadBtn:$("loadBtn"),localProjectsMenu:$("localProjectsMenu"),projectNameInput:$("projectNameInput"),saveNamedProjectBtn:$("saveNamedProjectBtn"),localProjectsList:$("localProjectsList"),undoBtn:$("undoBtn"),redoBtn:$("redoBtn"),loopBtn:$("loopBtn"),focusBtn:$("focusBtn"),fretboard:$("fretboard"),fretMarkers:$("fretMarkers"),fretChordLabel:$("fretChordLabel"),timelineViewport:$("timelineViewport"),timelineContent:$("timelineContent"),vZoomStrip:$("vZoomStrip"),vZoomThumb:$("vZoomThumb"),trackMenuBtn:$("trackMenuBtn"),trackStatusBtn:$("trackStatusBtn"),trackMenu:$("trackMenu"),viewAllToggleBtn:$("viewAllToggleBtn"),trackList:$("trackList"),addTrackMenuBtn:$("addTrackMenuBtn"),deleteTrackMenuBtn:$("deleteTrackMenuBtn"),trackMenuCloseBtn:$("trackMenuCloseBtn"),soundSelect:$("soundSelect"),colorSelect:$("colorSelect"),stepReadout:$("stepReadout"),posReadout:$("posReadout"),chordReadout:$("chordReadout")};
+const $=id=>document.getElementById(id),el={tempo:$("tempo"),tempoSlider:$("tempoSlider"),bpmLabel:$("bpmLabel"),bpmMenu:$("bpmMenu"),bpmCloseBtn:$("bpmCloseBtn"),subdivTop:$("subdivTop"),tsBtn:$("tsBtn"),tsMenu:$("tsMenu"),metroBtn:$("metroBtn"),loopMenu:$("loopMenu"),loopStartInput:$("loopStartInput"),loopEndInput:$("loopEndInput"),loopToggleBtn:$("loopToggleBtn"),loopApplyBtn:$("loopApplyBtn"),loopCloseBtn:$("loopCloseBtn"),settingsBtn:$("settingsBtn"),settingsMenu:$("settingsMenu"),playBtn:$("playBtn"),leftBtn:$("leftBtn"),rightBtn:$("rightBtn"),divDownBtn:$("divDownBtn"),divUpBtn:$("divUpBtn"),octDownBtn:$("octDownBtn"),octUpBtn:$("octUpBtn"),chordBtn:$("chordBtn"),recordBtn:$("recordBtn"),deleteBtn:$("deleteBtn"),newProjectBtn:$("newProjectBtn"),exportProjectBtn:$("exportProjectBtn"),importProjectBtn:$("importProjectBtn"),projectImport:$("projectImport"),trackColorMenu:$("trackColorMenu"),trackColorGrid:$("trackColorGrid"),trackColorCloseBtn:$("trackColorCloseBtn"),themeBtn:$("themeBtn"),themeMenu:$("themeMenu"),themeList:$("themeList"),randomThemeBtn:$("randomThemeBtn"),randomMonoThemeBtn:$("randomMonoThemeBtn"),themeMenuCloseBtn:$("themeMenuCloseBtn"),hideFretBtn:$("hideFretBtn"),sfBtn:$("sfBtn"),sfLoadBtn:$("sfLoadBtn"),sfStatus:$("sfStatus"),exportBtn:$("exportBtn"),saveBtn:$("saveBtn"),loadBtn:$("loadBtn"),localProjectsMenu:$("localProjectsMenu"),projectNameInput:$("projectNameInput"),saveNamedProjectBtn:$("saveNamedProjectBtn"),localProjectsList:$("localProjectsList"),undoBtn:$("undoBtn"),redoBtn:$("redoBtn"),loopBtn:$("loopBtn"),focusBtn:$("focusBtn"),fretboard:$("fretboard"),fretMarkers:$("fretMarkers"),fretChordLabel:$("fretChordLabel"),timelineViewport:$("timelineViewport"),timelineContent:$("timelineContent"),barZoomHeader:$("barZoomHeader"),vZoomStrip:$("vZoomStrip"),vZoomThumb:$("vZoomThumb"),trackMenuBtn:$("trackMenuBtn"),trackStatusBtn:$("trackStatusBtn"),trackMenu:$("trackMenu"),viewAllToggleBtn:$("viewAllToggleBtn"),trackList:$("trackList"),addTrackMenuBtn:$("addTrackMenuBtn"),deleteTrackMenuBtn:$("deleteTrackMenuBtn"),trackMenuCloseBtn:$("trackMenuCloseBtn"),soundSelect:$("soundSelect"),colorSelect:$("colorSelect"),stepReadout:$("stepReadout"),posReadout:$("posReadout"),chordReadout:$("chordReadout")};
 
 
 
@@ -510,7 +512,14 @@ function renderTrackControls(){
  }
 }
 function renderTimeline(){const c=el.timelineContent;c.innerHTML="";const endTicks=visibleEndTicks();const height=(pianoMax-pianoMin+1)*rowH,width=Math.max(el.timelineViewport.clientWidth+state.scrollX+1200,tickToX(endTicks)+state.scrollX+800);c.style.width=width+"px";c.style.height=Math.max(height,el.timelineViewport.clientHeight)+"px";for(let m=pianoMax;m>=pianoMin;m--){const y=midiToY(m);if(y<-30||y>el.timelineViewport.clientHeight+30)continue;const black=[1,3,6,8,10].includes(m%12),key=document.createElement("div");key.className="pianoKey"+(black?" black":"");key.style.top=y+"px";key.style.height=rowH+"px";key.textContent=m%12===0?midiName(m):"";c.appendChild(key);const row=document.createElement("div");row.className="pianoRow "+(black?"black":"white");row.style.top=y+"px";row.style.height=rowH+"px";c.appendChild(row)}for(let i=0;i<Math.ceil(endTicks/stepTicks())+48;i++){const tick=i*stepTicks(),l=document.createElement("div");l.className="gridLine";const bt=barTicks();if(Math.abs(tick%PPQ)<1)l.classList.add("beat");if(Math.abs(tick%bt)<1)l.classList.add("bar");l.style.left=tickToX(tick)+"px";c.appendChild(l)}
-for(let b=0;b<Math.ceil(endTicks/barTicks())+8;b++){const tick=b*barTicks(),bn=document.createElement("div");bn.className="barNumber";bn.style.left=tickToX(tick)+"px";bn.textContent=String(b+1);c.appendChild(bn)}for(const r of chordRegions()){const w=tickToX(r.end)-tickToX(r.start)-4;if(w<18)continue;const d=document.createElement("div");d.className="chordRegion";d.style.left=tickToX(r.start)+"px";d.style.top="2px";d.style.width=Math.max(18,w)+"px";d.textContent=w<36?"":r.name;c.appendChild(d)}const visible=state.viewAllTracks?state.tracks:[activeTrack()];for(const tr of visible)for(const note of tr.notes){const y=midiToY(note.midi)+1;if(y<-30||y>el.timelineViewport.clientHeight+30)continue;const n=document.createElement("div");n.className="note"+(state.selectedIds.has(note.id)?" selected":"");n.style.left=tickToX(note.start)+"px";n.style.top=y+"px";n.style.width=Math.max(18,(note.duration/stepTicks())*baseStepPx*state.zoom-3)+"px";const nh=Math.max(1.2,Math.min(Math.max(1,rowH-0.6),10));n.style.height=nh+"px";n.style.marginTop=Math.max(0,(rowH-nh)/2)+"px";n.style.setProperty("--noteColor",colors[tr.color||"blue"]);n.innerHTML="";makeNoteInteractive(n,note);c.appendChild(n)}if(state.loopEnabled){const lr=document.createElement("div");lr.className="loopRegion";lr.style.left=tickToX(state.loopStart)+"px";lr.style.width=Math.max(8,tickToX(state.loopEnd)-tickToX(state.loopStart))+"px";c.appendChild(lr)}const ph=document.createElement("div");ph.id="playhead";ph.style.left=tickToX(state.tick)+"px";c.appendChild(ph)}
+if(el.barZoomHeader)el.barZoomHeader.innerHTML="";
+for(let b=0;b<Math.ceil(endTicks/barTicks())+8;b++){
+ const tick=b*barTicks(),bn=document.createElement("div");
+ bn.className="barNumber";
+ bn.style.left=(tickToX(tick)-38)+"px";
+ bn.textContent=String(b+1);
+ if(el.barZoomHeader)el.barZoomHeader.appendChild(bn);else c.appendChild(bn);
+}for(const r of chordRegions()){const w=tickToX(r.end)-tickToX(r.start)-4;if(w<18)continue;const d=document.createElement("div");d.className="chordRegion";d.style.left=tickToX(r.start)+"px";d.style.top="2px";d.style.width=Math.max(18,w)+"px";d.textContent=w<36?"":r.name;c.appendChild(d)}const visible=state.viewAllTracks?state.tracks:[activeTrack()];for(const tr of visible)for(const note of tr.notes){const y=midiToY(note.midi)+1;if(y<-30||y>el.timelineViewport.clientHeight+30)continue;const n=document.createElement("div");n.className="note"+(state.selectedIds.has(note.id)?" selected":"");n.style.left=tickToX(note.start)+"px";n.style.top=y+"px";n.style.width=Math.max(1,tickToX(n.start+n.duration)-tickToX(n.start)-1)+"px";const nh=Math.max(1.2,Math.min(Math.max(1,rowH-0.6),10));n.style.height=nh+"px";n.style.marginTop=Math.max(0,(rowH-nh)/2)+"px";n.style.setProperty("--noteColor",colors[tr.color||"blue"]);n.innerHTML="";makeNoteInteractive(n,note);c.appendChild(n)}if(state.loopEnabled){const lr=document.createElement("div");lr.className="loopRegion";lr.style.left=tickToX(state.loopStart)+"px";lr.style.width=Math.max(8,tickToX(state.loopEnd)-tickToX(state.loopStart))+"px";c.appendChild(lr)}const ph=document.createElement("div");ph.id="playhead";ph.style.left=tickToX(state.tick)+"px";c.appendChild(ph)}
 function makeNoteInteractive(node,note){
  node.addEventListener("pointerdown",e=>{
   e.preventDefault();
@@ -739,7 +748,7 @@ function setupTimelineGestures(){
  }
 
  el.timelineViewport.addEventListener("pointerdown",e=>{
-  if(e.target.closest(".note")||e.target.closest(".vZoomStrip"))return;
+  if(e.target.closest(".note")||e.target.closest(".vZoomStrip")||e.target.closest(".barZoomHeader"))return;
   e.preventDefault();
   pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
   try{el.timelineViewport.setPointerCapture(e.pointerId)}catch{}
@@ -760,13 +769,7 @@ function setupTimelineGestures(){
    },320);
   }
 
-  if(pointers.size===2){
-   clearTimeout(selectTimer);
-   clearSelectBox();
-   mode="pinch";
-   const p=[...pointers.values()];
-   pinch={dist:distance(p[0],p[1]),zoom:state.zoom,rowH,scrollX:state.scrollX,scrollY:state.scrollY,mid:midpoint(p[0],p[1])};
-  }
+  if(pointers.size===2){clearTimeout(selectTimer);clearSelectBox();mode="idle";pinch=null;}
  },{passive:false});
 
  el.timelineViewport.addEventListener("pointermove",e=>{
@@ -780,19 +783,7 @@ function setupTimelineGestures(){
    return;
   }
 
-  if(mode==="pinch"&&pointers.size>=2&&pinch){
-   const p=[...pointers.values()].slice(0,2);
-   const scale=Math.max(20,distance(p[0],p[1]))/Math.max(20,pinch.dist);
-   const m=midpoint(p[0],p[1]);
-   const rect=el.timelineViewport.getBoundingClientRect();
-   state.zoom=Math.max(.08,Math.min(8,pinch.zoom*scale));
-   rowH=pinch.rowH;
-   const cx=pinch.mid.x-rect.left,cy=pinch.mid.y-rect.top,nx=m.x-rect.left,ny=m.y-rect.top;
-   state.scrollX=Math.max(0,(pinch.scrollX+cx-38)*(state.zoom/pinch.zoom)-(nx-38));
-   state.scrollY=Math.max(0,Math.min(900,pinch.scrollY));
-   render();
-   return;
-  }
+  if(mode==="pinch"&&pointers.size>=2&&pinch){return;}
 
   if(mode==="pan"&&pointers.size===1){
    const dx=e.clientX-lastX;
@@ -855,6 +846,45 @@ function setupTimelineGestures(){
   }
  },{passive:false});
 }
+function zoomHorizontalAt(factor,clientX=null){
+ const rect=el.timelineViewport.getBoundingClientRect();
+ const anchorX=clientX==null?rect.left+rect.width/2:clientX;
+ const localX=anchorX-rect.left;
+ const before=xToTick(localX);
+ const old=state.zoom;
+ state.zoom=Math.max(.04,Math.min(10,state.zoom*factor));
+ const afterX=38+(before/stepTicks())*baseStepPx*state.zoom-state.scrollX;
+ state.scrollX=Math.max(0,state.scrollX+(afterX-localX));
+ render();
+}
+function setupBarZoomHeader(){
+ if(!el.barZoomHeader)return;
+ let startY=0,startZoom=state.zoom,startScroll=state.scrollX,dragging=false,anchorX=0,anchorTick=0;
+ el.barZoomHeader.addEventListener("pointerdown",e=>{
+  e.preventDefault();e.stopPropagation();
+  dragging=true;startY=e.clientY;startZoom=state.zoom;startScroll=state.scrollX;anchorX=e.clientX;
+  const rect=el.timelineViewport.getBoundingClientRect();
+  anchorTick=xToTick(anchorX-rect.left);
+  try{el.barZoomHeader.setPointerCapture(e.pointerId)}catch{}
+ });
+ el.barZoomHeader.addEventListener("pointermove",e=>{
+  if(!dragging)return;
+  e.preventDefault();e.stopPropagation();
+  const dy=e.clientY-startY;
+  state.zoom=Math.max(.04,Math.min(10,startZoom*Math.exp(-dy*0.012)));
+  const rect=el.timelineViewport.getBoundingClientRect();
+  const localX=anchorX-rect.left;
+  const newX=38+(anchorTick/stepTicks())*baseStepPx*state.zoom-state.scrollX;
+  state.scrollX=Math.max(0,state.scrollX+(newX-localX));
+  render();
+ });
+ el.barZoomHeader.addEventListener("pointerup",()=>{dragging=false});
+ el.barZoomHeader.addEventListener("pointercancel",()=>{dragging=false});
+ el.barZoomHeader.addEventListener("wheel",e=>{
+  e.preventDefault();e.stopPropagation();
+  zoomHorizontalAt(e.deltaY<0?1.14:.78,e.clientX);
+ },{passive:false});
+}
 function setupVZoomStrip(){
  if(!el.vZoomStrip)return;
  let startY=0,startRowH=rowH,dragging=false;
@@ -872,7 +902,9 @@ function setupVZoomStrip(){
   e.stopPropagation();
   const dy=e.clientY-startY;
   // Drag up = zoom in vertically, drag down = zoom out.
+  const centerMidi=pianoMax-((state.scrollY+el.timelineViewport.clientHeight/2)/rowH);
   rowH=Math.max(2.2,Math.min(32,startRowH-dy*0.09));
+  state.scrollY=Math.max(0,Math.min(1200,(pianoMax-centerMidi)*rowH-el.timelineViewport.clientHeight/2));
   render();
  });
  el.vZoomStrip.addEventListener("pointerup",()=>{dragging=false});
@@ -880,7 +912,9 @@ function setupVZoomStrip(){
  el.vZoomStrip.addEventListener("wheel",e=>{
   e.preventDefault();
   e.stopPropagation();
+  const centerMidi=pianoMax-((state.scrollY+el.timelineViewport.clientHeight/2)/rowH);
   rowH=Math.max(2.2,Math.min(32,rowH*(e.deltaY<0?1.15:.78)));
+  state.scrollY=Math.max(0,Math.min(1200,(pianoMax-centerMidi)*rowH-el.timelineViewport.clientHeight/2));
   render();
  },{passive:false});
 }
@@ -1270,7 +1304,7 @@ if(el.themeMenuCloseBtn)el.themeMenuCloseBtn.onclick=()=>el.themeMenu.classList.
 if(el.randomThemeBtn)el.randomThemeBtn.onclick=()=>randomTheme(false);
 if(el.randomMonoThemeBtn)el.randomMonoThemeBtn.onclick=()=>randomTheme(true);
 
-renderFretboard();setupTimelineGestures();setupVZoomStrip();render();
+renderFretboard();setupTimelineGestures();setupBarZoomHeader();setupVZoomStrip();render();
 </script>
 </body>
 </html>
