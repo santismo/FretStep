@@ -38,9 +38,9 @@ input[type=number]{width:44px;background:#090b12;border:1px solid var(--line);bo
 .zoomControls{flex:0 0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:3px}.middleControls{flex:0 0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:3px}.statusRow{display:none;flex:0 0 auto}
 .pill{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:4px 6px;color:var(--muted);font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pill b{color:var(--text)}
 .keyboardShell{flex:1 1 0;min-height:0;overflow:hidden;display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:5px}#app.hideFretboard .keyboardShell{display:none}#app.hideFretboard .timelineShell{flex:1 1 0;min-height:0}#app.hideFretboard{gap:3px}
-.fretboardWrap{position:relative;flex:1 1 auto;min-height:0;overflow:hidden;border-radius:13px;border:1px solid var(--line);background:linear-gradient(90deg,rgba(255,255,255,.06) 0 1px,transparent 1px),linear-gradient(180deg,rgba(255,255,255,.045) 0 1px,transparent 1px),#0a0c13;touch-action:none;padding-bottom:8px}
-#fretboard{height:calc(100% - 6px);display:grid;grid-template-rows:repeat(6,1fr);grid-template-columns:repeat(13,1fr);gap:3px;padding:5px}.fret{border:1px solid #2a3044;background:linear-gradient(180deg,#171b28,#0f121b);border-radius:8px;min-width:0;min-height:0;user-select:none}.fret.open{border-color:rgba(124,92,255,.35)}.fret:active,.fret.flash{background:rgba(0,224,164,.3);border-color:var(--accent2);box-shadow:inset 0 0 18px rgba(0,224,164,.12)}.fret.stepLit{background:var(--fretLitColor,rgba(255,255,255,.88));border-color:rgba(255,255,255,.95);box-shadow:0 0 14px var(--fretLitColor,rgba(255,255,255,.24))}
-.fretMarkers{position:absolute;left:8px;right:8px;bottom:-2px;height:8px;display:grid;grid-template-columns:repeat(13,1fr);gap:4px;pointer-events:none}.markerCell{display:flex;align-items:center;justify-content:center}.marker{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.48)}.fretChordLabel{position:absolute;left:10px;bottom:0px;z-index:7;color:var(--chord);font-size:8px;font-weight:700;opacity:.82;pointer-events:none;text-shadow:0 1px 4px #000;max-width:72px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.marker.double{width:14px;height:6px;background:radial-gradient(circle at 4px 50%,rgba(255,255,255,.55) 0 3px,transparent 3.5px),radial-gradient(circle at 12px 50%,rgba(255,255,255,.55) 0 3px,transparent 3.5px)}
+.fretboardWrap{position:relative;flex:1 1 auto;min-height:0;overflow:hidden;border-radius:13px;border:1px solid var(--line);background:linear-gradient(90deg,rgba(255,255,255,.06) 0 1px,transparent 1px),linear-gradient(180deg,rgba(255,255,255,.045) 0 1px,transparent 1px),#0a0c13;touch-action:none;padding-bottom:12px}
+#fretboard{height:calc(100% - 10px);display:grid;grid-template-rows:repeat(6,1fr);grid-template-columns:repeat(13,1fr);gap:3px;padding:5px}.fret{border:1px solid #2a3044;background:linear-gradient(180deg,#171b28,#0f121b);border-radius:8px;min-width:0;min-height:0;user-select:none}.fret.open{border-color:rgba(124,92,255,.35)}.fret:active,.fret.flash{background:rgba(0,224,164,.3);border-color:var(--accent2);box-shadow:inset 0 0 18px rgba(0,224,164,.12)}.fret.stepLit{background:var(--fretLitColor,rgba(255,255,255,.88));border-color:rgba(255,255,255,.95);box-shadow:0 0 14px var(--fretLitColor,rgba(255,255,255,.24))}
+.fretMarkers{position:absolute;left:8px;right:8px;bottom:2px;height:8px;display:grid;grid-template-columns:repeat(13,1fr);gap:4px;pointer-events:none}.markerCell{display:flex;align-items:center;justify-content:center}.marker{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.48)}.fretChordLabel{position:absolute;left:10px;bottom:2px;z-index:7;color:var(--chord);font-size:8px;font-weight:700;opacity:.82;pointer-events:none;text-shadow:0 1px 4px #000;max-width:72px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.marker.double{width:14px;height:6px;background:radial-gradient(circle at 4px 50%,rgba(255,255,255,.55) 0 3px,transparent 3.5px),radial-gradient(circle at 12px 50%,rgba(255,255,255,.55) 0 3px,transparent 3.5px)}
 .tsBtn{min-height:24px;height:24px;padding:0 5px;border-radius:8px;font-size:10px;color:var(--text)}
 .popupMenu{display:none;position:absolute;left:12px;top:50px;z-index:60;background:rgba(16,19,28,.98);border:1px solid var(--line);border-radius:14px;padding:10px;box-shadow:0 12px 30px rgba(0,0,0,.45);gap:7px;grid-template-columns:1fr;color:var(--text);font-size:12px}
 .popupMenu.open{display:grid}
@@ -49,7 +49,7 @@ input[type=number]{width:44px;background:#090b12;border:1px solid var(--line);bo
 .barZoomHeader{cursor:ns-resize;position:absolute;left:38px;right:0;top:0;height:18px;z-index:14;background:color-mix(in srgb,var(--panel) 86%,transparent);border-bottom:1px solid var(--line);touch-action:none;overflow:hidden}
 .barZoomHeader .barNumber{top:3px!important}
 .barNumber{position:absolute;top:0;font-size:8px;color:rgba(255,255,255,.72);z-index:2;pointer-events:none;transform:translateX(3px)}
-#loopMenu{left:auto!important;right:8px!important;top:76px!important;transform:none!important;width:min(72vw,270px)!important}.trackMenu{left:6px!important;right:auto!important;top:68px!important;transform:none!important;width:min(96vw,360px)!important}.themeMenu{left:8px!important;right:auto!important;top:76px!important;transform:none!important;width:min(96vw,390px)!important}.volInput{width:34px!important;font-size:9px!important;padding:1px!important}.trackMixerRow{display:grid;grid-template-columns:95px 50px 34px 26px;gap:4px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:5px;background:rgba(0,0,0,.18)}.trackColorMenu{left:8px!important;right:auto!important;top:104px!important;transform:none!important;width:min(92vw,330px)!important}.bpmMenu{top:82px!important;left:50%!important;transform:translateX(-50%)!important;width:min(94vw,390px)!important}
+#loopMenu{left:auto!important;right:8px!important;top:76px!important;transform:none!important;width:min(72vw,270px)!important}.trackMenu{left:6px!important;right:auto!important;top:68px!important;transform:none!important;width:min(96vw,360px)!important}.themeMenu{left:8px!important;right:auto!important;top:76px!important;transform:none!important;width:min(96vw,390px)!important}.volInput{width:34px!important;font-size:9px!important;padding:1px!important}.trackMixerRow{display:grid;grid-template-columns:112px 42px 34px;gap:4px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:5px;background:rgba(0,0,0,.18)}.trackColorMenu{left:8px!important;right:auto!important;top:104px!important;transform:none!important;width:min(92vw,330px)!important}.bpmMenu{top:82px!important;left:50%!important;transform:translateX(-50%)!important;width:min(94vw,390px)!important}
 .trackColorGrid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
 .colorSwatchBtn{min-height:26px!important;height:26px!important;border-radius:7px!important;padding:0!important;border:2px solid rgba(255,255,255,.22)!important}
 .colorSwatchBtn.selected{border-color:var(--text)!important;box-shadow:0 0 0 2px var(--accent)}
@@ -490,24 +490,21 @@ function renderTrackControls(){
   name.textContent=(t.id===state.activeTrackId?"● ":"○ ")+trackDisplayName(t);
   name.style.textAlign="left";
   name.style.borderLeft="7px solid "+(solidColors[t.color||"blue"]||"#59c");
-  name.onclick=()=>{state.activeTrackId=t.id;state.selectedIds.clear();render()};
+  let namePressTimer=null,nameLong=false;
+  name.addEventListener("pointerdown",()=>{nameLong=false;clearTimeout(namePressTimer);namePressTimer=setTimeout(()=>{nameLong=true;openTrackColorMenu(t)},520)});
+  name.addEventListener("pointerup",()=>{clearTimeout(namePressTimer);if(!nameLong){state.activeTrackId=t.id;state.selectedIds.clear();render()}});
+  name.addEventListener("pointercancel",()=>clearTimeout(namePressTimer));
 
   const slider=document.createElement("input");
   slider.type="range";slider.min="0";slider.max="150";slider.value=trackVolume(t);
-  slider.style.width="50px";
+  slider.style.width="42px";
   slider.oninput=()=>{t.volume=Number(slider.value);num.value=t.volume};
 
   const num=document.createElement("input");
   num.type="number";num.min="0";num.max="150";num.value=trackVolume(t);
   num.className="volInput";
   num.onchange=()=>{t.volume=Math.max(0,Math.min(150,Number(num.value)||0));slider.value=t.volume;num.value=t.volume};
-
-  const cb=document.createElement("button");
-  cb.className="colorSwatchBtn";
-  cb.style.background=solidColors[t.color||"blue"]||"#59c";
-  cb.onclick=()=>openTrackColorMenu(t);
-
-  row.appendChild(name);row.appendChild(slider);row.appendChild(num);row.appendChild(cb);
+  row.appendChild(name);row.appendChild(slider);row.appendChild(num);
   el.trackList.appendChild(row);
  }
 }
@@ -519,7 +516,7 @@ for(let b=0;b<Math.ceil(endTicks/barTicks())+8;b++){
  bn.style.left=(tickToX(tick)-38)+"px";
  bn.textContent=String(b+1);
  if(el.barZoomHeader)el.barZoomHeader.appendChild(bn);else c.appendChild(bn);
-}for(const r of chordRegions()){const w=tickToX(r.end)-tickToX(r.start)-4;if(w<18)continue;const d=document.createElement("div");d.className="chordRegion";d.style.left=tickToX(r.start)+"px";d.style.top="2px";d.style.width=Math.max(18,w)+"px";d.textContent=w<36?"":r.name;c.appendChild(d)}const visible=state.viewAllTracks?state.tracks:[activeTrack()];for(const tr of visible)for(const note of tr.notes){const y=midiToY(note.midi)+1;if(y<-30||y>el.timelineViewport.clientHeight+30)continue;const n=document.createElement("div");n.className="note"+(state.selectedIds.has(note.id)?" selected":"");n.style.left=tickToX(note.start)+"px";n.style.top=y+"px";n.style.width=Math.max(1,tickToX(n.start+n.duration)-tickToX(n.start)-1)+"px";const nh=Math.max(1.2,Math.min(Math.max(1,rowH-0.6),10));n.style.height=nh+"px";n.style.marginTop=Math.max(0,(rowH-nh)/2)+"px";n.style.setProperty("--noteColor",colors[tr.color||"blue"]);n.innerHTML="";makeNoteInteractive(n,note);c.appendChild(n)}if(state.loopEnabled){const lr=document.createElement("div");lr.className="loopRegion";lr.style.left=tickToX(state.loopStart)+"px";lr.style.width=Math.max(8,tickToX(state.loopEnd)-tickToX(state.loopStart))+"px";c.appendChild(lr)}const ph=document.createElement("div");ph.id="playhead";ph.style.left=tickToX(state.tick)+"px";c.appendChild(ph)}
+}for(const r of chordRegions()){const w=tickToX(r.end)-tickToX(r.start)-4;if(w<18)continue;const d=document.createElement("div");d.className="chordRegion";d.style.left=tickToX(r.start)+"px";d.style.top="2px";d.style.width=Math.max(18,w)+"px";d.textContent=w<36?"":r.name;c.appendChild(d)}const visible=state.viewAllTracks?state.tracks:[activeTrack()];for(const tr of visible)for(const note of tr.notes){const y=midiToY(note.midi)+1;if(y<-30||y>el.timelineViewport.clientHeight+30)continue;const n=document.createElement("div");n.className="note"+(state.selectedIds.has(note.id)?" selected":"");n.style.left=tickToX(note.start)+"px";n.style.top=y+"px";n.style.width=Math.max(4,tickToX(n.start+n.duration)-tickToX(n.start)-1)+"px";const nh=Math.max(1.2,Math.min(Math.max(1,rowH-0.6),10));n.style.height=nh+"px";n.style.marginTop=Math.max(0,(rowH-nh)/2)+"px";n.style.setProperty("--noteColor",colors[tr.color||"blue"]);n.innerHTML="";makeNoteInteractive(n,note);c.appendChild(n)}if(state.loopEnabled){const lr=document.createElement("div");lr.className="loopRegion";lr.style.left=tickToX(state.loopStart)+"px";lr.style.width=Math.max(8,tickToX(state.loopEnd)-tickToX(state.loopStart))+"px";c.appendChild(lr)}const ph=document.createElement("div");ph.id="playhead";ph.style.left=tickToX(state.tick)+"px";c.appendChild(ph)}
 function makeNoteInteractive(node,note){
  node.addEventListener("pointerdown",e=>{
   e.preventDefault();
@@ -623,7 +620,7 @@ function changeOctave(d){
  }
  state.inputOctave=Math.max(-3,Math.min(3,state.inputOctave+d));
  render();
-}function zoomH(f){const old=state.zoom;state.zoom=Math.max(.08,Math.min(8,state.zoom*f));state.scrollX*=state.zoom/old;render()}function zoomV(f){rowH=Math.max(2.2,Math.min(32,rowH*f));render()}
+}function zoomH(f){const old=state.zoom;state.zoom=Math.max(.18,Math.min(8,(el.timelineViewport.clientWidth-70)/Math.max(80,((maxT-minT)/stepTicks())*baseStepPx)));state.scrollX*=state.zoom/old;render()}function zoomV(f){rowH=Math.max(2.2,Math.min(32,rowH*f));render()}
 function focusAllNotes(){if(state.chordMode){state.semitoneMode=!state.semitoneMode;render();return}state.tick=0;const notes=(state.viewAllTracks?state.tracks:[activeTrack()]).flatMap(t=>t.notes);if(!notes.length){state.scrollX=0;state.scrollY=250;state.zoom=.9;rowH=12;render();return}const minT=Math.min(...notes.map(n=>n.start)),maxT=Math.max(...notes.map(n=>n.start+n.duration)),minM=Math.min(...notes.map(n=>n.midi)),maxM=Math.max(...notes.map(n=>n.midi));state.zoom=Math.max(.08,Math.min(8,(el.timelineViewport.clientWidth-70)/Math.max(4,(maxT-minT)/stepTicks())/baseStepPx));state.scrollX=Math.max(0,(minT/stepTicks())*baseStepPx*state.zoom-20);rowH=Math.max(2.2,Math.min(32,(el.timelineViewport.clientHeight-20)/Math.max(8,maxM-minM+4)));state.scrollY=Math.max(0,(pianoMax-maxM-2)*rowH);render()}
 function schedulePlaybackNotes(){
  if(!state.playing||!state.audioCtx)return;
@@ -846,41 +843,41 @@ function setupTimelineGestures(){
   }
  },{passive:false});
 }
-function zoomHorizontalAt(factor,clientX=null){
- const rect=el.timelineViewport.getBoundingClientRect();
- const usableLeft=38;
- const localX=clientX==null?rect.width*.5:Math.max(usableLeft,Math.min(rect.width-4,clientX-rect.left));
- const anchorTick=xToTick(localX);
- state.zoom=Math.max(.035,Math.min(14,state.zoom*factor));
- state.scrollX=Math.max(0,usableLeft+(anchorTick/stepTicks())*baseStepPx*state.zoom-localX);
+function zoomHorizontalAt(factor){
+ const playTick=Math.max(0,state.tick);
+ const viewportW=el.timelineViewport.clientWidth||300;
+ state.zoom=Math.max(.08,Math.min(12,state.zoom*factor));
+ const playX=38+(playTick/stepTicks())*baseStepPx*state.zoom;
+ state.scrollX=Math.max(0,playX-viewportW*.5);
  render();
 }
 function setupBarZoomHeader(){
  if(!el.barZoomHeader)return;
- let startY=0,startZoom=state.zoom,dragging=false,anchorClientX=0,anchorTick=0;
+ let startY=0,startZoom=state.zoom,dragging=false,playTick=0,viewportW=0;
  el.barZoomHeader.addEventListener("pointerdown",e=>{
   e.preventDefault();e.stopPropagation();
-  dragging=true;startY=e.clientY;startZoom=state.zoom;anchorClientX=e.clientX;
-  const rect=el.timelineViewport.getBoundingClientRect();
-  const localX=Math.max(38,Math.min(rect.width-4,anchorClientX-rect.left));
-  anchorTick=xToTick(localX);
+  dragging=true;
+  startY=e.clientY;
+  startZoom=state.zoom;
+  playTick=Math.max(0,state.tick);
+  viewportW=el.timelineViewport.clientWidth||300;
   try{el.barZoomHeader.setPointerCapture(e.pointerId)}catch{}
  });
  el.barZoomHeader.addEventListener("pointermove",e=>{
   if(!dragging)return;
   e.preventDefault();e.stopPropagation();
   const dy=e.clientY-startY;
-  state.zoom=Math.max(.035,Math.min(14,startZoom*Math.exp(-dy*0.022)));
-  const rect=el.timelineViewport.getBoundingClientRect();
-  const localX=Math.max(38,Math.min(rect.width-4,anchorClientX-rect.left));
-  state.scrollX=Math.max(0,38+(anchorTick/stepTicks())*baseStepPx*state.zoom-localX);
+  // Same feel as vertical zoom: drag up = zoom in, drag down = zoom out.
+  state.zoom=Math.max(.08,Math.min(12,startZoom-dy*0.0065));
+  const playX=38+(playTick/stepTicks())*baseStepPx*state.zoom;
+  state.scrollX=Math.max(0,playX-viewportW*.5);
   render();
  });
  el.barZoomHeader.addEventListener("pointerup",()=>{dragging=false});
  el.barZoomHeader.addEventListener("pointercancel",()=>{dragging=false});
  el.barZoomHeader.addEventListener("wheel",e=>{
   e.preventDefault();e.stopPropagation();
-  zoomHorizontalAt(e.deltaY<0?1.3:.68,e.clientX);
+  zoomHorizontalAt(e.deltaY<0?1.15:.85);
  },{passive:false});
 }
 
@@ -1232,30 +1229,31 @@ function openTrackColorMenu(track){
 if(el.trackColorCloseBtn)el.trackColorCloseBtn.onclick=()=>el.trackColorMenu.classList.remove("open");
 
 const appThemes=[
- ["Default","#06070b","#10131c","#171b27","#2a3042","#f4f6ff","#858ca4","#7c5cff","#00e0a4","#ffcf5a"],
- ["Midnight","#02030a","#0b1020","#131a2e","#27324d","#edf4ff","#8da0c8","#5b8cff","#00e5ff","#ffd166"],
- ["OLED","#000000","#050505","#111111","#303030","#ffffff","#9b9b9b","#ffffff","#00ff99","#ffe066"],
- ["Cream","#f7efe0","#fff8ea","#eadfc9","#cdbf9d","#191610","#655c4a","#8b5cf6","#087f5b","#b7791f"],
- ["Paper","#fafafa","#ffffff","#eeeeee","#cccccc","#111111","#666666","#2563eb","#059669","#ca8a04"],
- ["Rose","#17070f","#26101a","#351827","#5a2940","#fff1f6","#c794a9","#ff5ca8","#8affd2","#ffd166"],
- ["Forest","#06100a","#0d1d12","#162b1c","#31533b","#ecfff1","#95bba0","#57cc99","#80ed99","#f9c74f"],
- ["Ocean","#03131c","#092333","#10364b","#28546b","#e9fbff","#90b9c7","#00a6fb","#00f5d4","#fee440"],
- ["Solar","#1d1300","#2c1e05","#46310c","#795714","#fff7dd","#d8bb71","#f77f00","#fcbf49","#eae2b7"],
- ["Candy","#1c071b","#2d1230","#431b49","#6a3170","#fff0ff","#d8a5d8","#ff70a6","#70d6ff","#ffd670"],
- ["Lavender","#120b1f","#201632","#302147","#55406f","#f5efff","#b9a8d6","#b388ff","#80ffdb","#ffd6a5"],
- ["Slate","#0f1115","#171b22","#202734","#3b4455","#f2f5f9","#9aa5b5","#60a5fa","#34d399","#fbbf24"],
  ["Blood","#120305","#22070a","#330b10","#641b24","#ffecef","#c28b92","#ef233c","#2ec4b6","#ffbe0b"],
+ ["Rose","#17070f","#26101a","#351827","#5a2940","#fff1f6","#c794a9","#ff5ca8","#8affd2","#ffd166"],
+ ["Sunset","#180707","#2b1010","#441d18","#7a392e","#fff0e8","#d69785","#fb7185","#f97316","#fde047"],
+ ["Peach","#fff1e7","#fffaf5","#ffe0cf","#e3b49d","#2b160e","#8a6252","#fb7185","#fb923c","#ca8a04"],
+ ["Desert","#201408","#32210f","#4a3218","#7b5731","#fff3df","#c7a77d","#d97706","#65a30d","#facc15"],
+ ["Solar","#1d1300","#2c1e05","#46310c","#795714","#fff7dd","#d8bb71","#f77f00","#fcbf49","#eae2b7"],
+ ["Cream","#f7efe0","#fff8ea","#eadfc9","#cdbf9d","#191610","#655c4a","#8b5cf6","#087f5b","#b7791f"],
+ ["Forest","#06100a","#0d1d12","#162b1c","#31533b","#ecfff1","#95bba0","#57cc99","#80ed99","#f9c74f"],
  ["Mint","#effff8","#ffffff","#dff7ec","#9ed8bd","#10251b","#52705f","#2dd4bf","#16a34a","#ca8a04"],
+ ["Matrix","#000800","#001400","#032100","#164b16","#dbffdb","#83c883","#00ff41","#00c853","#b6ff00"],
+ ["Ocean","#03131c","#092333","#10364b","#28546b","#e9fbff","#90b9c7","#00a6fb","#00f5d4","#fee440"],
+ ["Sky","#e6f4ff","#ffffff","#cfe9ff","#9cc7e5","#0b2536","#52758d","#0284c7","#06b6d4","#f59e0b"],
+ ["Ice","#eaf8ff","#ffffff","#d8eef7","#aad0df","#08202d","#4b7180","#0ea5e9","#14b8a6","#f59e0b"],
+ ["Midnight","#02030a","#0b1020","#131a2e","#27324d","#edf4ff","#8da0c8","#5b8cff","#00e5ff","#ffd166"],
+ ["Slate","#0f1115","#171b22","#202734","#3b4455","#f2f5f9","#9aa5b5","#60a5fa","#34d399","#fbbf24"],
+ ["Default","#06070b","#10131c","#171b27","#2a3042","#f4f6ff","#858ca4","#7c5cff","#00e0a4","#ffcf5a"],
+ ["Lavender","#120b1f","#201632","#302147","#55406f","#f5efff","#b9a8d6","#b388ff","#80ffdb","#ffd6a5"],
+ ["Grape","#10051d","#1e0d33","#2d164b","#58307a","#f8edff","#b99bd4","#a855f7","#22c55e","#eab308"],
+ ["Neon","#050016","#12002b","#21004a","#4f168f","#f5eaff","#b592ff","#bd00ff","#00ffbd","#fff500"],
+ ["Candy","#1c071b","#2d1230","#431b49","#6a3170","#fff0ff","#d8a5d8","#ff70a6","#70d6ff","#ffd670"],
+ ["Lavender Pink","#18091c","#291133","#3b1b4b","#6a3170","#fff0ff","#d8a5d8","#d946ef","#70d6ff","#ffd670"],
+ ["Paper","#fafafa","#ffffff","#eeeeee","#cccccc","#111111","#666666","#2563eb","#059669","#ca8a04"],
  ["Mono Light","#eeeeee","#ffffff","#dddddd","#bbbbbb","#111111","#666666","#444444","#777777","#999999"],
  ["Mono Dark","#080808","#121212","#1d1d1d","#343434","#f1f1f1","#929292","#d4d4d4","#aaaaaa","#777777"],
- ["Neon","#050016","#12002b","#21004a","#4f168f","#f5eaff","#b592ff","#bd00ff","#00ffbd","#fff500"],
- ["Desert","#201408","#32210f","#4a3218","#7b5731","#fff3df","#c7a77d","#d97706","#65a30d","#facc15"],
- ["Ice","#eaf8ff","#ffffff","#d8eef7","#aad0df","#08202d","#4b7180","#0ea5e9","#14b8a6","#f59e0b"],
- ["Grape","#10051d","#1e0d33","#2d164b","#58307a","#f8edff","#b99bd4","#a855f7","#22c55e","#eab308"],
- ["Sunset","#180707","#2b1010","#441d18","#7a392e","#fff0e8","#d69785","#fb7185","#f97316","#fde047"],
- ["Matrix","#000800","#001400","#032100","#164b16","#dbffdb","#83c883","#00ff41","#00c853","#b6ff00"],
- ["Sky","#e6f4ff","#ffffff","#cfe9ff","#9cc7e5","#0b2536","#52758d","#0284c7","#06b6d4","#f59e0b"],
- ["Peach","#fff1e7","#fffaf5","#ffe0cf","#e3b49d","#2b160e","#8a6252","#fb7185","#fb923c","#ca8a04"]
+ ["OLED","#000000","#050505","#111111","#303030","#ffffff","#9b9b9b","#ffffff","#00ff99","#ffe066"]
 ];
 function isLightColor(c){
  try{
