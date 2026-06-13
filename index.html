@@ -32,7 +32,7 @@ input[type=number]{width:44px;background:#090b12;border:1px solid var(--line);bo
 .pianoKey{position:absolute;left:0;width:38px;border-right:1px solid var(--line);border-bottom:1px solid rgba(255,255,255,.045);font-size:7px;color:var(--muted);padding:1px 3px;z-index:5;background:rgba(6,7,11,.95)}.pianoKey.black{color:rgba(255,255,255,.38);background:rgba(0,0,0,.92)}.vZoomStrip{position:absolute;left:0;top:0;width:38px;bottom:0;z-index:12;pointer-events:auto;background:transparent;touch-action:none}.vZoomThumb{display:none}
 .pianoRow{position:absolute;left:38px;right:0;border-bottom:1px solid rgba(255,255,255,.035)}.pianoRow.white{background:rgba(255,255,255,.075)}.pianoRow.black{background:rgba(255,255,255,.03)}
 .gridLine{position:absolute;top:0;bottom:0;width:1px;background:rgba(255,255,255,.055);z-index:1}.gridLine.beat{background:rgba(255,255,255,.14)}.gridLine.bar{background:rgba(124,92,255,.38)}
-.note{min-width:10px;position:absolute;height:10px;border-radius:4px;background:var(--noteColor);border:1px solid rgba(255,255,255,.32);box-shadow:0 2px 7px rgba(0,0,0,.35);z-index:4;touch-action:none}.note.selected{outline:2px solid white;filter:brightness(1.35)}
+.note{box-sizing:border-box;min-width:8px;position:absolute;height:10px;border-radius:4px;background:var(--noteColor);border:1px solid rgba(255,255,255,.32);box-shadow:0 2px 7px rgba(0,0,0,.35);z-index:4;touch-action:none}.note.selected{outline:2px solid white;filter:brightness(1.35)}
 .chordRegion{position:absolute;height:14px;border-radius:5px;background:rgba(255,207,90,.22);border:1px solid rgba(255,207,90,.65);color:var(--chord);font-size:8px;font-weight:900;padding:1px 3px;z-index:3;white-space:nowrap;overflow:hidden;text-overflow:clip;min-width:0}
 #playhead{position:absolute;top:0;bottom:0;width:2px;background:#fff;box-shadow:0 0 10px rgba(255,255,255,.85);z-index:10;pointer-events:none}.loopRegion{position:absolute;top:18px;height:12px;border-radius:5px;background:rgba(0,224,164,.18);border:1px solid rgba(0,224,164,.55);z-index:3;pointer-events:none}.selectBox{position:absolute;border:1px solid rgba(255,255,255,.9);background:rgba(124,92,255,.18);z-index:30;pointer-events:none;border-radius:4px}
 .zoomControls{flex:0 0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:3px}.middleControls{flex:0 0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:3px}.statusRow{display:none;flex:0 0 auto}
@@ -46,10 +46,10 @@ input[type=number]{width:44px;background:#090b12;border:1px solid var(--line);bo
 .popupMenu.open{display:grid}
 .popupMenu input{width:70px;background:#090b12;border:1px solid var(--line);border-radius:8px;color:var(--text);padding:5px;text-align:center}
 .popupMenu label{display:flex;align-items:center;justify-content:space-between;gap:8px;color:var(--muted)}
-.barZoomHeader{cursor:ew-resize;position:absolute;left:38px;right:0;top:0;height:14px;z-index:8;background:color-mix(in srgb,var(--panel) 82%,transparent);border-bottom:1px solid var(--line);touch-action:none;overflow:hidden}
-.barZoomHeader .barNumber{top:1px!important;font-size:8px!important}
+.barZoomHeader{cursor:ew-resize;position:absolute;left:38px;right:0;top:0;height:12px;z-index:3;background:color-mix(in srgb,var(--panel) 70%,transparent);border-bottom:1px solid var(--line);touch-action:none;overflow:hidden;pointer-events:auto}
+.barZoomHeader .barNumber{top:0!important;font-size:8px!important}
 .barNumber{position:absolute;top:0;font-size:8px;color:rgba(255,255,255,.72);z-index:2;pointer-events:none;transform:translateX(3px)}
-#loopMenu{left:auto!important;right:8px!important;top:76px!important;transform:none!important;width:min(72vw,270px)!important}.trackMenu{left:6px!important;right:auto!important;top:68px!important;transform:none!important;width:min(94vw,330px)!important}.themeMenu{left:8px!important;right:auto!important;top:76px!important;transform:none!important;width:min(96vw,390px)!important}.volInput{width:34px!important;font-size:9px!important;padding:1px!important}.trackMixerRow{display:grid;grid-template-columns:108px 22px 34px;gap:4px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:5px;background:rgba(0,0,0,.18)}.trackColorMenu{left:8px!important;right:auto!important;top:104px!important;transform:none!important;width:min(92vw,330px)!important}.bpmMenu{top:82px!important;left:50%!important;transform:translateX(-50%)!important;width:min(94vw,390px)!important}
+#loopMenu{left:auto!important;right:8px!important;top:76px!important;transform:none!important;width:min(72vw,270px)!important}.trackMenu{left:6px!important;right:auto!important;top:68px!important;transform:none!important;width:min(94vw,320px)!important}.themeMenu{left:8px!important;right:auto!important;top:76px!important;transform:none!important;width:min(96vw,390px)!important}.volInput{width:34px!important;font-size:9px!important;padding:1px!important}.trackMixerRow{display:grid;grid-template-columns:118px 14px 34px;gap:4px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:5px;background:rgba(0,0,0,.18)}.trackColorMenu{left:8px!important;right:auto!important;top:104px!important;transform:none!important;width:min(92vw,330px)!important}.bpmMenu{top:82px!important;left:50%!important;transform:translateX(-50%)!important;width:min(94vw,390px)!important}
 .trackColorGrid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
 .colorSwatchBtn{min-height:26px!important;height:26px!important;border-radius:7px!important;padding:0!important;border:2px solid rgba(255,255,255,.22)!important}
 .colorSwatchBtn.selected{border-color:var(--text)!important;box-shadow:0 0 0 2px var(--accent)}
@@ -71,8 +71,8 @@ button.active,.primary{background:color-mix(in srgb,var(--accent) 35%,var(--pane
 .fret{background:linear-gradient(180deg,color-mix(in srgb,var(--panel2) 90%,var(--accent)),color-mix(in srgb,var(--bg) 92%,var(--panel)));border-color:var(--line)}
 .fretMarkers .marker,.marker{background:color-mix(in srgb,var(--muted) 70%,transparent)!important}
 .popupMenu{background:color-mix(in srgb,var(--panel) 97%,var(--bg))!important;border-color:var(--line)!important;color:var(--text)!important}
-.trackMixerRow,.projectRow{background:color-mix(in srgb,var(--panel2) 78%,transparent)!important;border-color:var(--line)!important}
-.note{min-width:10px;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--text) 15%,transparent)}
+.trackMixerRow input[type=range]{width:14px!important;min-width:14px!important;max-width:14px!important}.trackMixerRow,.projectRow{background:color-mix(in srgb,var(--panel2) 78%,transparent)!important;border-color:var(--line)!important}
+.note{box-sizing:border-box;min-width:8px;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--text) 15%,transparent)}
 @media(max-height:720px){#app{gap:5px}.keyboardShell{min-height:285px}.timelineShell{min-height:170px}button{min-height:31px;font-size:10px}.statusRow{display:none;flex:0 0 auto}}
 </style>
 </head>
@@ -383,6 +383,7 @@ function visibleEndTicks(){
  const visibleSteps=(state.scrollX+el.timelineViewport.clientWidth+1200)/(baseStepPx*Math.max(.08,state.zoom));
  return Math.max(totalTicks(),visibleSteps*stepTicks(),barTicks()*16);
 }
+function tickWidth(){return baseStepPx*state.zoom/stepTicks()}
 function tickToX(t){return 38+(t/stepTicks())*baseStepPx*state.zoom-state.scrollX}function xToTick(x){return snapTick(((x+state.scrollX-38)/(baseStepPx*state.zoom))*stepTicks())}function midiToY(m){return(pianoMax-m)*rowH-state.scrollY}
 function midiName(m){const a=["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];return a[m%12]+Math.floor(m/12-1)}function freq(m){return 440*Math.pow(2,(m-69)/12)}
 function ensureAudio(){
@@ -497,7 +498,7 @@ function renderTrackControls(){
 
   const slider=document.createElement("input");
   slider.type="range";slider.min="0";slider.max="150";slider.value=trackVolume(t);
-  slider.style.width="22px";
+  slider.style.width="14px";
   slider.oninput=()=>{t.volume=Number(slider.value);num.value=t.volume};
 
   const num=document.createElement("input");
@@ -516,7 +517,7 @@ for(let b=0;b<Math.ceil(endTicks/barTicks())+8;b++){
  bn.style.left=(tickToX(tick)-38)+"px";
  bn.textContent=String(b+1);
  if(el.barZoomHeader)el.barZoomHeader.appendChild(bn);else c.appendChild(bn);
-}for(const r of chordRegions()){const w=tickToX(r.end)-tickToX(r.start)-4;if(w<18)continue;const d=document.createElement("div");d.className="chordRegion";d.style.left=tickToX(r.start)+"px";d.style.top="2px";d.style.width=Math.max(18,w)+"px";d.textContent=w<36?"":r.name;c.appendChild(d)}const visible=state.viewAllTracks?state.tracks:[activeTrack()];for(const tr of visible)for(const note of tr.notes){const y=midiToY(note.midi)+1;if(y<-30||y>el.timelineViewport.clientHeight+30)continue;const n=document.createElement("div");n.className="note"+(state.selectedIds.has(note.id)?" selected":"");n.style.left=tickToX(note.start)+"px";n.style.top=y+"px";n.style.width=Math.max(10,(n.duration/stepTicks())*baseStepPx*state.zoom-1)+"px";const nh=Math.max(1.2,Math.min(Math.max(1,rowH-0.6),10));n.style.height=nh+"px";n.style.marginTop=Math.max(0,(rowH-nh)/2)+"px";n.style.setProperty("--noteColor",colors[tr.color||"blue"]);n.innerHTML="";makeNoteInteractive(n,note);c.appendChild(n)}if(state.loopEnabled){const lr=document.createElement("div");lr.className="loopRegion";lr.style.left=tickToX(state.loopStart)+"px";lr.style.width=Math.max(8,tickToX(state.loopEnd)-tickToX(state.loopStart))+"px";c.appendChild(lr)}const ph=document.createElement("div");ph.id="playhead";ph.style.left=tickToX(state.tick)+"px";c.appendChild(ph)}
+}for(const r of chordRegions()){const w=tickToX(r.end)-tickToX(r.start)-4;if(w<18)continue;const d=document.createElement("div");d.className="chordRegion";d.style.left=tickToX(r.start)+"px";d.style.top="2px";d.style.width=Math.max(18,w)+"px";d.textContent=w<36?"":r.name;c.appendChild(d)}const visible=state.viewAllTracks?state.tracks:[activeTrack()];for(const tr of visible)for(const note of tr.notes){const y=midiToY(note.midi)+1;if(y<-30||y>el.timelineViewport.clientHeight+30)continue;const n=document.createElement("div");n.className="note"+(state.selectedIds.has(note.id)?" selected":"");n.style.left=tickToX(note.start)+"px";n.style.top=y+"px";n.style.width=Math.max(8,n.duration*tickWidth()-1)+"px";const nh=Math.max(1.2,Math.min(Math.max(1,rowH-0.6),10));n.style.height=nh+"px";n.style.marginTop=Math.max(0,(rowH-nh)/2)+"px";n.style.setProperty("--noteColor",colors[tr.color||"blue"]);n.innerHTML="";makeNoteInteractive(n,note);c.appendChild(n)}if(state.loopEnabled){const lr=document.createElement("div");lr.className="loopRegion";lr.style.left=tickToX(state.loopStart)+"px";lr.style.width=Math.max(8,tickToX(state.loopEnd)-tickToX(state.loopStart))+"px";c.appendChild(lr)}const ph=document.createElement("div");ph.id="playhead";ph.style.left=tickToX(state.tick)+"px";c.appendChild(ph)}
 function makeNoteInteractive(node,note){
  node.addEventListener("pointerdown",e=>{
   e.preventDefault();
@@ -592,7 +593,23 @@ function renderVZoomThumb(){
 }
 function render(){renderTrackControls();renderTimeline();renderStatus();updateFretboardStepLights();renderVZoomThumb()}
 function moveStep(d){if(state.selectedIds.size)pushUndo();if(state.selectedIds.size)forEachSelected(n=>n.start=Math.max(0,n.start+d*stepTicks()));else state.tick=snapTick(state.tick+d*stepTicks());render()}
-function changeSubdivision(d){if(state.selectedIds.size){pushUndo();const cur=getSelectedNotes()[0]?.duration||stepTicks();let best=divVals.reduce((a,b)=>Math.abs(PPQ*4/b-cur)<Math.abs(PPQ*4/a-cur)?b:a,divVals[0]);let idx=divVals.indexOf(best);idx=Math.max(0,Math.min(divVals.length-1,idx-d));const dur=PPQ*4/divVals[idx];forEachSelected(n=>n.duration=dur)}else{let i=Math.max(0,Math.min(divVals.length-1,divVals.indexOf(state.subdivision)+d));state.subdivision=divVals[i]}render()}
+function changeSubdivision(d){
+ if(state.selectedIds.size){
+  pushUndo();
+  const factor=d>0?2:.5;
+  for(const n of getSelectedNotes()){
+   n.duration=Math.max(PPQ/32,n.duration*factor);
+  }
+  render();
+  return;
+ }
+ const vals=[1,2,3,4,6,8,12,16,24,32,48,64,96,128];
+ let i=vals.indexOf(state.subdivision);
+ if(i<0)i=vals.indexOf(16);
+ i=Math.max(0,Math.min(vals.length-1,i+d));
+ state.subdivision=vals[i];
+ render();
+}
 function transposeSelected(semitones){
  const notes=getSelectedNotes();
  if(!notes.length)return false;
@@ -620,7 +637,7 @@ function changeOctave(d){
  }
  state.inputOctave=Math.max(-3,Math.min(3,state.inputOctave+d));
  render();
-}function zoomH(f){const old=state.zoom;state.zoom=Math.max(.55,Math.min(7,(el.timelineViewport.clientWidth-90)/Math.max(90,((maxT-minT)/stepTicks())*baseStepPx)));state.scrollX*=state.zoom/old;render()}function zoomV(f){rowH=Math.max(2.2,Math.min(32,rowH*f));render()}
+}function zoomH(f){const old=state.zoom;state.zoom=Math.max(.65,Math.min(7,(el.timelineViewport.clientWidth-90)/Math.max(90,((maxT-minT)/stepTicks())*baseStepPx)));state.scrollX*=state.zoom/old;render()}function zoomV(f){rowH=Math.max(2.2,Math.min(32,rowH*f));render()}
 function focusAllNotes(){if(state.chordMode){state.semitoneMode=!state.semitoneMode;render();return}state.tick=0;const notes=(state.viewAllTracks?state.tracks:[activeTrack()]).flatMap(t=>t.notes);if(!notes.length){state.scrollX=0;state.scrollY=250;state.zoom=.9;rowH=12;render();return}const minT=Math.min(...notes.map(n=>n.start)),maxT=Math.max(...notes.map(n=>n.start+n.duration)),minM=Math.min(...notes.map(n=>n.midi)),maxM=Math.max(...notes.map(n=>n.midi));state.zoom=Math.max(.08,Math.min(8,(el.timelineViewport.clientWidth-70)/Math.max(4,(maxT-minT)/stepTicks())/baseStepPx));state.scrollX=Math.max(0,(minT/stepTicks())*baseStepPx*state.zoom-20);rowH=Math.max(2.2,Math.min(32,(el.timelineViewport.clientHeight-20)/Math.max(8,maxM-minM+4)));state.scrollY=Math.max(0,(pianoMax-maxM-2)*rowH);render()}
 function schedulePlaybackNotes(){
  if(!state.playing||!state.audioCtx)return;
