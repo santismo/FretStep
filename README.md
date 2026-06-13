@@ -1,5 +1,4 @@
-
-#🎶 FretStep
+🎶 FretStep
 
 https://santismo.github.io/FretStep/
 
