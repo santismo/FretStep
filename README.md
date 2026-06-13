@@ -1,14 +1,13 @@
-# FretStep
+
+#🎶 FretStep
 
 https://santismo.github.io/FretStep/
 
-🎶 FretStep
+FretStep is a mobile-first MIDI composition tool designed specifically for guitar-oriented step input workflows.
 
-FretStep is a touch-first MIDI composition tool designed for iPhone and other mobile devices.
+Instead of entering notes from a piano keyboard, notes are entered from a virtual 6-string guitar fretboard laid out in standard tuning. Each string automatically maps to its own MIDI channel, making it easy to preserve string information while composing.
 
-Instead of entering notes with a traditional piano keyboard, FretStep uses a virtual 6-string guitar fretboard as a MIDI input surface. Notes are entered directly into a piano roll using step input, making it easy to compose melodies, chords, bass lines, and arrangements entirely from a phone.
-
-The project is implemented as a single-file web application and can be hosted on GitHub Pages, added to an iPhone Home Screen, and used like a lightweight standalone music workstation.
+FretStep runs entirely in a single HTML file and is optimized for iPhone home-screen web app use.
 
 ⸻
 
@@ -16,351 +15,260 @@ Features
 
 Guitar Fretboard MIDI Input
 
-* 6-string fretboard layout
-* Standard guitar tuning
-* 13 fret input surface
+* 6-string standard tuning layout
+* 13 fret positions
 * Low E string on bottom
 * High E string on top
-* Touch pads for fast note entry
-* Fretboard note monitoring even when recording is disabled
-* Fret markers at:
-    * 3rd fret
-    * 5th fret
-    * 7th fret
-    * 9th fret
-    * 12th fret
+* Step-input MIDI workflow
+* Record arm button to prevent accidental note entry
+* Chord mode for entering stacked notes without advancing the cursor
+* Octave transpose controls
+* Semitone transpose mode while chord mode is active
 
 ⸻
 
 Piano Roll Editor
 
-* Multi-track piano roll
-* Touch scrolling
-* Pinch horizontal zoom
-* Vertical zoom strip
-* Automatic playhead following
-* Centered playback scrolling
-* Piano roll note editing
-* Multi-note selection
-* Box selection
-* Timeline navigation
-* Bar numbering
-* Time signature support
-
-Supported ranges:
-
-* C-1 through C8
-
-⸻
-
-Step Recording
-
-FretStep is primarily designed around step input.
-
-Features include:
-
-* Quantized note entry
-* Configurable subdivisions
-* Step forward
-* Step backward
-* Chord entry mode
-* Playback auditioning
-
-Supported subdivision values include:
-
-* Quarter notes
-* Triplets
-* Eighth notes
-* Sixteenth notes
-* Thirty-seconds
-* Very fine grid resolutions
-
-Changing subdivision only affects newly entered notes.
-
-⸻
-
-Chord Mode
-
-Chord Mode allows multiple notes to be entered at the same timeline position.
-
-When enabled:
-
-* Notes do not automatically advance the playhead
-* Multiple notes can be stacked into chords
-* Existing selections are preserved
-* Selection workflows are optimized for editing multiple chords
+* Full MIDI piano roll
+* Range from C-1 to C8
+* Horizontal zoom
+* Vertical zoom
+* Auto-follow playback mode
+* Centered playhead scrolling
+* View All Notes function
+* View individual tracks or all tracks together
+* Multi-note box selection
+* Multi-note transpose
+* Multi-note duration editing
+* Step-based note movement
 
 ⸻
 
 Chord Detection
 
-FretStep automatically analyzes notes and detects chord names.
+FretStep automatically analyzes simultaneous notes and generates chord regions.
 
-Features include:
-
-* Chord region generation
-* Chord lane display
-* Current chord display on fretboard
-* Extended chord recognition
-* Chord updates during editing
-
-Examples:
+Supported chord types include:
 
 * Major
 * Minor
-* Seventh
-* Major Seventh
-* Minor Seventh
-* Suspended
 * Diminished
 * Augmented
-* Extended voicings
+* Suspended
+* Power chords
+* Major 7
+* Minor 7
+* Dominant 7
+* Add9
+* 6
+* Minor 6
+* Various extended voicings
+
+The current chord under the playhead is displayed directly on the fretboard.
+
+Single notes are ignored and do not create chord regions.
 
 ⸻
 
-Multi-Track Workflow
-
-Create arrangements using multiple independent MIDI tracks.
-
-Each track includes:
-
-* Independent MIDI notes
-* Independent sound assignment
-* Independent volume control
-* Individual track color
-* Piano roll visualization
-
-Track menu includes:
-
-* Add Track
-* Delete Track
-* Select Active Input Track
-* View All Tracks
-* Track Volume Slider
-* Track Volume Numeric Input
-
-View All mode displays all tracks simultaneously while still allowing a single active track for note input.
-
-⸻
-
-Sound Engine
+Playback Engine
 
 SoundFont Playback
 
-Supports SoundFont-based playback using:
+Default playback uses:
 
 Roland SC-55 SoundFont
 
 Features:
 
-* Multiple instrument presets
-* General MIDI style workflow
-* Track-based instrument assignment
-* SoundFont preset browser
+* Instrument preset browser
+* Track instrument assignment
+* SoundFont preset loading
+* SC-55 style General MIDI playback
 
-Internal Synth Engine
+Synth Playback
 
-Optional built-in synth engine includes:
+Optional internal synthesizer:
 
-* Piano
-* Electric Piano
-* Organ
-* Bell
-* Guitar
-* Bass
-* Strings
-* Brass
-* Reed
-* Flute
-* Pad
-* Pulse
-* Triangle
-* Square
-* Sawtooth
 * Sine
+* Triangle
+* Saw
+* Square
+* Pulse
+* FM-style tones
 
 ⸻
 
-Mixer
+MIDI Features
 
-Per-track volume controls:
-
-* Slider adjustment
-* Numeric volume entry
-* Independent track balancing
-
-⸻
-
-Playback
-
-Playback system includes:
-
-* Play / Stop
+* MIDI export
+* Multi-track sequencing
+* Per-string MIDI channels
+* Track colors
+* Track volume control
+* Tempo control
+* Time signature support
 * Loop playback
-* Auto-scroll
-* Center-follow playhead
-* Quantized timing
-* Metronome support
 
 ⸻
 
-Metronome
+Loop System
 
-Built-in metronome supports:
-
-* On / Off toggle
-* Time signature aware accents
-* Quantized recording assistance
-
-⸻
-
-Loop Regions
-
-Loop playback can be configured using:
+Loop regions can be configured with:
 
 * Start bar
 * End bar
-* Enable / Disable loop
+* Enable / Disable toggle
 
-Playback automatically repeats within the selected range.
+Playback automatically loops between selected bars.
 
 ⸻
 
-MIDI Editing
+Track System
 
-Selected notes can be:
+Each track contains:
 
+* Independent MIDI notes
+* Instrument assignment
+* Volume control
+* Track color
+* Mute-ready architecture
+
+Tracks can be:
+
+* Added
 * Deleted
-* Moved
-* Transposed
-* Octave shifted
-* Semitone shifted
-* Lengthened
-* Shortened
-
-Supports:
-
-* Single note editing
-* Multi-note editing
-* Multi-chord editing
+* Selected for input
+* Viewed individually
+* Viewed simultaneously
 
 ⸻
 
 Undo / Redo
 
-History system includes:
+Full editing history includes:
 
-* Undo
-* Redo
-* Non-destructive editing workflow
+* Note entry
+* Deletion
+* Transposition
+* Duration edits
+* Track edits
 
 ⸻
 
 Project Management
 
-Local browser-based project storage.
+Local browser storage support:
 
-Features:
+Save Project
 
-* Save Project
-* Load Project
-* Rename Project
-* Delete Project
-* Multiple Local Projects
-* New Project Workflow
+Save unlimited local projects.
 
-Projects retain:
+Load Project
 
-* Tracks
-* Notes
-* Sounds
-* Colors
-* Chords
-* Loop settings
-* Tempo
-* Time signature
+Load previously saved projects.
 
-⸻
+Rename Project
 
-Export
+Rename existing saved projects.
 
-MIDI Export
+New Project
 
-Export compositions as standard MIDI files.
-
-Export preserves:
-
-* Track data
-* MIDI notes
-* Timing
-* Channels
-
-Each guitar string is exported on its own MIDI channel:
-
-* String 1 = Channel 1
-* String 2 = Channel 2
-* String 3 = Channel 3
-* String 4 = Channel 4
-* String 5 = Channel 5
-* String 6 = Channel 6
+Creates a blank project and prompts to save current work.
 
 ⸻
 
 Themes
 
-FretStep includes a large theme system.
-
-Features:
+Includes numerous built-in themes:
 
 * Dark themes
 * Light themes
 * Colorful themes
 * Monochrome themes
-* Random theme generator
-* Random monochrome generator
+* Neon themes
+* OLED themes
 
-Theme changes are immediate and intended for experimentation.
+A Random Theme button can instantly generate new color combinations.
 
-⸻
+Theme colors affect:
 
-Mobile First Design
-
-Designed specifically for:
-
-* iPhone
-* Touch screens
-* Home Screen web apps
-* GitHub Pages hosting
-
-Supports:
-
-* Safari
-* Chrome
-* Mobile browsers
-* Standalone Home Screen mode
+* UI
+* Piano roll
+* Menus
+* Fretboard
+* Sliders
+* Controls
 
 ⸻
 
-Typical Workflow
+Mobile Optimizations
 
-1. Create or load a project.
-2. Select a track.
-3. Choose an instrument.
-4. Set tempo and subdivision.
-5. Enter notes using the fretboard.
-6. Use Chord Mode for stacked chords.
-7. Arrange multiple tracks.
-8. Adjust track volumes.
-9. Add loop regions.
-10. Preview playback.
-11. Export MIDI.
+Designed specifically for iPhone use.
+
+Features:
+
+* Home-screen web app support
+* Touch-first workflow
+* Large fretboard buttons
+* Compact transport controls
+* Mobile-friendly menus
+* Auto audio initialization
+* Optimized landscape-free portrait workflow
 
 ⸻
 
-Philosophy
+Controls
 
-FretStep is intended to be a fast idea-capture tool.
+Transport
 
-The goal is to make MIDI composition feel as immediate as playing on a guitar fretboard while still providing a full piano-roll editing environment.
+▶ Play / Stop
 
-It is optimized for songwriting, arranging, sketching musical ideas, creating MIDI files, and composing directly from a phone without requiring a traditional desktop DAW.
+◀ Step Left
+
+▶ Step Right
+
+Div -
+
+Div +
+
+Undo
+
+Redo
+
+Loop
+
+View
+
+Chord
+
+Oct -
+
+Oct +
+
+⸻
+
+Chord Mode
+
+When enabled:
+
+* Clicking empty piano roll space does not deselect notes
+* Playhead movement is disabled
+* Easier multi-note editing
+* Semitone transpose mode available through View button
+
+⸻
+
+Settings Menu
+
+Contains:
+
+* Save Project
+* Load Project
+* Export MIDI
+* Import Project
+* Show / Hide Fretboard
+* Theme Selection
+* SoundFont Controls
+
+Long-pressing the gear icon toggles fretboard visibility.
+
