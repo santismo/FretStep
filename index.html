@@ -38,18 +38,18 @@ input[type=number]{width:44px;background:#090b12;border:1px solid var(--line);bo
 .zoomControls{flex:0 0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:3px}.middleControls{flex:0 0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:3px}.statusRow{display:none;flex:0 0 auto}
 .pill{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:4px 6px;color:var(--muted);font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pill b{color:var(--text)}
 .keyboardShell{flex:1 1 0;min-height:0;overflow:hidden;display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:5px}#app.hideFretboard .keyboardShell{display:none}#app.hideFretboard .timelineShell{flex:1 1 0;min-height:0}#app.hideFretboard{gap:3px}
-.fretboardWrap{position:relative;flex:1 1 auto;min-height:0;overflow:hidden;border-radius:13px;border:1px solid var(--line);background:linear-gradient(90deg,rgba(255,255,255,.06) 0 1px,transparent 1px),linear-gradient(180deg,rgba(255,255,255,.045) 0 1px,transparent 1px),#0a0c13;touch-action:none;padding-bottom:16px}
-#fretboard{height:calc(100% - 12px);display:grid;grid-template-rows:repeat(6,1fr);grid-template-columns:repeat(13,1fr);gap:3px;padding:5px}.fret{border:1px solid #2a3044;background:linear-gradient(180deg,#171b28,#0f121b);border-radius:8px;min-width:0;min-height:0;user-select:none}.fret.open{border-color:rgba(124,92,255,.35)}.fret:active,.fret.flash{background:rgba(0,224,164,.3);border-color:var(--accent2);box-shadow:inset 0 0 18px rgba(0,224,164,.12)}.fret.stepLit{background:var(--fretLitColor,rgba(255,255,255,.88));border-color:rgba(255,255,255,.95);box-shadow:0 0 14px var(--fretLitColor,rgba(255,255,255,.24))}
-.fretMarkers{position:absolute;left:8px;right:8px;bottom:0px;height:9px;display:grid;grid-template-columns:repeat(13,1fr);gap:4px;pointer-events:none}.markerCell{display:flex;align-items:center;justify-content:center}.marker{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.48)}.fretChordLabel{position:absolute;left:10px;bottom:1px;z-index:7;color:var(--chord);font-size:8px;font-weight:700;opacity:.82;pointer-events:none;text-shadow:0 1px 4px #000;max-width:72px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.marker.double{width:14px;height:6px;background:radial-gradient(circle at 4px 50%,rgba(255,255,255,.55) 0 3px,transparent 3.5px),radial-gradient(circle at 12px 50%,rgba(255,255,255,.55) 0 3px,transparent 3.5px)}
+.fretboardWrap{position:relative;flex:1 1 auto;min-height:0;overflow:hidden;border-radius:13px;border:1px solid var(--line);background:linear-gradient(90deg,rgba(255,255,255,.06) 0 1px,transparent 1px),linear-gradient(180deg,rgba(255,255,255,.045) 0 1px,transparent 1px),#0a0c13;touch-action:none;padding-bottom:8px}
+#fretboard{height:calc(100% - 6px);display:grid;grid-template-rows:repeat(6,1fr);grid-template-columns:repeat(13,1fr);gap:3px;padding:5px}.fret{border:1px solid #2a3044;background:linear-gradient(180deg,#171b28,#0f121b);border-radius:8px;min-width:0;min-height:0;user-select:none}.fret.open{border-color:rgba(124,92,255,.35)}.fret:active,.fret.flash{background:rgba(0,224,164,.3);border-color:var(--accent2);box-shadow:inset 0 0 18px rgba(0,224,164,.12)}.fret.stepLit{background:var(--fretLitColor,rgba(255,255,255,.88));border-color:rgba(255,255,255,.95);box-shadow:0 0 14px var(--fretLitColor,rgba(255,255,255,.24))}
+.fretMarkers{position:absolute;left:8px;right:8px;bottom:-2px;height:8px;display:grid;grid-template-columns:repeat(13,1fr);gap:4px;pointer-events:none}.markerCell{display:flex;align-items:center;justify-content:center}.marker{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.48)}.fretChordLabel{position:absolute;left:10px;bottom:0px;z-index:7;color:var(--chord);font-size:8px;font-weight:700;opacity:.82;pointer-events:none;text-shadow:0 1px 4px #000;max-width:72px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.marker.double{width:14px;height:6px;background:radial-gradient(circle at 4px 50%,rgba(255,255,255,.55) 0 3px,transparent 3.5px),radial-gradient(circle at 12px 50%,rgba(255,255,255,.55) 0 3px,transparent 3.5px)}
 .tsBtn{min-height:24px;height:24px;padding:0 5px;border-radius:8px;font-size:10px;color:var(--text)}
 .popupMenu{display:none;position:absolute;left:12px;top:50px;z-index:60;background:rgba(16,19,28,.98);border:1px solid var(--line);border-radius:14px;padding:10px;box-shadow:0 12px 30px rgba(0,0,0,.45);gap:7px;grid-template-columns:1fr;color:var(--text);font-size:12px}
 .popupMenu.open{display:grid}
 .popupMenu input{width:70px;background:#090b12;border:1px solid var(--line);border-radius:8px;color:var(--text);padding:5px;text-align:center}
 .popupMenu label{display:flex;align-items:center;justify-content:space-between;gap:8px;color:var(--muted)}
-.barZoomHeader{position:absolute;left:38px;right:0;top:0;height:18px;z-index:14;background:color-mix(in srgb,var(--panel) 86%,transparent);border-bottom:1px solid var(--line);touch-action:none;overflow:hidden}
+.barZoomHeader{cursor:ns-resize;position:absolute;left:38px;right:0;top:0;height:18px;z-index:14;background:color-mix(in srgb,var(--panel) 86%,transparent);border-bottom:1px solid var(--line);touch-action:none;overflow:hidden}
 .barZoomHeader .barNumber{top:3px!important}
 .barNumber{position:absolute;top:0;font-size:8px;color:rgba(255,255,255,.72);z-index:2;pointer-events:none;transform:translateX(3px)}
-#loopMenu{left:auto!important;right:8px!important;top:76px!important;transform:none!important;width:min(72vw,270px)!important}.trackMenu{left:8px!important;right:auto!important;top:68px!important;transform:none!important;width:min(96vw,380px)!important}.themeMenu{left:8px!important;right:auto!important;top:76px!important;transform:none!important;width:min(96vw,390px)!important}.volInput{width:34px!important;font-size:9px!important;padding:1px!important}.trackMixerRow{display:grid;grid-template-columns:minmax(0,1fr) 46px 34px 26px;gap:6px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:6px;background:rgba(0,0,0,.18)}.trackColorMenu{left:8px!important;right:auto!important;top:104px!important;transform:none!important;width:min(92vw,330px)!important}
+#loopMenu{left:auto!important;right:8px!important;top:76px!important;transform:none!important;width:min(72vw,270px)!important}.trackMenu{left:6px!important;right:auto!important;top:68px!important;transform:none!important;width:min(96vw,360px)!important}.themeMenu{left:8px!important;right:auto!important;top:76px!important;transform:none!important;width:min(96vw,390px)!important}.volInput{width:34px!important;font-size:9px!important;padding:1px!important}.trackMixerRow{display:grid;grid-template-columns:95px 50px 34px 26px;gap:4px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:5px;background:rgba(0,0,0,.18)}.trackColorMenu{left:8px!important;right:auto!important;top:104px!important;transform:none!important;width:min(92vw,330px)!important}.bpmMenu{top:82px!important;left:50%!important;transform:translateX(-50%)!important;width:min(94vw,390px)!important}
 .trackColorGrid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
 .colorSwatchBtn{min-height:26px!important;height:26px!important;border-radius:7px!important;padding:0!important;border:2px solid rgba(255,255,255,.22)!important}
 .colorSwatchBtn.selected{border-color:var(--text)!important;box-shadow:0 0 0 2px var(--accent)}
@@ -115,7 +115,7 @@ button.active,.primary{background:color-mix(in srgb,var(--accent) 35%,var(--pane
   <button id="loopToggleBtn">Loop On/Off</button>
   <button id="loopApplyBtn">Apply</button><button id="loopCloseBtn">Close</button>
 </div>
-<div id="bpmMenu" class="popupMenu"><b>BPM</b><input id="tempoSlider" type="range" min="40" max="240" value="120"/><button id="bpmCloseBtn">Done</button></div><div id="tsMenu" class="popupMenu">
+<div id="bpmMenu" class="popupMenu bpmMenu"><b>BPM</b><input id="tempoSlider" type="range" min="40" max="240" value="120"/><button id="bpmCloseBtn">Done</button></div><div id="tsMenu" class="popupMenu">
   <b>Time Signature</b>
   <button data-ts="4/4">4/4</button><button data-ts="3/4">3/4</button><button data-ts="5/4">5/4</button><button data-ts="6/8">6/8</button><button data-ts="7/8">7/8</button><button data-ts="9/8">9/8</button>
 </div>
@@ -444,7 +444,7 @@ function playNote(m,d=stepTicks(),tr=activeTrack(),when=0){
 }
 function addNote(baseMidi,stringName,fret){const s=strings.find(x=>x.name===stringName),actual=baseMidi+state.inputOctave*12,tr=activeTrack();playNote(actual,stepTicks(),tr);if(!state.armed){render();return}pushUndo();tr.notes.push({id:state.nextNoteId++,trackId:tr.id,start:quantizedInputTick(),duration:stepTicks(),midi:actual,displayMidi:baseMidi,stringName,fret,channel:s?s.channel:1});if(!state.chordMode&&!state.playing)state.tick+=stepTicks();render()}
 function flashFret(stringName,fret){const node=[...document.querySelectorAll(".fret")].find(d=>d.dataset.string===stringName&&Number(d.dataset.fret)===fret);if(node){node.classList.add("flash");setTimeout(()=>node.classList.remove("flash"),130)}}
-function renderFretboard(){el.fretboard.innerHTML="";for(const s of strings)for(let f=0;f<=12;f++){const c=document.createElement("div");c.className="fret"+(f===0?" open":"");c.dataset.string=s.name;c.dataset.fret=f;c.addEventListener("pointerdown",e=>{e.preventDefault();silentUnlock();addNote(s.midi+f,s.name,f)});el.fretboard.appendChild(c)}el.fretMarkers.innerHTML="";for(let f=0;f<=12;f++){const c=document.createElement("div");c.className="markerCell";if(markerFrets.has(f)){const m=document.createElement("div");m.className="marker"+(f===12?" double":"");c.appendChild(m)}el.fretMarkers.appendChild(c)}}
+function renderFretboard(){el.fretboard.innerHTML="";for(const s of strings)for(let f=0;f<=12;f++){const c=document.createElement("div");c.className="fret"+(f===0?" open":"");c.dataset.string=s.name;c.dataset.fret=f;c.addEventListener("pointerdown",e=>{e.preventDefault();silentUnlock();addNote(s.midi+f,s.name,f)});el.fretboard.appendChild(c)}el.fretMarkers.innerHTML="";for(let f=0;f<=12;f++){const c=document.createElement("div");c.className="markerCell";if([3,5,7,9,12].includes(f)){const m=document.createElement("div");m.className="marker";c.appendChild(m)}el.fretMarkers.appendChild(c)}}
 function updateFretboardStepLights(){const t=Math.max(0,state.tick);document.querySelectorAll(".fret.stepLit").forEach(n=>{n.classList.remove("stepLit");n.style.removeProperty("--fretLitColor")});for(const tr of state.tracks)for(const n of tr.notes){if(!(t>=n.start&&t<n.start+n.duration))continue;const node=[...document.querySelectorAll(".fret")].find(d=>d.dataset.string===n.stringName&&Number(d.dataset.fret)===n.fret);if(node){node.style.setProperty("--fretLitColor",solidColors[tr.color||"blue"]);node.classList.add("stepLit")}}}
 
 function presetDisplayName(sound){
@@ -494,7 +494,7 @@ function renderTrackControls(){
 
   const slider=document.createElement("input");
   slider.type="range";slider.min="0";slider.max="150";slider.value=trackVolume(t);
-  slider.style.width="46px";
+  slider.style.width="50px";
   slider.oninput=()=>{t.volume=Number(slider.value);num.value=t.volume};
 
   const num=document.createElement("input");
@@ -848,43 +848,42 @@ function setupTimelineGestures(){
 }
 function zoomHorizontalAt(factor,clientX=null){
  const rect=el.timelineViewport.getBoundingClientRect();
- const anchorX=clientX==null?rect.left+rect.width/2:clientX;
- const localX=anchorX-rect.left;
- const before=xToTick(localX);
- const old=state.zoom;
- state.zoom=Math.max(.04,Math.min(10,state.zoom*factor));
- const afterX=38+(before/stepTicks())*baseStepPx*state.zoom-state.scrollX;
- state.scrollX=Math.max(0,state.scrollX+(afterX-localX));
+ const usableLeft=38;
+ const localX=clientX==null?rect.width*.5:Math.max(usableLeft,Math.min(rect.width-4,clientX-rect.left));
+ const anchorTick=xToTick(localX);
+ state.zoom=Math.max(.035,Math.min(14,state.zoom*factor));
+ state.scrollX=Math.max(0,usableLeft+(anchorTick/stepTicks())*baseStepPx*state.zoom-localX);
  render();
 }
 function setupBarZoomHeader(){
  if(!el.barZoomHeader)return;
- let startY=0,startZoom=state.zoom,startScroll=state.scrollX,dragging=false,anchorX=0,anchorTick=0;
+ let startY=0,startZoom=state.zoom,dragging=false,anchorClientX=0,anchorTick=0;
  el.barZoomHeader.addEventListener("pointerdown",e=>{
   e.preventDefault();e.stopPropagation();
-  dragging=true;startY=e.clientY;startZoom=state.zoom;startScroll=state.scrollX;anchorX=e.clientX;
+  dragging=true;startY=e.clientY;startZoom=state.zoom;anchorClientX=e.clientX;
   const rect=el.timelineViewport.getBoundingClientRect();
-  anchorTick=xToTick(anchorX-rect.left);
+  const localX=Math.max(38,Math.min(rect.width-4,anchorClientX-rect.left));
+  anchorTick=xToTick(localX);
   try{el.barZoomHeader.setPointerCapture(e.pointerId)}catch{}
  });
  el.barZoomHeader.addEventListener("pointermove",e=>{
   if(!dragging)return;
   e.preventDefault();e.stopPropagation();
   const dy=e.clientY-startY;
-  state.zoom=Math.max(.04,Math.min(10,startZoom*Math.exp(-dy*0.012)));
+  state.zoom=Math.max(.035,Math.min(14,startZoom*Math.exp(-dy*0.022)));
   const rect=el.timelineViewport.getBoundingClientRect();
-  const localX=anchorX-rect.left;
-  const newX=38+(anchorTick/stepTicks())*baseStepPx*state.zoom-state.scrollX;
-  state.scrollX=Math.max(0,state.scrollX+(newX-localX));
+  const localX=Math.max(38,Math.min(rect.width-4,anchorClientX-rect.left));
+  state.scrollX=Math.max(0,38+(anchorTick/stepTicks())*baseStepPx*state.zoom-localX);
   render();
  });
  el.barZoomHeader.addEventListener("pointerup",()=>{dragging=false});
  el.barZoomHeader.addEventListener("pointercancel",()=>{dragging=false});
  el.barZoomHeader.addEventListener("wheel",e=>{
   e.preventDefault();e.stopPropagation();
-  zoomHorizontalAt(e.deltaY<0?1.14:.78,e.clientX);
+  zoomHorizontalAt(e.deltaY<0?1.3:.68,e.clientX);
  },{passive:false});
 }
+
 function setupVZoomStrip(){
  if(!el.vZoomStrip)return;
  let startY=0,startRowH=rowH,dragging=false;
@@ -1208,10 +1207,10 @@ scheduleStabilize();
 
 
 const trackColorOptions=[
- ["blue","#35c2ff"],["green","#00e0a4"],["purple","#7c5cff"],["orange","#ff9d3a"],["pink","#ff51a1"],["yellow","#ffcf5a"],["red","#ff485c"],["cyan","#50f5ff"],
- ["lime","#b4ff50"],["white","#ffffff"],["indigo","#4f46e5"],["violet","#8b5cf6"],["magenta","#d946ef"],["rose","#fb7185"],["amber","#f59e0b"],["gold","#facc15"],
- ["emerald","#10b981"],["teal","#14b8a6"],["sky","#0ea5e9"],["slate","#94a3b8"],["brown","#a16207"],["coral","#ff7f50"],["mint","#98ffcc"],["lavender","#c4b5fd"],
- ["cream","#fff7cc"],["black","#222222"],["gray","#777777"],["hotpink","#ff1493"],["neon","#39ff14"],["aqua","#00ffff"],["ruby","#9f1239"],["navy","#1e3a8a"]
+ ["red","#ff0000"],["scarlet","#ff2400"],["coral","#ff4f3f"],["orange","#ff7a00"],["amber","#ffb000"],["gold","#ffd700"],["yellow","#ffff00"],["lemon","#dfff00"],
+ ["lime","#9dff00"],["neon","#39ff14"],["green","#00d14f"],["emerald","#00b86b"],["mint","#00d99a"],["teal","#00b3a4"],["aqua","#00ffff"],["cyan","#00c8ff"],
+ ["sky","#0095ff"],["blue","#006dff"],["navy","#1e3a8a"],["indigo","#4b00ff"],["violet","#7c3cff"],["purple","#9d00ff"],["magenta","#d000ff"],["hotpink","#ff1493"],
+ ["pink","#ff5ab3"],["rose","#ff2f6d"],["ruby","#b00030"],["brown","#8b4513"],["cream","#fff7cc"],["white","#ffffff"],["gray","#777777"],["black","#222222"]
 ];
 function setTrackColorValue(key,hex){
  solidColors[key]=hex;
