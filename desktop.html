@@ -138,7 +138,7 @@ button.active,.primary{background:color-mix(in srgb,var(--accent) 35%,var(--pane
 </div></div>
 <div class="settingsWrap"><button id="settingsBtn">⚙︎</button><div id="settingsMenu"><button id="exportBtn">Export MIDI</button><button id="saveBtn">Save Local</button><button id="loadBtn">Load Local</button><button id="exportProjectBtn">Export Project</button><button id="importProjectBtn">Import Project</button><button id="newProjectBtn">New Project</button><button id="themeBtn">Themes</button><button id="hideFretBtn">Hide Fretboard</button><button id="sfBtn">Engine: Internal</button><button id="sfLoadBtn" style="display:none">Internal Ready</button><div id="sfStatus" style="font-size:10px;color:var(--muted);line-height:1.1;padding:1px 4px;">Internal engines ready</div></div></div>
 </header>
-<section class="timelineShell"><div class="timelineHeader"><button id="trackMenuBtn" class="miniBtn">Tracks</button><button id="soundPickerBtn" class="soundPickerBtn miniBtn">Sound</button><select id="sfSelect" class="sfSelect hiddenSoundSelect"></select><select id="soundSelect" class="soundSelect hiddenSoundSelect"><option value="mdl:grand">Grand Piano</option><option value="mdl:felt">Felt Piano</option><option value="mdl:nylon">Nylon Guitar</option><option value="mdl:strings">String Ensemble</option><option value="mdl:trumpet">Trumpet</option><option value="kit:studio">Studio Kit</option><option value="ana:poly">Vintage Poly</option><option value="chip:pulse">Pulse Lead</option></select><button id="copyBtn" class="miniBtn">Copy</button><button id="pasteBtn" class="miniBtn">Paste</button><span id="trackStatusBtn" style="display:none"></span></div><div id="soundPickerMenu" class="popupMenu soundPickerMenu"><div class="soundPickerTop"><b>Sound</b><button id="soundRandomBtn">Random</button><button id="soundPickerCloseBtn">Close</button></div><div id="soundBankRow" class="soundBankRow"></div><input id="soundSearch" class="soundSearch" type="text" placeholder="Search sounds"/><div id="soundFilterRow" class="soundFilterRow"><button class="soundFilterBtn active" data-filter="all">All</button><button class="soundFilterBtn" data-filter="drums">Drums</button><button class="soundFilterBtn" data-filter="synth">Synth</button><button class="soundFilterBtn" data-filter="keys">Keys</button><button class="soundFilterBtn" data-filter="bass">Bass</button><button class="soundFilterBtn" data-filter="guitar">Guitar</button><button class="soundFilterBtn" data-filter="orch">Orch</button><button class="soundFilterBtn" data-filter="horns">Horns</button><button class="soundFilterBtn" data-filter="fx">FX</button></div><div id="soundPickerList" class="soundPickerList"></div></div><div id="timelineViewport"><div id="timelineContent"></div><div id="pianoStripMask" class="pianoStripMask"></div><div id="barZoomHeader" class="barZoomHeader"></div><div id="vZoomStrip" class="vZoomStrip"><div id="vZoomThumb" class="vZoomThumb"></div></div></div></section>
+<section class="timelineShell"><div class="timelineHeader"><button id="trackMenuBtn" class="miniBtn">Tracks</button><button id="soundPickerBtn" class="soundPickerBtn miniBtn">Sound</button><select id="sfSelect" class="sfSelect hiddenSoundSelect"></select><select id="soundSelect" class="soundSelect hiddenSoundSelect"><option value="mdl:grand">Grand Piano</option><option value="mdl:felt">Felt Piano</option><option value="mdl:nylon">Nylon Guitar</option><option value="mdl:strings">String Ensemble</option><option value="mdl:trumpet">Trumpet</option><option value="kit:studio">Studio Kit</option><option value="ana:poly">Vintage Poly</option><option value="chip:pulse">Pulse Lead</option></select><button id="copyBtn" class="miniBtn">Copy</button><button id="pasteBtn" class="miniBtn">Paste</button><span id="trackStatusBtn" style="display:none"></span></div><div id="soundPickerMenu" class="popupMenu soundPickerMenu"><div class="soundPickerTop"><b>Sound</b><button id="soundRandomBtn">Random</button><button id="soundPickerCloseBtn">Close</button></div><div id="soundBankRow" class="soundBankRow"></div><input id="soundSearch" class="soundSearch" type="text" placeholder="Search sounds"/><div id="soundFilterRow" class="soundFilterRow"><button class="soundFilterBtn active" data-filter="all">All</button><button class="soundFilterBtn" data-filter="sample">Sample</button><button class="soundFilterBtn" data-filter="drums">Drums</button><button class="soundFilterBtn" data-filter="synth">Synth</button><button class="soundFilterBtn" data-filter="keys">Keys</button><button class="soundFilterBtn" data-filter="bass">Bass</button><button class="soundFilterBtn" data-filter="guitar">Guitar</button><button class="soundFilterBtn" data-filter="orch">Orch</button><button class="soundFilterBtn" data-filter="horns">Horns</button><button class="soundFilterBtn" data-filter="fx">FX</button></div><div id="soundPickerList" class="soundPickerList"></div></div><div id="timelineViewport"><div id="timelineContent"></div><div id="pianoStripMask" class="pianoStripMask"></div><div id="barZoomHeader" class="barZoomHeader"></div><div id="vZoomStrip" class="vZoomStrip"><div id="vZoomThumb" class="vZoomThumb"></div></div></div></section>
 <section class="zoomControls"><button id="playBtn" class="primary">▶︎ Play</button><button id="undoBtn">Undo</button><button id="redoBtn">Redo</button><button id="focusBtn">View</button></section>
 <section class="middleControls"><button id="leftBtn">◀︎ Step</button><button id="rightBtn">Step ▶︎</button><button id="chordBtn">Chord</button><button id="deleteBtn">Delete</button><button id="divDownBtn">Div −</button><button id="divUpBtn">Div +</button><button id="octDownBtn">Oct −</button><button id="octUpBtn">Oct +</button></section>
 <section class="statusRow"><div class="pill">Input: <b id="stepReadout">1/16 · Oct +0</b></div><div class="pill">Playhead: <b id="posReadout">1.1.000</b></div><div class="pill">Chord: <b id="chordReadout">—</b></div></section>
@@ -327,6 +327,71 @@ const analogSynthPresets=[
  ["ana:solina","Solina Ensemble"],["ana:seq","Step Sequence"],["ana:pluckbass","Pluck Bass"],["ana:retrokeys","Retro Keys"],
  ["ana:metalpad","Metal Pad"],["ana:swell","Slow Swell"]
 ];
+const realPianoPresets=[
+ ["real:piano:splendid","Splendid Grand Piano",["sample","real","keys"]],
+ ["real:vcsl:Chordophones/Zithers/Grand Piano, Steinway B","VCSL Steinway B",["sample","real","keys"]],
+ ["real:vcsl:Chordophones/Zithers/Grand Piano, Kawai","VCSL Kawai Grand",["sample","real","keys"]],
+ ["real:vcsl:Chordophones/Zithers/Upright Piano, Yamaha","VCSL Yamaha Upright",["sample","real","keys"]],
+ ["real:vcsl:Chordophones/Zithers/Upright Piano, Knight","VCSL Knight Upright",["sample","real","keys"]],
+ ["real:ep:CP80","CP-80 Electric Grand",["sample","real","keys"]],
+ ["real:ep:WurlitzerEP200","Wurlitzer EP200",["sample","real","keys"]],
+ ["real:ep:PianetT","Pianet T",["sample","real","keys"]],
+ ["real:ep:TX81Z","TX81Z FM Piano",["sample","real","keys"]]
+];
+const realGmPresets=[
+ ["real:gm:acoustic_guitar_nylon","GM Nylon Guitar",["sample","real","guitar"]],
+ ["real:gm:acoustic_guitar_steel","GM Steel Guitar",["sample","real","guitar"]],
+ ["real:gm:electric_guitar_jazz","GM Jazz Guitar",["sample","real","guitar"]],
+ ["real:gm:electric_guitar_clean","GM Clean Guitar",["sample","real","guitar"]],
+ ["real:gm:overdriven_guitar","GM Overdriven Guitar",["sample","real","guitar"]],
+ ["real:gm:acoustic_bass","GM Acoustic Bass",["sample","real","bass"]],
+ ["real:gm:electric_bass_finger","GM Finger Bass",["sample","real","bass"]],
+ ["real:gm:fretless_bass","GM Fretless Bass",["sample","real","bass"]],
+ ["real:gm:violin","GM Violin",["sample","real","orch"]],
+ ["real:gm:viola","GM Viola",["sample","real","orch"]],
+ ["real:gm:cello","GM Cello",["sample","real","orch"]],
+ ["real:gm:contrabass","GM Contrabass",["sample","real","orch"]],
+ ["real:gm:string_ensemble_1","GM String Ensemble",["sample","real","orch"]],
+ ["real:gm:pizzicato_strings","GM Pizzicato Strings",["sample","real","orch"]],
+ ["real:gm:tremolo_strings","GM Tremolo Strings",["sample","real","orch"]],
+ ["real:gm:orchestral_harp","GM Orchestral Harp",["sample","real","orch"]],
+ ["real:gm:choir_aahs","GM Choir Aahs",["sample","real","orch"]],
+ ["real:gm:church_organ","GM Church Organ",["sample","real","keys"]],
+ ["real:gm:accordion","GM Accordion",["sample","real","keys"]],
+ ["real:gm:trumpet","GM Trumpet",["sample","real","horns"]],
+ ["real:gm:trombone","GM Trombone",["sample","real","horns"]],
+ ["real:gm:french_horn","GM French Horn",["sample","real","horns"]],
+ ["real:gm:brass_section","GM Brass Section",["sample","real","horns"]],
+ ["real:gm:flute","GM Flute",["sample","real","horns"]],
+ ["real:gm:clarinet","GM Clarinet",["sample","real","horns"]],
+ ["real:gm:oboe","GM Oboe",["sample","real","horns"]],
+ ["real:gm:bassoon","GM Bassoon",["sample","real","horns"]],
+ ["real:gm:tenor_sax","GM Tenor Sax",["sample","real","horns"]]
+];
+const realVcslPresets=[
+ ["real:vcsl:Chordophones/Composite Chordophones/Folk Harp","VCSL Folk Harp",["sample","real","orch"]],
+ ["real:vcsl:Chordophones/Composite Chordophones/Concert Harp","VCSL Concert Harp",["sample","real","orch"]],
+ ["real:vcsl:Aerophones/Reed Aerophones/Tenor Saxophone - Vibrato","VCSL Tenor Sax Vibrato",["sample","real","horns"]],
+ ["real:vcsl:Aerophones/Reed Aerophones/Tenor Saxophone - Non-Vibrato","VCSL Tenor Sax Plain",["sample","real","horns"]],
+ ["real:vcsl:Aerophones/Reed Aerophones/Saxello - Vibrato","VCSL Saxello Vibrato",["sample","real","horns"]],
+ ["real:vcsl:Aerophones/Edge-blown Aerophones/Baroque Alto Recorder - Sustain","VCSL Alto Recorder",["sample","real","horns"]],
+ ["real:vcsl:Aerophones/Edge-blown Aerophones/Baroque Tenor Recorder - Sustain","VCSL Tenor Recorder",["sample","real","horns"]],
+ ["real:vcsl:Aerophones/Free Aerophones/Harmonica-Hohner-Special20-C - Normal","VCSL Harmonica C",["sample","real","horns"]],
+ ["real:vcsl:Idiophones/Struck Idiophones/Marimba","VCSL Marimba",["sample","real","keys"]],
+ ["real:vcsl:Idiophones/Struck Idiophones/Vibraphone - Soft Mallets","VCSL Vibraphone Soft",["sample","real","keys"]],
+ ["real:vcsl:Idiophones/Struck Idiophones/Glockenspiel","VCSL Glockenspiel",["sample","real","keys"]],
+ ["real:vcsl:Idiophones/Struck Idiophones/Tubular Bells 1","VCSL Tubular Bells",["sample","real","keys"]],
+ ["real:vcsl:Membranophones/Struck Membranophones/Bass Drum 1","VCSL Concert Bass Drum",["sample","real","drums"]],
+ ["real:vcsl:Membranophones/Struck Membranophones/Snare Drum, Modern 1","VCSL Modern Snare",["sample","real","drums"]],
+ ["real:vcsl:Membranophones/Struck Membranophones/Timpani 1 - Hit","VCSL Timpani Hit",["sample","real","drums","orch"]]
+];
+const realDrumPresets=[
+ ["real:drum:TR-808","Sample TR-808",["sample","real","drums","synth"]],
+ ["real:drum:Casio-RZ1","Sample Casio RZ-1",["sample","real","drums"]],
+ ["real:drum:LM-2","Sample Linn LM-2",["sample","real","drums"]],
+ ["real:drum:MFB-512","Sample MFB-512",["sample","real","drums","synth"]],
+ ["real:drum:Roland CR-8000","Sample Roland CR-8000",["sample","real","drums"]]
+];
 const soundFontDefs=[
  {id:"core",name:"Core Oscillators",short:"Core",type:"synth",engine:"internal",presets:corePresets,categories:["synth"]},
  {id:"keys",name:"Modeled Keys",short:"Keys",type:"keys",engine:"internal",presets:acousticKeysPresets,categories:["keys"]},
@@ -334,6 +399,10 @@ const soundFontDefs=[
  {id:"orchestra",name:"Strings and Voices",short:"Orch",type:"orchestral",engine:"internal",presets:orchestraPresets,categories:["orch"]},
  {id:"brasswinds",name:"Brass and Winds",short:"Winds",type:"horns",engine:"internal",presets:brassWindPresets,categories:["horns","orch"]},
  {id:"soundfx",name:"Sound Effects",short:"FX",type:"fx",engine:"internal",presets:soundFxPresets,categories:["fx","synth"]},
+ {id:"realpiano",name:"Real Sample Keys",short:"RealKey",type:"keys",engine:"sample",presets:realPianoPresets,categories:["keys","sample","real"]},
+ {id:"realgm",name:"Real GM Samples",short:"RealGM",type:"sample",engine:"sample",presets:realGmPresets,categories:["sample","real"]},
+ {id:"realvcsl",name:"VCSL Samples",short:"VCSL",type:"sample",engine:"sample",presets:realVcslPresets,categories:["sample","real"]},
+ {id:"realdrums",name:"Sample Drum Machines",short:"SDrum",type:"drum",engine:"sampleDrum",presets:realDrumPresets,pads:synthDrumPads,categories:["drums","sample","real"]},
  {id:"acousticdrums",name:"Acoustic Drum Room",short:"AcDrum",type:"drum",engine:"synthDrum",presets:acousticDrumPresets,pads:synthDrumPads,categories:["drums"]},
  {id:"analogdrums",name:"Analog Drum Lab",short:"Analog",type:"drum",engine:"synthDrum",presets:analogDrumPresets,pads:synthDrumPads,categories:["drums","synth"]},
  {id:"retrogamedrums",name:"Retro Game Drums",short:"GameDrm",type:"drum",engine:"synthDrum",presets:retroDrumPresets,pads:synthDrumPads,categories:["drums","synth","fx"]},
@@ -342,7 +411,7 @@ const soundFontDefs=[
  {id:"analogsynth",name:"Classic Analog",short:"AnalogS",type:"synth",engine:"internal",presets:analogSynthPresets,categories:["synth"]}
 ];
 const soundFontIdMigrations={console8:"chip8",sc55:"keys",generaluser:"keys",timgm:"keys",chaos:"keys",jns:"keys",eawpats:"keys",masterpiece:"keys",unison:"keys",tr808:"analogdrums",tr909:"acousticdrums",sc55kits:"keys",generaluserkits:"keys",timgmkits:"keys",jnskits:"keys",eawkits:"keys"};
-const state={armed:true,playing:false,chordMode:false,semitoneMode:false,tempo:120,timeSigNum:4,timeSigDen:4,subdivision:16,metronome:false,lastMetroStep:-1,inputOctave:0,tick:0,zoom:.9,viewAllTracks:false,hideFretboard:false,useSoundFont:true,sfReady:false,sfLoading:false,sfEnginePromise:null,sfSynth:null,sfNode:null,sfId:null,sfIds:{},sfLoadingIds:{},sfProgramCache:{},sfChannelPrograms:{},sfOutputKey:"",loopEnabled:false,loopStart:0,loopEnd:PPQ*16,loopSetMode:0,undoStack:[],redoStack:[],scrollX:0,scrollY:250,selectedIds:new Set(),clipboardNotes:[],nextNoteId:1,tracks:[{id:1,name:"Track 1",soundFontId:"keys",sound:"mdl:grand",color:"blue",volume:100,fx:defaultTrackFx(),notes:[]},{id:2,name:"Track 2",soundFontId:"guitarbass",sound:"mdl:fingerbass",color:"green",volume:100,fx:defaultTrackFx(),notes:[]},{id:3,name:"Track 3",soundFontId:"orchestra",sound:"mdl:strings",color:"purple",volume:100,fx:defaultTrackFx(),notes:[]}],activeTrackId:1,audioCtx:null,masterCtx:null,masterGain:null,masterCompressor:null,trackFxBuses:new Map(),activeGeneratedVoices:[],playbackStartTime:0,playbackStartTick:0,scheduledNotes:new Set(),scheduleTimer:null,liveFretLights:[],livePadLights:[],voicerAuditionTimers:[],fretDisplayChordName:"",voicerEnabled:true,voicer:defaultVoicerSettings(),voicerMemory:{previousNotes:[],previousName:"",previousRoot:-1}};
+const state={armed:true,playing:false,chordMode:false,semitoneMode:false,tempo:120,timeSigNum:4,timeSigDen:4,subdivision:16,metronome:false,lastMetroStep:-1,inputOctave:0,tick:0,zoom:.9,viewAllTracks:false,hideFretboard:false,useSoundFont:true,sfReady:false,sfLoading:false,sfEnginePromise:null,sfSynth:null,sfNode:null,sfId:null,sfIds:{},sfLoadingIds:{},sfProgramCache:{},sfChannelPrograms:{},sfOutputKey:"",sampleModule:null,sampleEnginePromise:null,sampleCtx:null,sampleStorage:null,sampleInstruments:new Map(),loopEnabled:false,loopStart:0,loopEnd:PPQ*16,loopSetMode:0,undoStack:[],redoStack:[],scrollX:0,scrollY:250,selectedIds:new Set(),clipboardNotes:[],nextNoteId:1,tracks:[{id:1,name:"Track 1",soundFontId:"keys",sound:"mdl:grand",color:"blue",volume:100,fx:defaultTrackFx(),notes:[]},{id:2,name:"Track 2",soundFontId:"guitarbass",sound:"mdl:fingerbass",color:"green",volume:100,fx:defaultTrackFx(),notes:[]},{id:3,name:"Track 3",soundFontId:"orchestra",sound:"mdl:strings",color:"purple",volume:100,fx:defaultTrackFx(),notes:[]}],activeTrackId:1,audioCtx:null,masterCtx:null,masterGain:null,masterCompressor:null,trackFxBuses:new Map(),activeGeneratedVoices:[],playbackStartTime:0,playbackStartTick:0,scheduledNotes:new Set(),scheduleTimer:null,liveFretLights:[],livePadLights:[],voicerAuditionTimers:[],fretDisplayChordName:"",voicerEnabled:true,voicer:defaultVoicerSettings(),voicerMemory:{previousNotes:[],previousName:"",previousRoot:-1}};
 const $=id=>document.getElementById(id),el={tempo:$("tempo"),tempoSlider:$("tempoSlider"),bpmLabel:$("bpmLabel"),bpmMenu:$("bpmMenu"),bpmCloseBtn:$("bpmCloseBtn"),subdivTop:$("subdivTop"),tsBtn:$("tsBtn"),tsMenu:$("tsMenu"),metroBtn:$("metroBtn"),loopMenu:$("loopMenu"),loopStartInput:$("loopStartInput"),loopEndInput:$("loopEndInput"),loopToggleBtn:$("loopToggleBtn"),loopApplyBtn:$("loopApplyBtn"),loopCloseBtn:$("loopCloseBtn"),settingsBtn:$("settingsBtn"),settingsMenu:$("settingsMenu"),playBtn:$("playBtn"),leftBtn:$("leftBtn"),rightBtn:$("rightBtn"),divDownBtn:$("divDownBtn"),divUpBtn:$("divUpBtn"),octDownBtn:$("octDownBtn"),octUpBtn:$("octUpBtn"),chordBtn:$("chordBtn"),recordBtn:$("recordBtn"),midiBtn:$("midiBtn"),deleteBtn:$("deleteBtn"),newProjectBtn:$("newProjectBtn"),exportProjectBtn:$("exportProjectBtn"),importProjectBtn:$("importProjectBtn"),projectImport:$("projectImport"),trackColorMenu:$("trackColorMenu"),trackColorGrid:$("trackColorGrid"),trackColorCloseBtn:$("trackColorCloseBtn"),trackFxMenu:$("trackFxMenu"),trackFxTitle:$("trackFxTitle"),fxLowCut:$("fxLowCut"),fxLowCutValue:$("fxLowCutValue"),fxHighCut:$("fxHighCut"),fxHighCutValue:$("fxHighCutValue"),fxReverbMix:$("fxReverbMix"),fxReverbMixValue:$("fxReverbMixValue"),fxReverbTime:$("fxReverbTime"),fxReverbTimeValue:$("fxReverbTimeValue"),fxReverbType:$("fxReverbType"),fxDelayMix:$("fxDelayMix"),fxDelayMixValue:$("fxDelayMixValue"),fxDelayTime:$("fxDelayTime"),fxDelayTimeValue:$("fxDelayTimeValue"),fxChorus:$("fxChorus"),fxChorusValue:$("fxChorusValue"),fxDrive:$("fxDrive"),fxDriveValue:$("fxDriveValue"),fxCrush:$("fxCrush"),fxCrushValue:$("fxCrushValue"),fxPhaser:$("fxPhaser"),fxPhaserValue:$("fxPhaserValue"),fxAir:$("fxAir"),fxAirValue:$("fxAirValue"),fxTremolo:$("fxTremolo"),fxTremoloValue:$("fxTremoloValue"),trackFxResetBtn:$("trackFxResetBtn"),trackFxCloseBtn:$("trackFxCloseBtn"),themeBtn:$("themeBtn"),themeMenu:$("themeMenu"),themeList:$("themeList"),randomThemeBtn:$("randomThemeBtn"),randomMonoThemeBtn:$("randomMonoThemeBtn"),themeMenuCloseBtn:$("themeMenuCloseBtn"),hideFretBtn:$("hideFretBtn"),sfBtn:$("sfBtn"),sfLoadBtn:$("sfLoadBtn"),sfStatus:$("sfStatus"),exportBtn:$("exportBtn"),saveBtn:$("saveBtn"),loadBtn:$("loadBtn"),localProjectsMenu:$("localProjectsMenu"),projectNameInput:$("projectNameInput"),saveNamedProjectBtn:$("saveNamedProjectBtn"),localProjectsList:$("localProjectsList"),undoBtn:$("undoBtn"),redoBtn:$("redoBtn"),loopBtn:$("loopBtn"),focusBtn:$("focusBtn"),fretboard:$("fretboard"),fretMarkers:$("fretMarkers"),fretChordLabel:$("fretChordLabel"),timelineViewport:$("timelineViewport"),timelineContent:$("timelineContent"),barZoomHeader:$("barZoomHeader"),vZoomStrip:$("vZoomStrip"),vZoomThumb:$("vZoomThumb"),trackMenuBtn:$("trackMenuBtn"),trackStatusBtn:$("trackStatusBtn"),trackMenu:$("trackMenu"),viewAllToggleBtn:$("viewAllToggleBtn"),trackList:$("trackList"),addTrackMenuBtn:$("addTrackMenuBtn"),deleteTrackMenuBtn:$("deleteTrackMenuBtn"),trackMenuCloseBtn:$("trackMenuCloseBtn"),sfSelect:$("sfSelect"),soundSelect:$("soundSelect"),soundPickerBtn:$("soundPickerBtn"),soundPickerMenu:$("soundPickerMenu"),soundBankRow:$("soundBankRow"),soundSearch:$("soundSearch"),soundFilterRow:$("soundFilterRow"),soundRandomBtn:$("soundRandomBtn"),soundPickerList:$("soundPickerList"),soundPickerCloseBtn:$("soundPickerCloseBtn"),copyBtn:$("copyBtn"),pasteBtn:$("pasteBtn"),colorSelect:$("colorSelect"),stepReadout:$("stepReadout"),posReadout:$("posReadout"),chordReadout:$("chordReadout")};
 Object.assign(el,{voicerBtn:$("voicerBtn"),voicerMenu:$("voicerMenu"),voicerEnableBtn:$("voicerEnableBtn"),voicerKeyBtn:$("voicerKeyBtn"),voicerScaleBtn:$("voicerScaleBtn"),voicerKeyMenu:$("voicerKeyMenu"),voicerScaleMenu:$("voicerScaleMenu"),voicerStyle:$("voicerStyle"),voicerRole:$("voicerRole"),voicerPlayability:$("voicerPlayability"),voicerRakeMode:$("voicerRakeMode"),voicerChordSize:$("voicerChordSize"),voicerChordSizeValue:$("voicerChordSizeValue"),voicerRakeSpeed:$("voicerRakeSpeed"),voicerRakeSpeedValue:$("voicerRakeSpeedValue"),voicerComplexity:$("voicerComplexity"),voicerComplexityValue:$("voicerComplexityValue"),voicerVoiceLeading:$("voicerVoiceLeading"),voicerVoiceLeadingValue:$("voicerVoiceLeadingValue"),voicerOutside:$("voicerOutside"),voicerOutsideValue:$("voicerOutsideValue"),voicerVariation:$("voicerVariation"),voicerVariationValue:$("voicerVariationValue"),voicerRepeat:$("voicerRepeat"),voicerRepeatValue:$("voicerRepeatValue"),voicerMinNote:$("voicerMinNote"),voicerMaxNote:$("voicerMaxNote"),voicerReadout:$("voicerReadout"),voicerLastChord:$("voicerLastChord"),voicerLastNotes:$("voicerLastNotes"),voicerResetBtn:$("voicerResetBtn"),voicerRandomizeBtn:$("voicerRandomizeBtn"),voicerCloseBtn:$("voicerCloseBtn")});
 const soundPickerState={filters:new Set(),query:"",bank:"all"};
@@ -484,14 +553,7 @@ function routeSfOutputForTrack(track,forceFx=false){
  const key=useFx?"fx:"+track.id:"master";
  if(state.sfOutputKey===key)return;
  let target=masterOutput();
- if(useFx){
-  let bus=state.trackFxBuses.get(track.id);
-  if(!bus||bus.ctx!==state.audioCtx){
-   bus=createTrackFxBus(track,state.audioCtx);
-   state.trackFxBuses.set(track.id,bus);
-  }else updateTrackFxBus(track,bus);
-  target=bus.input;
- }
+ if(useFx)target=trackFxInput(track,state.audioCtx);
  try{state.sfNode.disconnect()}catch(e){}
  try{state.sfNode.connect(target);state.sfOutputKey=key}catch(e){try{state.sfNode.connect(masterOutput());state.sfOutputKey="master"}catch{}}
 }
@@ -550,16 +612,18 @@ const gmPresets=[
 ];
 const internalPresets=corePresets;
 function soundBankKind(def){
- return "internal";
+ return def?.engine||"internal";
 }
 function soundPresetList(def){
  if(!def)return internalPresets;
  if(Array.isArray(def.presets))return def.presets;
  return internalPresets;
 }
+function isSampleSound(sound){return String(sound||"").startsWith("real:")}
 function soundEntryCategories(def,value,label){
  const text=((def?.name||"")+" "+(def?.type||"")+" "+value+" "+label).toLowerCase();
  const cats=new Set(def?.categories||[]);
+ if(isSampleSound(value)||def?.engine==="sample"||def?.engine==="sampleDrum"){cats.add("sample");cats.add("real")}
  if(def?.type==="drum"||value.startsWith("kit:")||value.startsWith("drum:")||/(drum|kick|snare|hat|tom|ride|crash|perc|808|909|606|707|kit)/.test(text))cats.add("drums");
  if(/(piano|epiano|electric grand|honky|harpsichord|clav|celesta|vibra|marimba|xylophone|organ|accordion|harmonica|bell|keys|keyboard)/.test(text))cats.add("keys");
  if(def?.type==="synth"||/(synth|lead|pad|square|saw|pulse|chip|bit|fm|analog|acid|sync|poly|mono|osc|noise|arcade|retro)/.test(text))cats.add("synth");
@@ -601,7 +665,8 @@ function selectSoundEntry(defId,value){
  state.sfProgramCache={};
  state.sfChannelPrograms={};
  state.sfOutputKey="";
- if(el.sfStatus)setSfStatus("Internal engines ready");
+ if(isSampleSound(nextSound))warmSampleInstrument(tr);
+ else if(el.sfStatus)setSfStatus("Internal engines ready");
  renderFretboard();
  render();
 }
@@ -979,12 +1044,162 @@ function updateTrackFxBus(track,bus=state.trackFxBuses.get(track.id)){
  try{bus.lfo.frequency.setTargetAtTime(.55+chorus*.9,bus.ctx.currentTime,.05)}catch(e){}
 }
 function connectTrackOutput(source,tr,c){
+ source.connect(trackFxInput(tr,c));
+}
+function trackFxInput(tr,c){
  let bus=state.trackFxBuses.get(tr.id);
  if(!bus||bus.ctx!==c){
   bus=createTrackFxBus(tr,c);
   state.trackFxBuses.set(tr.id,bus);
  }else updateTrackFxBus(tr,bus);
- source.connect(bus.input);
+ return bus.input;
+}
+function clearSampleRuntimeForContext(){
+ if(state.sampleInstruments&&state.sampleInstruments.forEach)state.sampleInstruments.forEach(item=>{
+  Promise.resolve(item).then(inst=>{try{inst?.dispose?.()}catch(e){}}).catch(()=>{});
+ });
+ state.sampleInstruments=new Map();
+ state.sampleStorage=null;
+}
+function ensureSampleRuntime(){
+ if(state.sampleCtx===state.audioCtx)return;
+ clearSampleRuntimeForContext();
+ state.sampleCtx=state.audioCtx;
+}
+async function ensureSampleModule(){
+ ensureAudio();
+ if(state.audioCtx&&state.audioCtx.state==="suspended")state.audioCtx.resume().catch(()=>{});
+ ensureSampleRuntime();
+ if(state.sampleModule)return state.sampleModule;
+ if(!state.sampleEnginePromise){
+  state.sampleEnginePromise=import("https://unpkg.com/smplr@1.0.0/dist/index.mjs").then(m=>{
+   state.sampleModule=m;
+   setSfStatus("Sample engine ready");
+   return m;
+  }).catch(err=>{
+   state.sampleEnginePromise=null;
+   const msg=(err&&err.message)?err.message:String(err);
+   setSfStatus("Sample engine unavailable: "+msg);
+   throw err;
+  });
+ }
+ return state.sampleEnginePromise;
+}
+function sampleProgress(label){
+ let last=0;
+ return p=>{
+  const now=performance.now();
+  if(now-last<120&&p.loaded!==p.total)return;
+  last=now;
+  setSfStatus(label+" "+p.loaded+"/"+p.total);
+ };
+}
+function sampleInstrumentKey(tr){return [tr.id,tr.soundFontId,tr.sound].join("|")}
+function sampleLabel(tr){return presetDisplayName(tr.sound,tr)}
+function sampleStorageFor(m){
+ if(!state.sampleStorage&&m.CacheStorage){try{state.sampleStorage=m.CacheStorage("fretstep-sample-cache-v1")}catch(e){state.sampleStorage=null}}
+ return state.sampleStorage||undefined;
+}
+function sampleFallbackSound(sound){
+ const s=String(sound||"").toLowerCase();
+ if(s.includes(":drum:")||s.includes("bass drum")||s.includes("snare")||s.includes("timpani"))return "kit:studio";
+ if(s.includes("guitar"))return "mdl:steel";
+ if(s.includes("bass"))return "mdl:fingerbass";
+ if(s.includes("violin"))return "mdl:violin";
+ if(s.includes("viola"))return "mdl:viola";
+ if(s.includes("cello"))return "mdl:cello";
+ if(s.includes("contrabass"))return "mdl:contrabass";
+ if(s.includes("string"))return "mdl:strings";
+ if(s.includes("harp"))return "mdl:harp";
+ if(s.includes("trumpet"))return "mdl:trumpet";
+ if(s.includes("trombone"))return "mdl:trombone";
+ if(s.includes("horn")||s.includes("brass"))return "mdl:frenchhorn";
+ if(s.includes("sax"))return "mdl:tenor";
+ if(s.includes("flute"))return "mdl:flute";
+ if(s.includes("clarinet"))return "mdl:clarinet";
+ if(s.includes("oboe"))return "mdl:oboe";
+ if(s.includes("bassoon"))return "mdl:bassoon";
+ if(s.includes("recorder"))return "mdl:recorder";
+ if(s.includes("organ"))return "mdl:churchorgan";
+ if(s.includes("vibra"))return "mdl:vibes";
+ if(s.includes("marimba"))return "mdl:marimba";
+ if(s.includes("glock"))return "mdl:glock";
+ if(s.includes("ep:")||s.includes("electric"))return "mdl:epiano";
+ return "mdl:grand";
+}
+function playSampleFallback(m,d,tr,when=0){
+ const sound=sampleFallbackSound(tr.sound);
+ const defId=sound.startsWith("kit:")?"acousticdrums":sound.startsWith("mdl:")?"keys":"core";
+ const fake={...tr,soundFontId:defId,sound};
+ if(sound.startsWith("kit:"))playSynthDrum(m,d,fake,when);
+ else if(sound.startsWith("mdl:")||sound.startsWith("sfx:"))playModeledInstrumentNote(m,d,fake,when);
+ else playNote(m,d,fake,when);
+}
+function sampleDrumNoteName(midi,inst){
+ const preferred={
+  35:["kick"],36:["kick"],37:["rimshot","snare"],38:["snare"],39:["clap","snare"],40:["snare"],
+  41:["tom-low","low-tom","tom"],43:["tom-low","low-tom","tom"],45:["mid-tom","tom-low","tom"],47:["mid-tom","tom"],
+  48:["tom-hi","hi-tom","tom"],50:["tom-hi","hi-tom","tom"],42:["hihat-close","hihat","hat"],44:["hihat-close","hihat","hat"],
+  46:["hihat-open","hihat","hat"],49:["cymbal","crash"],51:["cymbal","ride"],54:["tambourine","maraca"],56:["cowbell"],
+  70:["maraca"],75:["clave"],76:["clave"]
+ }[Math.round(midi)]||[];
+ const groups=typeof inst?.getGroupNames==="function"?inst.getGroupNames():[];
+ for(const name of preferred)if(groups.includes(name))return name;
+ return midi;
+}
+async function loadSampleInstrument(tr=activeTrack()){
+ if(!isSampleSound(tr.sound))return null;
+ const key=sampleInstrumentKey(tr);
+ const cached=state.sampleInstruments.get(key);
+ if(cached)return Promise.resolve(cached).then(inst=>{if(inst?.output)inst.output.volume=trackVolume(tr);return inst});
+ const promise=(async()=>{
+  const m=await ensureSampleModule();
+  const storage=sampleStorageFor(m);
+  const destination=trackFxInput(tr,state.audioCtx);
+  const common={destination,volume:trackVolume(tr),storage,onLoadProgress:sampleProgress(sampleLabel(tr))};
+  const sound=String(tr.sound||"");
+  setSfStatus("Loading "+sampleLabel(tr)+"...");
+  let inst=null;
+  if(sound==="real:piano:splendid")inst=m.SplendidGrandPiano(state.audioCtx,{...common,formats:["ogg","m4a"]});
+  else if(sound.startsWith("real:gm:"))inst=m.Soundfont(state.audioCtx,{...common,kit:"FluidR3_GM",instrument:sound.slice("real:gm:".length)});
+  else if(sound.startsWith("real:vcsl:"))inst=m.Versilian(state.audioCtx,{...common,instrument:sound.slice("real:vcsl:".length)});
+  else if(sound.startsWith("real:ep:"))inst=m.ElectricPiano(state.audioCtx,{...common,instrument:sound.slice("real:ep:".length),formats:["ogg","m4a"]});
+  else if(sound.startsWith("real:drum:"))inst=m.DrumMachine(state.audioCtx,{...common,instrument:sound.slice("real:drum:".length)});
+  if(!inst)throw new Error("Unknown sample instrument");
+  await inst.ready;
+  if(inst.output)inst.output.volume=trackVolume(tr);
+  setSfStatus(sampleLabel(tr)+" ready");
+  return inst;
+ })().catch(err=>{
+  state.sampleInstruments.delete(key);
+  const msg=(err&&err.message)?err.message:String(err);
+  setSfStatus("Sample unavailable, using fallback: "+msg);
+  throw err;
+ });
+ state.sampleInstruments.set(key,promise);
+ return promise;
+}
+function warmSampleInstrument(tr=activeTrack()){
+ if(!isSampleSound(tr.sound))return;
+ loadSampleInstrument(tr).catch(()=>{});
+}
+function warmPlaybackSamples(){
+ for(const tr of state.tracks)if(isSampleSound(tr.sound))warmSampleInstrument(tr);
+}
+function playSampleNote(m,d,tr,when=0){
+ if(!isSampleSound(tr.sound))return false;
+ ensureAudio();
+ const c=state.audioCtx;
+ const scheduled=audioStart(c,when);
+ const duration=Math.max(.08,ticksToSeconds(d));
+ loadSampleInstrument(tr).then(inst=>{
+  if(inst?.output)inst.output.volume=trackVolume(tr);
+  const time=Math.max(scheduled,c.currentTime+.006);
+  const event={note:String(tr.sound).startsWith("real:drum:")?sampleDrumNoteName(m,inst):m,time,velocity:Math.max(1,Math.min(127,Math.round(92*(trackVolume(tr)/100))))};
+  if(!String(tr.sound).startsWith("real:drum:"))event.duration=duration;
+  inst.start(event);
+ }).catch(()=>playSampleFallback(m,d,tr,when));
+ return true;
 }
 function audioStart(c,when=0){return c.currentTime+Math.max(.012,Number(when)||0)}
 function envelope(g,start,peak,attack=.006,hold=.02,release=.12){
@@ -1281,6 +1496,7 @@ function playNote(m,d=stepTicks(),tr=activeTrack(),when=0){
  ensureAudio();
  if(state.audioCtx&&state.audioCtx.state==='suspended')state.audioCtx.resume().catch(()=>{});
  const raw=tr.sound||"sine";
+ if(isSampleSound(raw)&&playSampleNote(m,d,tr,when))return;
  if(raw.startsWith("kit:")){playSynthDrum(m,d,tr,when);return}
  if(raw.startsWith("chip:")||raw.startsWith("s16:")||raw.startsWith("ana:")){playRetroSynthNote(m,d,tr,when);return}
  if(raw.startsWith("mdl:")||raw.startsWith("sfx:")){playModeledInstrumentNote(m,d,tr,when);return}
@@ -2476,6 +2692,7 @@ function schedulePlaybackNotes(){
 function startPlayback(){
  ensureAudio();
  stopPlayback(false);
+ warmPlaybackSamples();
  state.playing=true;
  state.playbackStartTick=snapTick(state.tick);
  state.tick=state.playbackStartTick;
@@ -2775,7 +2992,7 @@ function projectData(){
  normalizeTracks();
  state.voicer=normalizeVoicerSettings(state.voicer);
  return {
-  version:24,tempo:state.tempo,timeSigNum:state.timeSigNum,timeSigDen:state.timeSigDen,metronome:state.metronome,semitoneMode:state.semitoneMode,subdivision:state.subdivision,metronome:state.metronome,inputOctave:state.inputOctave,
+  version:25,tempo:state.tempo,timeSigNum:state.timeSigNum,timeSigDen:state.timeSigDen,metronome:state.metronome,semitoneMode:state.semitoneMode,subdivision:state.subdivision,metronome:state.metronome,inputOctave:state.inputOctave,
   tracks:state.tracks,activeTrackId:state.activeTrackId,viewAllTracks:state.viewAllTracks,
   hideFretboard:state.hideFretboard,useSoundFont:true,
   loopEnabled:state.loopEnabled,loopStart:state.loopStart,loopEnd:state.loopEnd,
@@ -2805,7 +3022,7 @@ function importProjectFile(file){
 
 function makeFreshProjectData(){
  return {
-  version:24,
+  version:25,
   tempo:120,
   timeSigNum:4,
   timeSigDen:4,
@@ -3075,8 +3292,8 @@ if(el.soundPickerCloseBtn)el.soundPickerCloseBtn.onclick=()=>el.soundPickerMenu.
 if(el.soundSearch)el.soundSearch.oninput=()=>{soundPickerState.query=el.soundSearch.value;renderSoundPicker(true)};
 if(el.soundRandomBtn)el.soundRandomBtn.onclick=()=>randomSoundFromPicker();
 if(el.soundFilterRow)el.soundFilterRow.onclick=e=>{const b=e.target.closest("[data-filter]");if(!b)return;const f=b.dataset.filter;if(f==="all")soundPickerState.filters.clear();else if(soundPickerState.filters.has(f))soundPickerState.filters.delete(f);else soundPickerState.filters.add(f);soundPickerState.query=el.soundSearch?.value||"";renderSoundPicker(true)};
-if(el.sfSelect)el.sfSelect.onchange=()=>{const tr=activeTrack();pushUndo();state.useSoundFont=true;tr.soundFontId=normalizeSoundFontId(el.sfSelect.value);tr.sound=firstSoundForFont(trackSoundFont(tr));state.sfProgramCache={};state.sfChannelPrograms={};state.sfOutputKey="";renderFretboard();render();if(state.useSoundFont)loadDefaultSoundFont()};
-if(el.soundSelect)el.soundSelect.onchange=()=>{pushUndo();activeTrack().sound=el.soundSelect.value;state.sfProgramCache={};state.sfChannelPrograms={};state.sfOutputKey="";setTrackProgram(activeTrack());if(el.sfStatus&&state.useSoundFont)el.sfStatus.textContent='Preset: '+el.soundSelect.options[el.soundSelect.selectedIndex].textContent;renderFretboard();render()};
+if(el.sfSelect)el.sfSelect.onchange=()=>{const tr=activeTrack();pushUndo();state.useSoundFont=true;tr.soundFontId=normalizeSoundFontId(el.sfSelect.value);tr.sound=firstSoundForFont(trackSoundFont(tr));state.sfProgramCache={};state.sfChannelPrograms={};state.sfOutputKey="";renderFretboard();render();if(isSampleSound(tr.sound))warmSampleInstrument(tr);else if(state.useSoundFont)loadDefaultSoundFont()};
+if(el.soundSelect)el.soundSelect.onchange=()=>{const tr=activeTrack();pushUndo();tr.sound=el.soundSelect.value;state.sfProgramCache={};state.sfChannelPrograms={};state.sfOutputKey="";setTrackProgram(tr);if(isSampleSound(tr.sound))warmSampleInstrument(tr);else if(el.sfStatus&&state.useSoundFont)el.sfStatus.textContent='Preset: '+el.soundSelect.options[el.soundSelect.selectedIndex].textContent;renderFretboard();render()};
 if(el.copyBtn)el.copyBtn.onclick=()=>copySelectedNotes();
 if(el.pasteBtn)el.pasteBtn.onclick=()=>pasteClipboardNotes();
 if(el.colorSelect)el.colorSelect.onclick=()=>openTrackColorMenu(activeTrack());

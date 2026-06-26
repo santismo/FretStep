@@ -75,9 +75,9 @@ Single notes are ignored and do not create chord regions.
 
 Playback Engine
 
-Internal Web Audio Playback
+Hybrid Web Audio Playback
 
-FretStep2 now uses built-in procedural sound engines instead of external SoundFonts, so bank switching and audition playback stay deterministic.
+FretStep2 uses built-in procedural engines for instant reliable playback, plus optional sampled instruments that load on demand and cache in the browser.
 
 Features:
 
@@ -87,6 +87,9 @@ Features:
 * Random sound selection constrained by search, filters, and bank
 * Acoustic-style banks for piano, guitar, bass, strings, horns, and drums
 * Synth, chiptune, 16-bit, analog, retro drum, and sound-effect banks
+* Sample-backed RealKey, RealGM, VCSL, and sampled drum-machine banks
+* Splendid Grand Piano, VCSL pianos/harps/mallets/winds, FluidR3 GM guitars/strings/horns, and sampled TR/Casio/Linn-style drum machines
+* Internal fallback sounds if a sampled instrument cannot load
 * Per-track live effects including filters, reverb, delay, chorus, drive, crush, phaser, air, and tremolo
 
 ⸻
