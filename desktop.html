@@ -182,10 +182,10 @@ button.active,.primary{background:color-mix(in srgb,var(--accent) 35%,var(--pane
 </div>
 <div id="loopMenu" class="popupMenu">
   <b>Loop Region</b>
-  <label>Start bar <input id="loopStartInput" type="number" min="1" value="1"/></label>
-  <label>End bar <input id="loopEndInput" type="number" min="1" value="5"/></label>
+  <label>Start bar <input id="loopStartInput" type="text" inputmode="numeric" pattern="[0-9]*" enterkeyhint="done" min="1" value="1"/></label>
+  <label>End bar <input id="loopEndInput" type="text" inputmode="numeric" pattern="[0-9]*" enterkeyhint="done" min="1" value="5"/></label>
   <button id="loopToggleBtn">Loop On/Off</button>
-  <button id="loopApplyBtn">Done</button><button id="loopCloseBtn">Close</button>
+  <button id="loopCloseBtn">Close</button>
 </div>
 <div id="bpmMenu" class="popupMenu bpmMenu"><b>BPM</b><input id="tempoSlider" type="range" min="40" max="240" value="120"/><button id="bpmCloseBtn">Done</button></div><div id="tsMenu" class="popupMenu">
   <b>Time Signature</b>
@@ -587,6 +587,7 @@ const soundFontIdMigrations={console8:"chip8",sc55:"keys",generaluser:"keys",tim
 const state={armed:true,playing:false,chordMode:false,semitoneMode:false,tempo:120,timeSigNum:4,timeSigDen:4,subdivision:16,metronome:false,lastMetroStep:-1,inputOctave:0,tick:0,zoom:.9,viewAllTracks:false,hideFretboard:false,useSoundFont:true,sfReady:false,sfLoading:false,sfEnginePromise:null,sfSynth:null,sfNode:null,sfId:null,sfIds:{},sfLoadingIds:{},sfProgramCache:{},sfChannelPrograms:{},sfOutputKey:"",sampleModule:null,sampleEnginePromise:null,sampleCtx:null,sampleStorage:null,sampleInstruments:new Map(),loopEnabled:false,loopStart:0,loopEnd:PPQ*16,loopSetMode:0,undoStack:[],redoStack:[],scrollX:0,scrollY:250,selectedIds:new Set(),clipboardNotes:[],nextNoteId:1,tracks:[{id:1,name:"Track 1",soundFontId:"keys",sound:"mdl:grand",color:"blue",volume:100,fx:defaultTrackFx(),notes:[]},{id:2,name:"Track 2",soundFontId:"guitarbass",sound:"mdl:fingerbass",color:"green",volume:100,fx:defaultTrackFx(),notes:[]},{id:3,name:"Track 3",soundFontId:"orchestra",sound:"mdl:strings",color:"purple",volume:100,fx:defaultTrackFx(),notes:[]}],activeTrackId:1,audioCtx:null,masterCtx:null,masterGain:null,masterCompressor:null,trackFxBuses:new Map(),activeGeneratedVoices:[],playbackStartTime:0,playbackStartTick:0,scheduledNotes:new Set(),scheduleTimer:null,liveFretLights:[],livePadLights:[],voicerAuditionTimers:[],fretDisplayChordName:"",voicerEnabled:true,voicer:defaultVoicerSettings(),voicerMemory:{previousNotes:[],previousName:"",previousRoot:-1}};
 const $=id=>document.getElementById(id),el={tempo:$("tempo"),tempoSlider:$("tempoSlider"),bpmLabel:$("bpmLabel"),bpmMenu:$("bpmMenu"),bpmCloseBtn:$("bpmCloseBtn"),subdivTop:$("subdivTop"),tsBtn:$("tsBtn"),tsMenu:$("tsMenu"),metroBtn:$("metroBtn"),loopMenu:$("loopMenu"),loopStartInput:$("loopStartInput"),loopEndInput:$("loopEndInput"),loopToggleBtn:$("loopToggleBtn"),loopApplyBtn:$("loopApplyBtn"),loopCloseBtn:$("loopCloseBtn"),settingsBtn:$("settingsBtn"),settingsMenu:$("settingsMenu"),playBtn:$("playBtn"),leftBtn:$("leftBtn"),rightBtn:$("rightBtn"),divDownBtn:$("divDownBtn"),divUpBtn:$("divUpBtn"),octDownBtn:$("octDownBtn"),octUpBtn:$("octUpBtn"),chordBtn:$("chordBtn"),recordBtn:$("recordBtn"),midiBtn:$("midiBtn"),deleteBtn:$("deleteBtn"),newProjectBtn:$("newProjectBtn"),exportProjectBtn:$("exportProjectBtn"),importProjectBtn:$("importProjectBtn"),projectImport:$("projectImport"),trackColorMenu:$("trackColorMenu"),trackColorGrid:$("trackColorGrid"),trackColorCloseBtn:$("trackColorCloseBtn"),trackFxMenu:$("trackFxMenu"),trackFxTitle:$("trackFxTitle"),fxLowCut:$("fxLowCut"),fxLowCutValue:$("fxLowCutValue"),fxHighCut:$("fxHighCut"),fxHighCutValue:$("fxHighCutValue"),fxReverbMix:$("fxReverbMix"),fxReverbMixValue:$("fxReverbMixValue"),fxReverbTime:$("fxReverbTime"),fxReverbTimeValue:$("fxReverbTimeValue"),fxReverbType:$("fxReverbType"),fxDelayMix:$("fxDelayMix"),fxDelayMixValue:$("fxDelayMixValue"),fxDelayTime:$("fxDelayTime"),fxDelayTimeValue:$("fxDelayTimeValue"),fxChorus:$("fxChorus"),fxChorusValue:$("fxChorusValue"),fxDrive:$("fxDrive"),fxDriveValue:$("fxDriveValue"),fxCrush:$("fxCrush"),fxCrushValue:$("fxCrushValue"),fxPhaser:$("fxPhaser"),fxPhaserValue:$("fxPhaserValue"),fxAir:$("fxAir"),fxAirValue:$("fxAirValue"),fxTremolo:$("fxTremolo"),fxTremoloValue:$("fxTremoloValue"),trackFxResetBtn:$("trackFxResetBtn"),trackFxCloseBtn:$("trackFxCloseBtn"),themeBtn:$("themeBtn"),themeMenu:$("themeMenu"),themeList:$("themeList"),randomThemeBtn:$("randomThemeBtn"),randomMonoThemeBtn:$("randomMonoThemeBtn"),themeMenuCloseBtn:$("themeMenuCloseBtn"),hideFretBtn:$("hideFretBtn"),sfBtn:$("sfBtn"),sfLoadBtn:$("sfLoadBtn"),sfStatus:$("sfStatus"),exportBtn:$("exportBtn"),saveBtn:$("saveBtn"),loadBtn:$("loadBtn"),localProjectsMenu:$("localProjectsMenu"),projectNameInput:$("projectNameInput"),saveNamedProjectBtn:$("saveNamedProjectBtn"),localProjectsList:$("localProjectsList"),undoBtn:$("undoBtn"),redoBtn:$("redoBtn"),loopBtn:$("loopBtn"),focusBtn:$("focusBtn"),fretboard:$("fretboard"),fretMarkers:$("fretMarkers"),fretChordLabel:$("fretChordLabel"),timelineViewport:$("timelineViewport"),timelineContent:$("timelineContent"),barZoomHeader:$("barZoomHeader"),vZoomStrip:$("vZoomStrip"),vZoomThumb:$("vZoomThumb"),trackMenuBtn:$("trackMenuBtn"),trackStatusBtn:$("trackStatusBtn"),trackMenu:$("trackMenu"),viewAllToggleBtn:$("viewAllToggleBtn"),trackList:$("trackList"),addTrackMenuBtn:$("addTrackMenuBtn"),deleteTrackMenuBtn:$("deleteTrackMenuBtn"),trackMenuCloseBtn:$("trackMenuCloseBtn"),sfSelect:$("sfSelect"),soundSelect:$("soundSelect"),soundPickerBtn:$("soundPickerBtn"),soundPickerMenu:$("soundPickerMenu"),soundBankRow:$("soundBankRow"),soundSearch:$("soundSearch"),soundFilterRow:$("soundFilterRow"),soundRandomBtn:$("soundRandomBtn"),soundPickerList:$("soundPickerList"),soundPickerCloseBtn:$("soundPickerCloseBtn"),copyBtn:$("copyBtn"),pasteBtn:$("pasteBtn"),colorSelect:$("colorSelect"),stepReadout:$("stepReadout"),posReadout:$("posReadout"),chordReadout:$("chordReadout")};
 Object.assign(el,{voicerBtn:$("voicerBtn"),voicerMenu:$("voicerMenu"),voicerEnableBtn:$("voicerEnableBtn"),voicerKeyBtn:$("voicerKeyBtn"),voicerScaleBtn:$("voicerScaleBtn"),voicerKeyMenu:$("voicerKeyMenu"),voicerScaleMenu:$("voicerScaleMenu"),voicerStyle:$("voicerStyle"),voicerRole:$("voicerRole"),voicerPlayability:$("voicerPlayability"),voicerRakeMode:$("voicerRakeMode"),voicerChordSize:$("voicerChordSize"),voicerChordSizeValue:$("voicerChordSizeValue"),voicerRakeSpeed:$("voicerRakeSpeed"),voicerRakeSpeedValue:$("voicerRakeSpeedValue"),voicerComplexity:$("voicerComplexity"),voicerComplexityValue:$("voicerComplexityValue"),voicerVoiceLeading:$("voicerVoiceLeading"),voicerVoiceLeadingValue:$("voicerVoiceLeadingValue"),voicerOutside:$("voicerOutside"),voicerOutsideValue:$("voicerOutsideValue"),voicerVariation:$("voicerVariation"),voicerVariationValue:$("voicerVariationValue"),voicerRepeat:$("voicerRepeat"),voicerRepeatValue:$("voicerRepeatValue"),voicerMinNote:$("voicerMinNote"),voicerMaxNote:$("voicerMaxNote"),voicerReadout:$("voicerReadout"),voicerLastChord:$("voicerLastChord"),voicerLastNotes:$("voicerLastNotes"),voicerResetBtn:$("voicerResetBtn"),voicerRandomizeBtn:$("voicerRandomizeBtn"),voicerCloseBtn:$("voicerCloseBtn")});
+let trackFxTarget=null,trackFxUndoArmed=false;
 const soundPickerState={filters:new Set(),query:"",bank:"all"};
 const midiInputState={access:null,enabled:false,active:new Set()};
 
@@ -720,9 +721,12 @@ function drumChannelFor(def){
  if(Number.isFinite(def.drumChannel))return clamp(Math.round(def.drumChannel),0,15);
  return Number.isFinite(def.drumBank)&&def.drumBank!==128?0:9;
 }
+function trackFxMenuIsEditing(track){
+ return !!(track&&trackFxTarget&&trackFxTarget.id===track.id&&el.trackFxMenu?.classList.contains("open"));
+}
 function routeSfOutputForTrack(track,forceFx=false){
  if(!state.sfNode||!state.audioCtx)return;
- const useFx=forceFx||(!state.playing&&trackFxIsActive(track));
+ const useFx=forceFx||trackFxMenuIsEditing(track)||trackFxIsActive(track);
  const key=useFx?"fx:"+track.id:"master";
  if(state.sfOutputKey===key)return;
  let target=masterOutput();
@@ -734,8 +738,7 @@ function playSfNote(m,d,tr,when=0){
  const def=trackSoundFont(tr);
  const ch=ensureSfProgram(tr,def);
  if(ch===null)return false;
- const forceFx=!state.playing;
- routeSfOutputForTrack(tr,forceFx);
+ routeSfOutputForTrack(tr,!state.playing);
  const vel=Math.max(1,Math.min(127,Math.round(76*(trackVolume(tr)/100))));
  const delayMs=Math.max(6,when*1000);
  const durMs=Math.max(40,ticksToSeconds(d)*1000);
@@ -2109,7 +2112,7 @@ function generateVoicerChord(inputNote){
 }
 function rakeOffsetsFor(count){
  const mode=state.voicer.rakeMode;
- const spread=Math.round(stepTicks()*clamp(state.voicer.rakeSpeed,0,1)*.45);
+ const spread=Math.round(stepTicks()*clamp(state.voicer.rakeSpeed,0,1)*2.025);
  const step=count>1?Math.max(0,Math.round(spread/(count-1))):0;
  let order=[...Array(count).keys()];
  if(mode==="Down")order=order.reverse();
@@ -2120,7 +2123,7 @@ function rakeOffsetsFor(count){
 }
 function rakeDelaySeconds(offsetTicks,recordToTimeline){
  const base=ticksToSeconds(offsetTicks);
- return recordToTimeline?base:base*4.5;
+ return base;
 }
 function setVoicerLastDisplay(name,notes,detail=""){
  const cleanName=name&&name!=="--"?name:"--";
@@ -2139,9 +2142,10 @@ function insertVoicerChord(baseMidi,stringName,fret,recordToTimeline=true){
  const groupId="v"+Date.now().toString(36)+Math.random().toString(36).slice(2,7);
  const ordered=[...generated.notes].sort((a,b)=>a-b);
  const offsets=rakeOffsetsFor(ordered.length);
+ const lastOffset=Math.max(0,...offsets);
  ordered.forEach((m,i)=>{
   const off=offsets[i]||0;
-  const dur=Math.max(PPQ/16,stepTicks()-off);
+  const dur=Math.max(PPQ/16,stepTicks()+lastOffset-off);
   const delay=rakeDelaySeconds(off,recordToTimeline);
   if(recordToTimeline)playNote(m,dur,tr,delay);
   else playVoicerAuditionNote(m,dur,tr,delay);
@@ -3435,12 +3439,17 @@ if(el.voicerCloseBtn)el.voicerCloseBtn.onclick=()=>el.voicerMenu.classList.remov
 if(el.voicerResetBtn)el.voicerResetBtn.onclick=()=>{pushUndo();resetVoicerSettings();render()};
 if(el.voicerRandomizeBtn)el.voicerRandomizeBtn.onclick=()=>{pushUndo();randomizeVoicerSettings()};
 if(el.loopCloseBtn)el.loopCloseBtn.onclick=()=>el.loopMenu.classList.remove('open');
+for(const loopInput of [el.loopStartInput,el.loopEndInput]){
+ if(!loopInput)continue;
+ loopInput.addEventListener("beforeinput",e=>{if(e.data&&!/^\d+$/.test(e.data))e.preventDefault()});
+ loopInput.addEventListener("focus",()=>{try{loopInput.select()}catch{}});
+}
 el.loopStartInput.oninput=()=>applyLoopFields(true);
 el.loopEndInput.oninput=()=>applyLoopFields(true);
 el.loopStartInput.onchange=()=>applyLoopFields(true);
 el.loopEndInput.onchange=()=>applyLoopFields(true);
 el.loopToggleBtn.onclick=()=>{pushUndo();state.loopEnabled=!state.loopEnabled;render()};
-el.loopApplyBtn.onclick=()=>{applyLoopFields(true);el.loopMenu.classList.remove("open")};
+if(el.loopApplyBtn)el.loopApplyBtn.onclick=()=>{applyLoopFields(true);el.loopMenu.classList.remove("open")};
 el.bpmLabel.onclick=e=>{e.stopPropagation();el.bpmMenu.classList.toggle("open")};
 el.tempoSlider.oninput=()=>{state.tempo=Number(el.tempoSlider.value);el.tempo.value=state.tempo;el.tempoSlider.value=state.tempo;render()};
 el.bpmCloseBtn.onclick=()=>el.bpmMenu.classList.remove("open");
@@ -3667,7 +3676,6 @@ function openTrackColorMenu(track){
  el.trackColorMenu.classList.add("open");
 }
 if(el.trackColorCloseBtn)el.trackColorCloseBtn.onclick=()=>el.trackColorMenu.classList.remove("open");
-let trackFxTarget=null,trackFxUndoArmed=false;
 function hzLabel(v){return v>=1000?(Math.round(v/100)/10)+"k":String(Math.round(v))}
 function fxPct(v){return String(Math.round(clamp(Number(v)||0,0,1)*100))}
 function syncTrackFxValueLabels(){
