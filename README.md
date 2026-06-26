@@ -87,10 +87,10 @@ Features:
 * Random sound selection constrained by search, filters, and bank
 * Acoustic-style banks for piano, guitar, bass, strings, horns, and drums
 * Synth, chiptune, 16-bit, analog, retro drum, and sound-effect banks
-* Sample-backed RealKey, RealGM, VCSL, and sampled drum-machine banks
-* Splendid Grand Piano, VCSL pianos/harps/mallets/winds, FluidR3 GM guitars/strings/horns, and sampled TR/Casio/Linn/Oberheim/Korg/Yamaha/Simmons/Boss-style drum kits
+* Sample-backed RealKey, RealGM, VCSL, Mallet, Tape/Mellotron, and sampled drum-machine banks
+* Splendid Grand Piano, safer GM sampled pianos, VCSL pianos/harps/mallets/winds/world instruments, FluidR3 GM guitars/basses/strings/horns, Smolken double bass, Mellotron tape sounds, and sampled TR/Casio/Linn/Oberheim/Korg/Yamaha/Simmons/Boss-style drum kits
 * Drum-kit pad mapping for sampled drum machines where the source exposes kick, snare, hats, toms, cymbals, and percussion groups
-* Phone-safe piano loading that limits the heaviest piano libraries on small touch devices
+* Phone-safe piano loading that limits Splendid Grand Piano and redirects the heaviest VCSL pianos to a lighter sampled GM piano on small touch devices
 * Internal fallback sounds if a sampled instrument cannot load
 * Per-track live effects including filters, reverb, delay, chorus, drive, crush, phaser, air, and tremolo
 

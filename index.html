@@ -305,6 +305,16 @@ const analogSynthPresets=[
 ];
 const realPianoPresets=[
  ["real:piano:splendid","Splendid Grand Piano",["sample","real","keys"]],
+ ["real:gm:acoustic_grand_piano","GM Sample Grand Piano",["sample","real","keys"]],
+ ["real:gm:bright_acoustic_piano","GM Sample Bright Piano",["sample","real","keys"]],
+ ["real:gm:electric_grand_piano","GM Sample Electric Grand",["sample","real","keys"]],
+ ["real:gm:honkytonk_piano","GM Sample Honky Piano",["sample","real","keys"]],
+ ["real:gm:electric_piano_1","GM Sample E-Piano 1",["sample","real","keys"]],
+ ["real:gm:electric_piano_2","GM Sample E-Piano 2",["sample","real","keys"]],
+ ["real:gm:harpsichord","GM Sample Harpsichord",["sample","real","keys"]],
+ ["real:gm:clavinet","GM Sample Clavinet",["sample","real","keys"]],
+ ["real:gm:celesta","GM Sample Celesta",["sample","real","keys"]],
+ ["real:gm:music_box","GM Sample Music Box",["sample","real","keys"]],
  ["real:vcsl:Chordophones/Zithers/Grand Piano, Steinway B","VCSL Steinway B",["sample","real","keys"]],
  ["real:vcsl:Chordophones/Zithers/Grand Piano, Kawai","VCSL Kawai Grand",["sample","real","keys"]],
  ["real:vcsl:Chordophones/Zithers/Upright Piano, Yamaha","VCSL Yamaha Upright",["sample","real","keys"]],
@@ -319,47 +329,167 @@ const realGmPresets=[
  ["real:gm:acoustic_guitar_steel","GM Steel Guitar",["sample","real","guitar"]],
  ["real:gm:electric_guitar_jazz","GM Jazz Guitar",["sample","real","guitar"]],
  ["real:gm:electric_guitar_clean","GM Clean Guitar",["sample","real","guitar"]],
+ ["real:gm:electric_guitar_muted","GM Muted Guitar",["sample","real","guitar"]],
  ["real:gm:overdriven_guitar","GM Overdriven Guitar",["sample","real","guitar"]],
+ ["real:gm:distortion_guitar","GM Distortion Guitar",["sample","real","guitar"]],
+ ["real:gm:guitar_harmonics","GM Guitar Harmonics",["sample","real","guitar"]],
+ ["real:gm:guitar_fret_noise","GM Guitar Fret Noise",["sample","real","guitar","fx"]],
+ ["real:gm:banjo","GM Banjo",["sample","real","guitar"]],
+ ["real:gm:sitar","GM Sitar",["sample","real","guitar","world"]],
+ ["real:gm:shamisen","GM Shamisen",["sample","real","guitar","world"]],
+ ["real:gm:koto","GM Koto",["sample","real","guitar","world"]],
  ["real:gm:acoustic_bass","GM Acoustic Bass",["sample","real","bass"]],
  ["real:gm:electric_bass_finger","GM Finger Bass",["sample","real","bass"]],
+ ["real:gm:electric_bass_pick","GM Pick Bass",["sample","real","bass"]],
  ["real:gm:fretless_bass","GM Fretless Bass",["sample","real","bass"]],
+ ["real:gm:slap_bass_1","GM Slap Bass 1",["sample","real","bass"]],
+ ["real:gm:slap_bass_2","GM Slap Bass 2",["sample","real","bass"]],
+ ["real:gm:synth_bass_1","GM Synth Bass 1",["sample","real","bass","synth"]],
+ ["real:gm:synth_bass_2","GM Synth Bass 2",["sample","real","bass","synth"]],
+ ["real:smolken:Arco","Smolken Arco Bass",["sample","real","bass","orch"]],
+ ["real:smolken:Pizzicato","Smolken Pizzicato Bass",["sample","real","bass","orch"]],
+ ["real:smolken:Switched","Smolken Switched Bass",["sample","real","bass","orch"]],
  ["real:gm:violin","GM Violin",["sample","real","orch"]],
+ ["real:gm:fiddle","GM Fiddle",["sample","real","orch"]],
  ["real:gm:viola","GM Viola",["sample","real","orch"]],
  ["real:gm:cello","GM Cello",["sample","real","orch"]],
  ["real:gm:contrabass","GM Contrabass",["sample","real","orch"]],
  ["real:gm:string_ensemble_1","GM String Ensemble",["sample","real","orch"]],
+ ["real:gm:string_ensemble_2","GM String Ensemble 2",["sample","real","orch"]],
+ ["real:gm:synth_strings_1","GM Synth Strings 1",["sample","real","orch","synth"]],
+ ["real:gm:synth_strings_2","GM Synth Strings 2",["sample","real","orch","synth"]],
  ["real:gm:pizzicato_strings","GM Pizzicato Strings",["sample","real","orch"]],
  ["real:gm:tremolo_strings","GM Tremolo Strings",["sample","real","orch"]],
  ["real:gm:orchestral_harp","GM Orchestral Harp",["sample","real","orch"]],
+ ["real:gm:orchestra_hit","GM Orchestra Hit",["sample","real","orch"]],
+ ["real:gm:timpani","GM Timpani",["sample","real","orch","drums"]],
  ["real:gm:choir_aahs","GM Choir Aahs",["sample","real","orch"]],
+ ["real:gm:voice_oohs","GM Voice Oohs",["sample","real","orch"]],
+ ["real:gm:synth_choir","GM Synth Choir",["sample","real","orch","synth"]],
  ["real:gm:church_organ","GM Church Organ",["sample","real","keys"]],
+ ["real:gm:drawbar_organ","GM Drawbar Organ",["sample","real","keys"]],
+ ["real:gm:percussive_organ","GM Percussive Organ",["sample","real","keys"]],
+ ["real:gm:rock_organ","GM Rock Organ",["sample","real","keys"]],
+ ["real:gm:reed_organ","GM Reed Organ",["sample","real","keys"]],
  ["real:gm:accordion","GM Accordion",["sample","real","keys"]],
+ ["real:gm:tango_accordion","GM Tango Accordion",["sample","real","keys"]],
+ ["real:gm:harmonica","GM Harmonica",["sample","real","horns"]],
  ["real:gm:trumpet","GM Trumpet",["sample","real","horns"]],
  ["real:gm:trombone","GM Trombone",["sample","real","horns"]],
+ ["real:gm:tuba","GM Tuba",["sample","real","horns"]],
+ ["real:gm:muted_trumpet","GM Muted Trumpet",["sample","real","horns"]],
  ["real:gm:french_horn","GM French Horn",["sample","real","horns"]],
  ["real:gm:brass_section","GM Brass Section",["sample","real","horns"]],
+ ["real:gm:synth_brass_1","GM Synth Brass 1",["sample","real","horns","synth"]],
+ ["real:gm:synth_brass_2","GM Synth Brass 2",["sample","real","horns","synth"]],
  ["real:gm:flute","GM Flute",["sample","real","horns"]],
+ ["real:gm:piccolo","GM Piccolo",["sample","real","horns"]],
  ["real:gm:clarinet","GM Clarinet",["sample","real","horns"]],
  ["real:gm:oboe","GM Oboe",["sample","real","horns"]],
+ ["real:gm:english_horn","GM English Horn",["sample","real","horns"]],
  ["real:gm:bassoon","GM Bassoon",["sample","real","horns"]],
- ["real:gm:tenor_sax","GM Tenor Sax",["sample","real","horns"]]
+ ["real:gm:soprano_sax","GM Soprano Sax",["sample","real","horns"]],
+ ["real:gm:alto_sax","GM Alto Sax",["sample","real","horns"]],
+ ["real:gm:tenor_sax","GM Tenor Sax",["sample","real","horns"]],
+ ["real:gm:baritone_sax","GM Baritone Sax",["sample","real","horns"]],
+ ["real:gm:recorder","GM Recorder",["sample","real","horns"]],
+ ["real:gm:pan_flute","GM Pan Flute",["sample","real","horns"]],
+ ["real:gm:shakuhachi","GM Shakuhachi",["sample","real","horns","world"]],
+ ["real:gm:ocarina","GM Ocarina",["sample","real","horns"]],
+ ["real:gm:bagpipe","GM Bagpipe",["sample","real","horns","world"]],
+ ["real:gm:shanai","GM Shanai",["sample","real","horns","world"]],
+ ["real:gm:steel_drums","GM Steel Drums",["sample","real","keys","world"]],
+ ["real:gm:kalimba","GM Kalimba",["sample","real","keys","world"]]
 ];
 const realVcslPresets=[
  ["real:vcsl:Chordophones/Composite Chordophones/Folk Harp","VCSL Folk Harp",["sample","real","orch"]],
  ["real:vcsl:Chordophones/Composite Chordophones/Concert Harp","VCSL Concert Harp",["sample","real","orch"]],
+ ["real:vcsl:Chordophones/Composite Chordophones/Strumstick","VCSL Strumstick",["sample","real","guitar","world"]],
+ ["real:vcsl:Chordophones/Zithers/Dan Tranh - Normal","VCSL Dan Tranh",["sample","real","guitar","world"]],
+ ["real:vcsl:Chordophones/Zithers/Dan Tranh - Vibrato","VCSL Dan Tranh Vibrato",["sample","real","guitar","world"]],
+ ["real:vcsl:Chordophones/Zithers/Dan Tranh - Tremolo","VCSL Dan Tranh Tremolo",["sample","real","guitar","world"]],
+ ["real:vcsl:Chordophones/Zithers/Psaltery, Bowed and Plucked - Pluck","VCSL Psaltery Pluck",["sample","real","guitar","orch"]],
+ ["real:vcsl:Chordophones/Zithers/Psaltery, Bowed and Plucked - LongBow","VCSL Psaltery Long Bow",["sample","real","orch"]],
+ ["real:vcsl:Chordophones/Zithers/Psaltery, Bowed and Plucked - Spiccato","VCSL Psaltery Spiccato",["sample","real","orch"]],
+ ["real:vcsl:Chordophones/Zithers/Harpsichord, Italian","VCSL Italian Harpsichord",["sample","real","keys"]],
+ ["real:vcsl:Chordophones/Zithers/Harpsichord, French","VCSL French Harpsichord",["sample","real","keys"]],
+ ["real:vcsl:Chordophones/Zithers/Harpsichord, English - Normal","VCSL English Harpsichord",["sample","real","keys"]],
+ ["real:vcsl:Chordophones/Zithers/Harpsichord, Flemish - 8'","VCSL Flemish Harpsichord 8",["sample","real","keys"]],
  ["real:vcsl:Aerophones/Reed Aerophones/Tenor Saxophone - Vibrato","VCSL Tenor Sax Vibrato",["sample","real","horns"]],
  ["real:vcsl:Aerophones/Reed Aerophones/Tenor Saxophone - Non-Vibrato","VCSL Tenor Sax Plain",["sample","real","horns"]],
  ["real:vcsl:Aerophones/Reed Aerophones/Saxello - Vibrato","VCSL Saxello Vibrato",["sample","real","horns"]],
+ ["real:vcsl:Aerophones/Reed Aerophones/Saxello - Non-Vibrato","VCSL Saxello Plain",["sample","real","horns"]],
  ["real:vcsl:Aerophones/Edge-blown Aerophones/Baroque Alto Recorder - Sustain","VCSL Alto Recorder",["sample","real","horns"]],
+ ["real:vcsl:Aerophones/Edge-blown Aerophones/Baroque Soprano Recorder - Sustain","VCSL Soprano Recorder",["sample","real","horns"]],
  ["real:vcsl:Aerophones/Edge-blown Aerophones/Baroque Tenor Recorder - Sustain","VCSL Tenor Recorder",["sample","real","horns"]],
+ ["real:vcsl:Aerophones/Edge-blown Aerophones/Baroque Bass Recorder - Sustain","VCSL Bass Recorder",["sample","real","horns"]],
+ ["real:vcsl:Aerophones/Edge-blown Aerophones/Ocarina, Typical - Sus","VCSL Ocarina",["sample","real","horns"]],
+ ["real:vcsl:Aerophones/Edge-blown Aerophones/Ocarina, Small - Sustain","VCSL Small Ocarina",["sample","real","horns"]],
+ ["real:vcsl:Aerophones/Edge-blown Aerophones/Pipe Organ - Quiet","VCSL Pipe Organ Quiet",["sample","real","keys"]],
+ ["real:vcsl:Aerophones/Edge-blown Aerophones/Pipe Organ - Loud","VCSL Pipe Organ Loud",["sample","real","keys"]],
+ ["real:vcsl:Aerophones/Edge-blown Aerophones/Renaissance Organ - Full","VCSL Renaissance Organ",["sample","real","keys"]],
  ["real:vcsl:Aerophones/Free Aerophones/Harmonica-Hohner-Special20-C - Normal","VCSL Harmonica C",["sample","real","horns"]],
+ ["real:vcsl:Aerophones/Free Aerophones/Harmonica-Hohner-Special20-F - Normal","VCSL Harmonica F",["sample","real","horns"]],
+ ["real:vcsl:Aerophones/Lip Aerophones/Didgeridoo","VCSL Didgeridoo",["sample","real","horns","world"]],
+ ["real:vcsl:Idiophones/Plucked Idiophones/Kalimba, Kenya","VCSL Kenya Kalimba",["sample","real","keys","world"]],
+ ["real:vcsl:Idiophones/Plucked Idiophones/Kalimba, Tanzania","VCSL Tanzania Kalimba",["sample","real","keys","world"]],
+ ["real:vcsl:Idiophones/Plucked Idiophones/Mbira Mavembe (Gandanga), Zimbabwe, Low G","VCSL Mbira Low G",["sample","real","keys","world"]],
+ ["real:vcsl:Idiophones/Plucked Idiophones/Nyunga Nyunga, Mozambique, Low F","VCSL Nyunga Nyunga",["sample","real","keys","world"]],
  ["real:vcsl:Idiophones/Struck Idiophones/Marimba","VCSL Marimba",["sample","real","keys"]],
  ["real:vcsl:Idiophones/Struck Idiophones/Vibraphone - Soft Mallets","VCSL Vibraphone Soft",["sample","real","keys"]],
+ ["real:vcsl:Idiophones/Struck Idiophones/Vibraphone - Hard Mallets","VCSL Vibraphone Hard",["sample","real","keys"]],
  ["real:vcsl:Idiophones/Struck Idiophones/Glockenspiel","VCSL Glockenspiel",["sample","real","keys"]],
+ ["real:vcsl:Idiophones/Struck Idiophones/Xylophone - Medium Mallets","VCSL Xylophone",["sample","real","keys"]],
+ ["real:vcsl:Idiophones/Struck Idiophones/Balafon - Traditional Mallet","VCSL Balafon",["sample","real","keys","world"]],
  ["real:vcsl:Idiophones/Struck Idiophones/Tubular Bells 1","VCSL Tubular Bells",["sample","real","keys"]],
+ ["real:vcsl:Idiophones/Friction Idiophones/Wine Glasses - Slow","VCSL Wine Glasses Slow",["sample","real","keys"]],
+ ["real:vcsl:Idiophones/Struck Idiophones/Hand Chimes","VCSL Hand Chimes",["sample","real","keys"]],
+ ["real:vcsl:Idiophones/Struck Idiophones/Slit Drum","VCSL Slit Drum",["sample","real","keys","world"]],
+ ["real:vcsl:Membranophones/Struck Membranophones/Cajon","VCSL Cajon",["sample","real","drums","world"]],
+ ["real:vcsl:Membranophones/Struck Membranophones/Darbuka","VCSL Darbuka",["sample","real","drums","world"]],
+ ["real:vcsl:Membranophones/Struck Membranophones/Bongos","VCSL Bongos",["sample","real","drums","world"]],
+ ["real:vcsl:Membranophones/Struck Membranophones/Conga","VCSL Conga",["sample","real","drums","world"]],
  ["real:vcsl:Membranophones/Struck Membranophones/Bass Drum 1","VCSL Concert Bass Drum",["sample","real","drums"]],
  ["real:vcsl:Membranophones/Struck Membranophones/Snare Drum, Modern 1","VCSL Modern Snare",["sample","real","drums"]],
  ["real:vcsl:Membranophones/Struck Membranophones/Timpani 1 - Hit","VCSL Timpani Hit",["sample","real","drums","orch"]]
+];
+const realMalletPresets=[
+ ["real:mallet:Balafon - Hard Mallet","Mallet Balafon Hard",["sample","real","keys","world"]],
+ ["real:mallet:Balafon - Soft Mallet","Mallet Balafon Soft",["sample","real","keys","world"]],
+ ["real:mallet:Balafon - Traditional Mallet","Mallet Balafon Traditional",["sample","real","keys","world"]],
+ ["real:mallet:Tubular Bells 1","Mallet Tubular Bells 1",["sample","real","keys"]],
+ ["real:mallet:Tubular Bells 2","Mallet Tubular Bells 2",["sample","real","keys"]],
+ ["real:mallet:Vibraphone - Bowed","Mallet Vibraphone Bowed",["sample","real","keys"]],
+ ["real:mallet:Vibraphone - Hard Mallets","Mallet Vibraphone Hard",["sample","real","keys"]],
+ ["real:mallet:Vibraphone - Soft Mallets","Mallet Vibraphone Soft",["sample","real","keys"]],
+ ["real:mallet:Xylophone - Hard Mallets","Mallet Xylophone Hard",["sample","real","keys"]],
+ ["real:mallet:Xylophone - Medium Mallets","Mallet Xylophone Medium",["sample","real","keys"]],
+ ["real:mallet:Xylophone - Soft Mallets","Mallet Xylophone Soft",["sample","real","keys"]]
+];
+const realTapePresets=[
+ ["real:mellotron:MKII VIOLINS","Mellotron MKII Violins",["sample","real","orch"]],
+ ["real:mellotron:TRON 16VLNS","Mellotron 16 Violins",["sample","real","orch"]],
+ ["real:mellotron:MIXED STRGS","Mellotron Mixed Strings",["sample","real","orch"]],
+ ["real:mellotron:300 STRINGS CELLO","Mellotron 300 Cello",["sample","real","orch"]],
+ ["real:mellotron:300 STRINGS VIOLA","Mellotron 300 Viola",["sample","real","orch"]],
+ ["real:mellotron:TRON CELLO","Mellotron Cello",["sample","real","orch"]],
+ ["real:mellotron:TRON VIOLA","Mellotron Viola",["sample","real","orch"]],
+ ["real:mellotron:8VOICE CHOIR","Mellotron 8 Voice Choir",["sample","real","orch"]],
+ ["real:mellotron:BOYS CHOIR","Mellotron Boys Choir",["sample","real","orch"]],
+ ["real:mellotron:CHMB FEMALE","Mellotron Female Voice",["sample","real","orch"]],
+ ["real:mellotron:CHMB MALE VC","Mellotron Male Voice",["sample","real","orch"]],
+ ["real:mellotron:TRON FLUTE","Mellotron Flute",["sample","real","horns"]],
+ ["real:mellotron:CHMBLN FLUTE","Mellotron Chamberlin Flute",["sample","real","horns"]],
+ ["real:mellotron:CHM CLARINET","Mellotron Clarinet",["sample","real","horns"]],
+ ["real:mellotron:CHMBLN OBOE","Mellotron Oboe",["sample","real","horns"]],
+ ["real:mellotron:MKII BRASS","Mellotron Brass",["sample","real","horns"]],
+ ["real:mellotron:HALFSP.BRASS","Mellotron Half-Speed Brass",["sample","real","horns"]],
+ ["real:mellotron:CHMB TRUMPET","Mellotron Trumpet",["sample","real","horns"]],
+ ["real:mellotron:CHMB TRMBONE","Mellotron Trombone",["sample","real","horns"]],
+ ["real:mellotron:MKII GUITAR","Mellotron Guitar",["sample","real","guitar"]],
+ ["real:mellotron:MKII ORGAN","Mellotron Organ",["sample","real","keys"]],
+ ["real:mellotron:MKII VIBES","Mellotron Vibes",["sample","real","keys"]],
+ ["real:mellotron:MKII SAX","Mellotron Sax",["sample","real","horns"]]
 ];
 const realDrumPresets=[
  ["real:drum:TR-808","Sample TR-808",["sample","real","drums","synth"]],
@@ -419,6 +549,8 @@ const soundFontDefs=[
  {id:"realpiano",name:"Real Sample Keys",short:"RealKey",type:"keys",engine:"sample",presets:realPianoPresets,categories:["keys","sample","real"]},
  {id:"realgm",name:"Real GM Samples",short:"RealGM",type:"sample",engine:"sample",presets:realGmPresets,categories:["sample","real"]},
  {id:"realvcsl",name:"VCSL Samples",short:"VCSL",type:"sample",engine:"sample",presets:realVcslPresets,categories:["sample","real"]},
+ {id:"realmallet",name:"Sample Mallets",short:"Mallet",type:"keys",engine:"sample",presets:realMalletPresets,categories:["keys","sample","real"]},
+ {id:"realtape",name:"Tape and Mellotron",short:"Tape",type:"sample",engine:"sample",presets:realTapePresets,categories:["sample","real","orch"]},
  {id:"realdrums",name:"Sample Drum Machines",short:"SDrum",type:"drum",engine:"sampleDrum",presets:realDrumPresets,pads:synthDrumPads,categories:["drums","sample","real"]},
  {id:"acousticdrums",name:"Acoustic Drum Room",short:"AcDrum",type:"drum",engine:"synthDrum",presets:acousticDrumPresets,pads:synthDrumPads,categories:["drums"]},
  {id:"analogdrums",name:"Analog Drum Lab",short:"Analog",type:"drum",engine:"synthDrum",presets:analogDrumPresets,pads:synthDrumPads,categories:["drums","synth"]},
@@ -1142,6 +1274,7 @@ function isHeavyVcslPiano(sound){
  return s.startsWith("real:vcsl:Chordophones/Zithers/Grand Piano")||s.startsWith("real:vcsl:Chordophones/Zithers/Upright Piano");
 }
 function shouldUsePhonePianoFallback(sound){return isPhoneLikeDevice()&&isHeavyVcslPiano(sound)}
+function phonePianoProxyTrack(tr){return {...tr,soundFontId:"realpiano",sound:"real:gm:acoustic_grand_piano"}}
 function splendidPianoOptions(){
  if(!isPhoneLikeDevice())return {formats:["ogg","m4a"]};
  return {formats:["ogg","m4a"],notesToLoad:{notes:[24,31,36,43,48,55,60,67,72,79,84,91,96],velocityRange:[85,100]}};
@@ -1206,7 +1339,7 @@ function sampleDrumNoteName(midi,inst){
 }
 async function loadSampleInstrument(tr=activeTrack()){
  if(!isSampleSound(tr.sound))return null;
- if(shouldUsePhonePianoFallback(tr.sound))throw new Error("Phone safe mode skips this heavy piano");
+ if(shouldUsePhonePianoFallback(tr.sound))throw new Error("Phone safe mode uses lighter piano");
  const key=sampleInstrumentKey(tr);
  const cached=state.sampleInstruments.get(key);
  if(cached)return Promise.resolve(cached).then(inst=>{if(inst?.output)inst.output.volume=trackVolume(tr);return inst});
@@ -1221,6 +1354,9 @@ async function loadSampleInstrument(tr=activeTrack()){
   if(sound==="real:piano:splendid")inst=m.SplendidGrandPiano(state.audioCtx,{...common,...splendidPianoOptions()});
   else if(sound.startsWith("real:gm:"))inst=m.Soundfont(state.audioCtx,{...common,kit:"FluidR3_GM",instrument:sound.slice("real:gm:".length)});
   else if(sound.startsWith("real:vcsl:"))inst=m.Versilian(state.audioCtx,{...common,instrument:sound.slice("real:vcsl:".length)});
+  else if(sound.startsWith("real:mallet:"))inst=m.Mallet(state.audioCtx,{...common,instrument:sound.slice("real:mallet:".length)});
+  else if(sound.startsWith("real:mellotron:"))inst=m.Mellotron(state.audioCtx,{...common,instrument:sound.slice("real:mellotron:".length)});
+  else if(sound.startsWith("real:smolken:"))inst=m.Smolken(state.audioCtx,{...common,instrument:sound.slice("real:smolken:".length)});
   else if(sound.startsWith("real:ep:"))inst=m.ElectricPiano(state.audioCtx,{...common,instrument:sound.slice("real:ep:".length),formats:["ogg","m4a"]});
   else if(sound.startsWith("real:drum:"))inst=m.DrumMachine(state.audioCtx,{...common,instrument:sound.slice("real:drum:".length)});
   else if(sound.startsWith("real:abuse:"))inst=m.DrumAbuse(state.audioCtx,{...common,source:{kind:"machine",machine:sound.slice("real:abuse:".length)}});
@@ -1240,7 +1376,7 @@ async function loadSampleInstrument(tr=activeTrack()){
 }
 function warmSampleInstrument(tr=activeTrack()){
  if(!isSampleSound(tr.sound))return;
- if(shouldUsePhonePianoFallback(tr.sound)){setSfStatus("Phone safe mode: using internal piano for this heavy sample");return}
+ if(shouldUsePhonePianoFallback(tr.sound)){setSfStatus("Phone safe mode: loading lighter sampled piano");loadSampleInstrument(phonePianoProxyTrack(tr)).catch(()=>{});return}
  loadSampleInstrument(tr).catch(()=>{});
 }
 function warmPlaybackSamples(){
@@ -1248,7 +1384,17 @@ function warmPlaybackSamples(){
 }
 function playSampleNote(m,d,tr,when=0){
  if(!isSampleSound(tr.sound))return false;
- if(shouldUsePhonePianoFallback(tr.sound)){setSfStatus("Phone safe mode: using internal piano for this heavy sample");playSampleFallback(m,d,tr,when);return true}
+ if(shouldUsePhonePianoFallback(tr.sound)){
+  setSfStatus("Phone safe mode: using lighter sampled piano");
+  const proxy=phonePianoProxyTrack(tr);
+  ensureAudio();
+  const c=state.audioCtx,scheduled=audioStart(c,when),duration=Math.max(.08,ticksToSeconds(d));
+  loadSampleInstrument(proxy).then(inst=>{
+   if(inst?.output)inst.output.volume=trackVolume(tr);
+   inst.start({note:m,time:Math.max(scheduled,c.currentTime+.006),duration,velocity:Math.max(1,Math.min(127,Math.round(92*(trackVolume(tr)/100))))});
+  }).catch(()=>playSampleFallback(m,d,tr,when));
+  return true;
+ }
  ensureAudio();
  const c=state.audioCtx;
  const scheduled=audioStart(c,when);
@@ -2953,7 +3099,7 @@ function projectData(){
  normalizeTracks();
  state.voicer=normalizeVoicerSettings(state.voicer);
  return {
-  version:26,tempo:state.tempo,timeSigNum:state.timeSigNum,timeSigDen:state.timeSigDen,metronome:state.metronome,semitoneMode:state.semitoneMode,subdivision:state.subdivision,metronome:state.metronome,inputOctave:state.inputOctave,
+  version:27,tempo:state.tempo,timeSigNum:state.timeSigNum,timeSigDen:state.timeSigDen,metronome:state.metronome,semitoneMode:state.semitoneMode,subdivision:state.subdivision,metronome:state.metronome,inputOctave:state.inputOctave,
   tracks:state.tracks,activeTrackId:state.activeTrackId,viewAllTracks:state.viewAllTracks,
   hideFretboard:state.hideFretboard,useSoundFont:true,
   loopEnabled:state.loopEnabled,loopStart:state.loopStart,loopEnd:state.loopEnd,
@@ -2983,7 +3129,7 @@ function importProjectFile(file){
 
 function makeFreshProjectData(){
  return {
-  version:26,
+  version:27,
   tempo:120,
   timeSigNum:4,
   timeSigDen:4,
