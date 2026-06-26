@@ -1,12 +1,12 @@
-🎶 FretStep
+🎼 FretStep2
 
 https://santismo.github.io/FretStep/
 
-FretStep is a mobile-first MIDI composition tool designed specifically for guitar-oriented step input workflows.
+FretStep2 is a mobile-first MIDI composition tool designed for guitar-oriented step input workflows, chord discovery, and internal Web Audio playback.
 
 Instead of entering notes from a piano keyboard, notes are entered from a virtual 6-string guitar fretboard laid out in standard tuning. Each string automatically maps to its own MIDI channel, making it easy to preserve string information while composing.
 
-FretStep runs entirely in a single HTML file and is optimized for iPhone home-screen web app use.
+FretStep2 runs entirely in a single HTML file and is optimized for iPhone home-screen web app use.
 
 ⸻
 
@@ -71,29 +71,19 @@ Single notes are ignored and do not create chord regions.
 
 Playback Engine
 
-SoundFont Playback
+Internal Web Audio Playback
 
-Default playback uses:
-
-Roland SC-55 SoundFont
+FretStep2 now uses built-in procedural sound engines instead of external SoundFonts, so bank switching and audition playback stay deterministic.
 
 Features:
 
-* Instrument preset browser
-* Track instrument assignment
-* SoundFont preset loading
-* SC-55 style General MIDI playback
-
-Synth Playback
-
-Optional internal synthesizer:
-
-* Sine
-* Triangle
-* Saw
-* Square
-* Pulse
-* FM-style tones
+* Searchable sound menu
+* Bank chips for quick instrument browsing
+* Multi-select filters such as Drums + Synth
+* Random sound selection constrained by search, filters, and bank
+* Acoustic-style banks for piano, guitar, bass, strings, horns, and drums
+* Synth, chiptune, 16-bit, analog, retro drum, and sound-effect banks
+* Per-track live effects including filters, reverb, delay, chorus, drive, crush, phaser, air, and tremolo
 
 ⸻
 
@@ -267,7 +257,7 @@ Contains:
 * Import Project
 * Show / Hide Fretboard
 * Theme Selection
-* SoundFont Controls
+* Internal sound browser
+* Track FX controls
 
 Long-pressing the gear icon toggles fretboard visibility.
-
