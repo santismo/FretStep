@@ -2,6 +2,10 @@
 
 https://santismo.github.io/FretStep/
 
+Desktop Chrome/MIDI page:
+
+https://santismo.github.io/FretStep/desktop.html
+
 FretStep2 is a mobile-first MIDI composition tool designed for guitar-oriented step input workflows, chord discovery, and internal Web Audio playback.
 
 Instead of entering notes from a piano keyboard, notes are entered from a virtual 6-string guitar fretboard laid out in standard tuning. Each string automatically maps to its own MIDI channel, making it easy to preserve string information while composing.
@@ -90,6 +94,7 @@ Features:
 MIDI Features
 
 * MIDI export
+* Web MIDI input on the desktop Chrome page
 * Multi-track sequencing
 * Per-string MIDI channels
 * Track colors
