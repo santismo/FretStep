@@ -366,7 +366,48 @@ const realDrumPresets=[
  ["real:drum:Casio-RZ1","Sample Casio RZ-1",["sample","real","drums"]],
  ["real:drum:LM-2","Sample Linn LM-2",["sample","real","drums"]],
  ["real:drum:MFB-512","Sample MFB-512",["sample","real","drums","synth"]],
- ["real:drum:Roland CR-8000","Sample Roland CR-8000",["sample","real","drums"]]
+ ["real:drum:Roland CR-8000","Sample Roland CR-8000",["sample","real","drums"]],
+ ["real:abuse:roland-tr-606","DrumAbuse Roland TR-606",["sample","real","drums","synth"]],
+ ["real:abuse:roland-tr-707","DrumAbuse Roland TR-707",["sample","real","drums"]],
+ ["real:abuse:roland-tr-727","DrumAbuse Roland TR-727",["sample","real","drums"]],
+ ["real:abuse:roland-tr-808","DrumAbuse Roland TR-808",["sample","real","drums","synth"]],
+ ["real:abuse:roland-tr-909","DrumAbuse Roland TR-909",["sample","real","drums"]],
+ ["real:abuse:roland-tr-505","DrumAbuse Roland TR-505",["sample","real","drums"]],
+ ["real:abuse:roland-cr-78","DrumAbuse Roland CR-78",["sample","real","drums"]],
+ ["real:abuse:roland-cr-8000","DrumAbuse Roland CR-8000",["sample","real","drums"]],
+ ["real:abuse:linn-lm-1","DrumAbuse Linn LM-1",["sample","real","drums"]],
+ ["real:abuse:linn-lm-2","DrumAbuse Linn LM-2",["sample","real","drums"]],
+ ["real:abuse:linn-9000","DrumAbuse Linn 9000",["sample","real","drums"]],
+ ["real:abuse:oberheim-dmx","DrumAbuse Oberheim DMX",["sample","real","drums"]],
+ ["real:abuse:oberheim-dx","DrumAbuse Oberheim DX",["sample","real","drums"]],
+ ["real:abuse:sequential-circuits-drumtraks","DrumAbuse Sequential DrumTraks",["sample","real","drums"]],
+ ["real:abuse:sequential-circuits-studio-440","DrumAbuse Studio 440",["sample","real","drums"]],
+ ["real:abuse:emu-drumulator","DrumAbuse E-mu Drumulator",["sample","real","drums"]],
+ ["real:abuse:emu-sp-12","DrumAbuse E-mu SP-12",["sample","real","drums"]],
+ ["real:abuse:korg-kr-55","DrumAbuse Korg KR-55",["sample","real","drums"]],
+ ["real:abuse:korg-kpr-77","DrumAbuse Korg KPR-77",["sample","real","drums"]],
+ ["real:abuse:korg-ddm-110","DrumAbuse Korg DDM-110",["sample","real","drums"]],
+ ["real:abuse:korg-ddd-1","DrumAbuse Korg DDD-1",["sample","real","drums"]],
+ ["real:abuse:boss-dr-55","DrumAbuse Boss DR-55",["sample","real","drums"]],
+ ["real:abuse:boss-dr-110","DrumAbuse Boss DR-110",["sample","real","drums"]],
+ ["real:abuse:casio-rz-1","DrumAbuse Casio RZ-1",["sample","real","drums"]],
+ ["real:abuse:casio-sk-1","DrumAbuse Casio SK-1",["sample","real","drums","lofi"]],
+ ["real:abuse:yamaha-rx-5","DrumAbuse Yamaha RX-5",["sample","real","drums"]],
+ ["real:abuse:yamaha-rx-11","DrumAbuse Yamaha RX-11",["sample","real","drums"]],
+ ["real:abuse:yamaha-rx-15","DrumAbuse Yamaha RX-15",["sample","real","drums"]],
+ ["real:abuse:yamaha-rx-21","DrumAbuse Yamaha RX-21",["sample","real","drums"]],
+ ["real:abuse:yamaha-rx-21l","DrumAbuse Yamaha RX-21L",["sample","real","drums"]],
+ ["real:abuse:simmons-sds-5","DrumAbuse Simmons SDS-5",["sample","real","drums","synth"]],
+ ["real:abuse:simmons-sds-7","DrumAbuse Simmons SDS-7",["sample","real","drums","synth"]],
+ ["real:abuse:simmons-sds-8","DrumAbuse Simmons SDS-8",["sample","real","drums","synth"]],
+ ["real:abuse:simmons-sds-9","DrumAbuse Simmons SDS-9",["sample","real","drums","synth"]],
+ ["real:abuse:simmons-sds-1000","DrumAbuse Simmons SDS-1000",["sample","real","drums","synth"]],
+ ["real:abuse:pearl-drum-x","DrumAbuse Pearl Drum-X",["sample","real","drums"]],
+ ["real:abuse:pearl-drx-1","DrumAbuse Pearl DRX-1",["sample","real","drums"]],
+ ["real:abuse:tama-ts-305","DrumAbuse Tama TS-305",["sample","real","drums"]],
+ ["real:abuse:tama-ts-500","DrumAbuse Tama TS-500",["sample","real","drums"]],
+ ["real:abuse:mxr-185","DrumAbuse MXR 185",["sample","real","drums"]],
+ ["real:abuse:soundmaster-sr-88","DrumAbuse Soundmaster SR-88",["sample","real","drums"]]
 ];
 const soundFontDefs=[
  {id:"core",name:"Core Oscillators",short:"Core",type:"synth",engine:"internal",presets:corePresets,categories:["synth"]},
@@ -595,6 +636,10 @@ function soundPresetList(def){
  return internalPresets;
 }
 function isSampleSound(sound){return String(sound||"").startsWith("real:")}
+function isSampleDrumSound(sound){
+ const s=String(sound||"");
+ return s.startsWith("real:drum:")||s.startsWith("real:abuse:");
+}
 function soundEntryCategories(def,value,label){
  const text=((def?.name||"")+" "+(def?.type||"")+" "+value+" "+label).toLowerCase();
  const cats=new Set(def?.categories||[]);
@@ -634,6 +679,7 @@ function selectSoundEntry(defId,value){
  const nextSound=value||firstSoundForFont(soundFontById(nextSf));
  const changed=!state.useSoundFont||tr.soundFontId!==nextSf||tr.sound!==nextSound;
  if(changed)pushUndo();
+ if(changed)clearSampleInstrumentsForTrack(tr.id);
  state.useSoundFont=true;
  tr.soundFontId=nextSf;
  tr.sound=nextSound;
@@ -1029,10 +1075,18 @@ function trackFxInput(tr,c){
  }else updateTrackFxBus(tr,bus);
  return bus.input;
 }
+function disposeSampleItem(item){
+ Promise.resolve(item).then(inst=>{try{inst?.dispose?.()}catch(e){}}).catch(()=>{});
+}
+function clearSampleInstrumentsForTrack(trackId){
+ if(!state.sampleInstruments||!state.sampleInstruments.forEach)return;
+ const prefix=String(trackId)+"|";
+ for(const [key,item] of state.sampleInstruments.entries()){
+  if(String(key).startsWith(prefix)){disposeSampleItem(item);state.sampleInstruments.delete(key)}
+ }
+}
 function clearSampleRuntimeForContext(){
- if(state.sampleInstruments&&state.sampleInstruments.forEach)state.sampleInstruments.forEach(item=>{
-  Promise.resolve(item).then(inst=>{try{inst?.dispose?.()}catch(e){}}).catch(()=>{});
- });
+ if(state.sampleInstruments&&state.sampleInstruments.forEach)state.sampleInstruments.forEach(disposeSampleItem);
  state.sampleInstruments=new Map();
  state.sampleStorage=null;
 }
@@ -1075,9 +1129,26 @@ function sampleStorageFor(m){
  if(!state.sampleStorage&&m.CacheStorage){try{state.sampleStorage=m.CacheStorage("fretstep-sample-cache-v1")}catch(e){state.sampleStorage=null}}
  return state.sampleStorage||undefined;
 }
+function isPhoneLikeDevice(){
+ const nav=typeof navigator!=="undefined"?navigator:{};
+ const mem=Number(nav.deviceMemory)||0;
+ const narrow=typeof innerWidth==="number"&&Math.min(innerWidth,innerHeight||innerWidth)<=920;
+ const touch=(Number(nav.maxTouchPoints)||0)>1;
+ const coarse=typeof matchMedia==="function"&&matchMedia("(pointer: coarse)").matches;
+ return (mem&&mem<=4)||(narrow&&(touch||coarse));
+}
+function isHeavyVcslPiano(sound){
+ const s=String(sound||"");
+ return s.startsWith("real:vcsl:Chordophones/Zithers/Grand Piano")||s.startsWith("real:vcsl:Chordophones/Zithers/Upright Piano");
+}
+function shouldUsePhonePianoFallback(sound){return isPhoneLikeDevice()&&isHeavyVcslPiano(sound)}
+function splendidPianoOptions(){
+ if(!isPhoneLikeDevice())return {formats:["ogg","m4a"]};
+ return {formats:["ogg","m4a"],notesToLoad:{notes:[24,31,36,43,48,55,60,67,72,79,84,91,96],velocityRange:[85,100]}};
+}
 function sampleFallbackSound(sound){
  const s=String(sound||"").toLowerCase();
- if(s.includes(":drum:")||s.includes("bass drum")||s.includes("snare")||s.includes("timpani"))return "kit:studio";
+ if(s.includes(":drum:")||s.includes(":abuse:")||s.includes("bass drum")||s.includes("snare")||s.includes("timpani"))return "kit:studio";
  if(s.includes("guitar"))return "mdl:steel";
  if(s.includes("bass"))return "mdl:fingerbass";
  if(s.includes("violin"))return "mdl:violin";
@@ -1112,18 +1183,30 @@ function playSampleFallback(m,d,tr,when=0){
 }
 function sampleDrumNoteName(midi,inst){
  const preferred={
-  35:["kick"],36:["kick"],37:["rimshot","snare"],38:["snare"],39:["clap","snare"],40:["snare"],
-  41:["tom-low","low-tom","tom"],43:["tom-low","low-tom","tom"],45:["mid-tom","tom-low","tom"],47:["mid-tom","tom"],
-  48:["tom-hi","hi-tom","tom"],50:["tom-hi","hi-tom","tom"],42:["hihat-close","hihat","hat"],44:["hihat-close","hihat","hat"],
-  46:["hihat-open","hihat","hat"],49:["cymbal","crash"],51:["cymbal","ride"],54:["tambourine","maraca"],56:["cowbell"],
-  70:["maraca"],75:["clave"],76:["clave"]
+  35:["Kick","Bass Drum"],36:["Kick","Bass Drum"],37:["Rim","Rimshot","Snare"],38:["Snare"],39:["Clap","Snare"],40:["Snare"],
+  41:["Tom Low","Low Tom","Tom"],43:["Tom Low","Low Tom","Tom"],45:["Tom Mid","Mid Tom","Tom"],47:["Tom Mid","Mid Tom","Tom"],
+  48:["Tom Hi","Hi Tom","Tom"],50:["Tom Hi","Hi Tom","Tom"],42:["Hi-Hat Closed","Hihat Closed","Closed Hat","hihat-close","hihat","hat"],44:["Hi-Hat Closed","Hihat Closed","Closed Hat","hihat-close","hihat","hat"],
+  46:["Hi-Hat Open","Hihat Open","Open Hat","hihat-open","hihat","hat"],49:["Crash","Cymbal"],51:["Ride","Cymbal"],54:["Tambourine","Shaker","Cabasa","Maraca"],56:["Cowbell"],
+  70:["Maraca","Shaker","Cabasa"],75:["Clave"],76:["Clave"]
  }[Math.round(midi)]||[];
  const groups=typeof inst?.getGroupNames==="function"?inst.getGroupNames():[];
- for(const name of preferred)if(groups.includes(name))return name;
+ const norm=s=>String(s||"").toLowerCase().replace(/[^a-z0-9]+/g,"");
+ const mapped=groups.map(g=>({raw:g,key:norm(g)}));
+ for(const name of preferred){
+  const key=norm(name);
+  const exact=mapped.find(g=>g.key===key);
+  if(exact)return exact.raw;
+ }
+ for(const name of preferred){
+  const key=norm(name);
+  const partial=mapped.find(g=>g.key.includes(key)||key.includes(g.key));
+  if(partial)return partial.raw;
+ }
  return midi;
 }
 async function loadSampleInstrument(tr=activeTrack()){
  if(!isSampleSound(tr.sound))return null;
+ if(shouldUsePhonePianoFallback(tr.sound))throw new Error("Phone safe mode skips this heavy piano");
  const key=sampleInstrumentKey(tr);
  const cached=state.sampleInstruments.get(key);
  if(cached)return Promise.resolve(cached).then(inst=>{if(inst?.output)inst.output.volume=trackVolume(tr);return inst});
@@ -1135,11 +1218,12 @@ async function loadSampleInstrument(tr=activeTrack()){
   const sound=String(tr.sound||"");
   setSfStatus("Loading "+sampleLabel(tr)+"...");
   let inst=null;
-  if(sound==="real:piano:splendid")inst=m.SplendidGrandPiano(state.audioCtx,{...common,formats:["ogg","m4a"]});
+  if(sound==="real:piano:splendid")inst=m.SplendidGrandPiano(state.audioCtx,{...common,...splendidPianoOptions()});
   else if(sound.startsWith("real:gm:"))inst=m.Soundfont(state.audioCtx,{...common,kit:"FluidR3_GM",instrument:sound.slice("real:gm:".length)});
   else if(sound.startsWith("real:vcsl:"))inst=m.Versilian(state.audioCtx,{...common,instrument:sound.slice("real:vcsl:".length)});
   else if(sound.startsWith("real:ep:"))inst=m.ElectricPiano(state.audioCtx,{...common,instrument:sound.slice("real:ep:".length),formats:["ogg","m4a"]});
   else if(sound.startsWith("real:drum:"))inst=m.DrumMachine(state.audioCtx,{...common,instrument:sound.slice("real:drum:".length)});
+  else if(sound.startsWith("real:abuse:"))inst=m.DrumAbuse(state.audioCtx,{...common,source:{kind:"machine",machine:sound.slice("real:abuse:".length)}});
   if(!inst)throw new Error("Unknown sample instrument");
   await inst.ready;
   if(inst.output)inst.output.volume=trackVolume(tr);
@@ -1156,6 +1240,7 @@ async function loadSampleInstrument(tr=activeTrack()){
 }
 function warmSampleInstrument(tr=activeTrack()){
  if(!isSampleSound(tr.sound))return;
+ if(shouldUsePhonePianoFallback(tr.sound)){setSfStatus("Phone safe mode: using internal piano for this heavy sample");return}
  loadSampleInstrument(tr).catch(()=>{});
 }
 function warmPlaybackSamples(){
@@ -1163,6 +1248,7 @@ function warmPlaybackSamples(){
 }
 function playSampleNote(m,d,tr,when=0){
  if(!isSampleSound(tr.sound))return false;
+ if(shouldUsePhonePianoFallback(tr.sound)){setSfStatus("Phone safe mode: using internal piano for this heavy sample");playSampleFallback(m,d,tr,when);return true}
  ensureAudio();
  const c=state.audioCtx;
  const scheduled=audioStart(c,when);
@@ -1170,8 +1256,8 @@ function playSampleNote(m,d,tr,when=0){
  loadSampleInstrument(tr).then(inst=>{
   if(inst?.output)inst.output.volume=trackVolume(tr);
   const time=Math.max(scheduled,c.currentTime+.006);
-  const event={note:String(tr.sound).startsWith("real:drum:")?sampleDrumNoteName(m,inst):m,time,velocity:Math.max(1,Math.min(127,Math.round(92*(trackVolume(tr)/100))))};
-  if(!String(tr.sound).startsWith("real:drum:"))event.duration=duration;
+  const event={note:isSampleDrumSound(tr.sound)?sampleDrumNoteName(m,inst):m,time,velocity:Math.max(1,Math.min(127,Math.round(92*(trackVolume(tr)/100))))};
+  if(!isSampleDrumSound(tr.sound))event.duration=duration;
   inst.start(event);
  }).catch(()=>playSampleFallback(m,d,tr,when));
  return true;
@@ -2867,7 +2953,7 @@ function projectData(){
  normalizeTracks();
  state.voicer=normalizeVoicerSettings(state.voicer);
  return {
-  version:25,tempo:state.tempo,timeSigNum:state.timeSigNum,timeSigDen:state.timeSigDen,metronome:state.metronome,semitoneMode:state.semitoneMode,subdivision:state.subdivision,metronome:state.metronome,inputOctave:state.inputOctave,
+  version:26,tempo:state.tempo,timeSigNum:state.timeSigNum,timeSigDen:state.timeSigDen,metronome:state.metronome,semitoneMode:state.semitoneMode,subdivision:state.subdivision,metronome:state.metronome,inputOctave:state.inputOctave,
   tracks:state.tracks,activeTrackId:state.activeTrackId,viewAllTracks:state.viewAllTracks,
   hideFretboard:state.hideFretboard,useSoundFont:true,
   loopEnabled:state.loopEnabled,loopStart:state.loopStart,loopEnd:state.loopEnd,
@@ -2897,7 +2983,7 @@ function importProjectFile(file){
 
 function makeFreshProjectData(){
  return {
-  version:25,
+  version:26,
   tempo:120,
   timeSigNum:4,
   timeSigDen:4,
@@ -3167,8 +3253,8 @@ if(el.soundPickerCloseBtn)el.soundPickerCloseBtn.onclick=()=>el.soundPickerMenu.
 if(el.soundSearch)el.soundSearch.oninput=()=>{soundPickerState.query=el.soundSearch.value;renderSoundPicker(true)};
 if(el.soundRandomBtn)el.soundRandomBtn.onclick=()=>randomSoundFromPicker();
 if(el.soundFilterRow)el.soundFilterRow.onclick=e=>{const b=e.target.closest("[data-filter]");if(!b)return;const f=b.dataset.filter;if(f==="all")soundPickerState.filters.clear();else if(soundPickerState.filters.has(f))soundPickerState.filters.delete(f);else soundPickerState.filters.add(f);soundPickerState.query=el.soundSearch?.value||"";renderSoundPicker(true)};
-if(el.sfSelect)el.sfSelect.onchange=()=>{const tr=activeTrack();pushUndo();state.useSoundFont=true;tr.soundFontId=normalizeSoundFontId(el.sfSelect.value);tr.sound=firstSoundForFont(trackSoundFont(tr));state.sfProgramCache={};state.sfChannelPrograms={};state.sfOutputKey="";renderFretboard();render();if(isSampleSound(tr.sound))warmSampleInstrument(tr);else if(state.useSoundFont)loadDefaultSoundFont()};
-if(el.soundSelect)el.soundSelect.onchange=()=>{const tr=activeTrack();pushUndo();tr.sound=el.soundSelect.value;state.sfProgramCache={};state.sfChannelPrograms={};state.sfOutputKey="";setTrackProgram(tr);if(isSampleSound(tr.sound))warmSampleInstrument(tr);else if(el.sfStatus&&state.useSoundFont)el.sfStatus.textContent='Preset: '+el.soundSelect.options[el.soundSelect.selectedIndex].textContent;renderFretboard();render()};
+if(el.sfSelect)el.sfSelect.onchange=()=>{const tr=activeTrack();pushUndo();clearSampleInstrumentsForTrack(tr.id);state.useSoundFont=true;tr.soundFontId=normalizeSoundFontId(el.sfSelect.value);tr.sound=firstSoundForFont(trackSoundFont(tr));state.sfProgramCache={};state.sfChannelPrograms={};state.sfOutputKey="";renderFretboard();render();if(isSampleSound(tr.sound))warmSampleInstrument(tr);else if(state.useSoundFont)loadDefaultSoundFont()};
+if(el.soundSelect)el.soundSelect.onchange=()=>{const tr=activeTrack();pushUndo();clearSampleInstrumentsForTrack(tr.id);tr.sound=el.soundSelect.value;state.sfProgramCache={};state.sfChannelPrograms={};state.sfOutputKey="";setTrackProgram(tr);if(isSampleSound(tr.sound))warmSampleInstrument(tr);else if(el.sfStatus&&state.useSoundFont)el.sfStatus.textContent='Preset: '+el.soundSelect.options[el.soundSelect.selectedIndex].textContent;renderFretboard();render()};
 if(el.copyBtn)el.copyBtn.onclick=()=>copySelectedNotes();
 if(el.pasteBtn)el.pasteBtn.onclick=()=>pasteClipboardNotes();
 if(el.colorSelect)el.colorSelect.onclick=()=>openTrackColorMenu(activeTrack());
