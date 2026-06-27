@@ -115,7 +115,7 @@ button.active,.primary{background:color-mix(in srgb,var(--accent) 35%,var(--pane
 </div></div>
 <div class="settingsWrap"><button id="settingsBtn">⚙︎</button><div id="settingsMenu"><button id="exportBtn">Export MIDI</button><button id="saveBtn">Save Local</button><button id="loadBtn">Load Local</button><button id="exportProjectBtn">Export Project</button><button id="importProjectBtn">Import Project</button><button id="newProjectBtn">New Project</button><button id="themeBtn">Themes</button><button id="hideFretBtn">Hide Fretboard</button><button id="sfBtn">Engine: Samples</button><button id="sfLoadBtn" style="display:none">Samples Ready</button><div id="sfStatus" style="font-size:10px;color:var(--muted);line-height:1.1;padding:1px 4px;">Sample library ready</div></div></div>
 </header>
-<section class="timelineShell"><div class="timelineHeader"><button id="trackMenuBtn" class="miniBtn">Tracks</button><button id="soundPickerBtn" class="soundPickerBtn miniBtn">Sound</button><select id="sfSelect" class="sfSelect hiddenSoundSelect"></select><select id="soundSelect" class="soundSelect hiddenSoundSelect"><option value="real:gm:acoustic_grand_piano">Grand Piano</option><option value="real:piano:splendid">Splendid Grand</option><option value="real:gm:acoustic_guitar_steel">Steel Guitar</option><option value="real:gm:string_ensemble_1">String Ensemble</option><option value="real:gm:trumpet">Trumpet</option><option value="real:drum:LM-2">Sample Kit</option><option value="real:gm:pad_3_polysynth">Sample Poly Pad</option><option value="real:gm:lead_1_square">Square Lead Sample</option></select><button id="copyBtn" class="miniBtn">Copy</button><button id="pasteBtn" class="miniBtn">Paste</button><span id="trackStatusBtn" style="display:none"></span></div><div id="soundPickerMenu" class="popupMenu soundPickerMenu"><div class="soundPickerTop"><b>Sound</b><button id="soundRandomBtn">Random</button><button id="soundPickerCloseBtn">Close</button></div><div id="soundBankRow" class="soundBankRow"></div><input id="soundSearch" class="soundSearch" type="text" placeholder="Search sounds"/><div id="soundFilterRow" class="soundFilterRow"><button class="soundFilterBtn active" data-filter="all">All</button><button class="soundFilterBtn" data-filter="sample">Sample</button><button class="soundFilterBtn" data-filter="drums">Drums</button><button class="soundFilterBtn" data-filter="synth">Synth</button><button class="soundFilterBtn" data-filter="keys">Keys</button><button class="soundFilterBtn" data-filter="bass">Bass</button><button class="soundFilterBtn" data-filter="guitar">Guitar</button><button class="soundFilterBtn" data-filter="orch">Orch</button><button class="soundFilterBtn" data-filter="horns">Horns</button><button class="soundFilterBtn" data-filter="fx">FX</button></div><div id="soundPickerList" class="soundPickerList"></div></div><div id="timelineViewport"><div id="timelineContent"></div><div id="pianoStripMask" class="pianoStripMask"></div><div id="barZoomHeader" class="barZoomHeader"></div><div id="vZoomStrip" class="vZoomStrip"><div id="vZoomThumb" class="vZoomThumb"></div></div></div></section>
+<section class="timelineShell"><div class="timelineHeader"><button id="trackMenuBtn" class="miniBtn">Tracks</button><button id="soundPickerBtn" class="soundPickerBtn miniBtn">Sound</button><select id="sfSelect" class="sfSelect hiddenSoundSelect"></select><select id="soundSelect" class="soundSelect hiddenSoundSelect"><option value="real:gm:acoustic_grand_piano">Grand Piano</option><option value="real:piano:splendid">Splendid Grand</option><option value="real:gm:acoustic_guitar_steel">Steel Guitar</option><option value="real:gm:string_ensemble_1">String Ensemble</option><option value="real:gm:trumpet">Trumpet</option><option value="real:drum:LM-2">Sample Kit</option><option value="real:gm:pad_3_polysynth">Sample Poly Pad</option><option value="real:gm:lead_1_square">Square Lead Sample</option></select><button id="copyBtn" class="miniBtn">Copy</button><button id="pasteBtn" class="miniBtn">Paste</button><span id="trackStatusBtn" style="display:none"></span></div><div id="soundPickerMenu" class="popupMenu soundPickerMenu"><div class="soundPickerTop"><b>Sound</b><button id="soundRandomBtn">Random</button><button id="soundPickerCloseBtn">Close</button></div><div id="soundBankRow" class="soundBankRow"></div><input id="soundSearch" class="soundSearch" type="text" placeholder="Search sounds"/><div id="soundFilterRow" class="soundFilterRow"><button class="soundFilterBtn active" data-filter="all">All</button><button class="soundFilterBtn" data-filter="sample">Sample</button><button class="soundFilterBtn" data-filter="retro">Retro</button><button class="soundFilterBtn" data-filter="game">Game</button><button class="soundFilterBtn" data-filter="8bit">8-Bit</button><button class="soundFilterBtn" data-filter="16bit">16-Bit</button><button class="soundFilterBtn" data-filter="arcade">Arcade</button><button class="soundFilterBtn" data-filter="drums">Drums</button><button class="soundFilterBtn" data-filter="synth">Synth</button><button class="soundFilterBtn" data-filter="keys">Keys</button><button class="soundFilterBtn" data-filter="bass">Bass</button><button class="soundFilterBtn" data-filter="guitar">Guitar</button><button class="soundFilterBtn" data-filter="orch">Orch</button><button class="soundFilterBtn" data-filter="horns">Horns</button><button class="soundFilterBtn" data-filter="fx">FX</button></div><div id="soundPickerList" class="soundPickerList"></div></div><div id="timelineViewport"><div id="timelineContent"></div><div id="pianoStripMask" class="pianoStripMask"></div><div id="barZoomHeader" class="barZoomHeader"></div><div id="vZoomStrip" class="vZoomStrip"><div id="vZoomThumb" class="vZoomThumb"></div></div></div></section>
 <section class="zoomControls"><button id="playBtn" class="primary">▶︎ Play</button><button id="undoBtn">Undo</button><button id="redoBtn">Redo</button><button id="focusBtn">View</button></section>
 <section class="middleControls"><button id="leftBtn">◀︎ Step</button><button id="rightBtn">Step ▶︎</button><button id="chordBtn">Chord</button><button id="deleteBtn">Delete</button><button id="divDownBtn">Div −</button><button id="divUpBtn">Div +</button><button id="octDownBtn">Oct −</button><button id="octUpBtn">Oct +</button></section>
 <section class="statusRow"><div class="pill">Input: <b id="stepReadout">1/16 · Oct +0</b></div><div class="pill">Playhead: <b id="posReadout">1.1.000</b></div><div class="pill">Chord: <b id="chordReadout">—</b></div></section>
@@ -414,6 +414,131 @@ const realRetroPresets=[
  ["real:gm:pad_7_halo","Halo PCM Pad Sample",["sample","real","synth","retro"]],
  ["real:gm:orchestra_hit","16-Bit Orchestra Hit Sample",["sample","real","orch","retro"]]
 ];
+const realChip8Presets=[
+ ["real:chip:pulse12","8-Bit Pulse 12 Lead",["sample","real","synth","retro","game","8bit"]],
+ ["real:chip:pulse25","8-Bit Pulse 25 Lead",["sample","real","synth","retro","game","8bit"]],
+ ["real:chip:square","8-Bit Square Lead",["sample","real","synth","retro","game","8bit"]],
+ ["real:chip:triangle","8-Bit Triangle",["sample","real","synth","retro","game","8bit"]],
+ ["real:chip:tri_bass","8-Bit Triangle Bass",["sample","real","synth","bass","retro","game","8bit"]],
+ ["real:chip:sub_pulse","8-Bit Sub Pulse Bass",["sample","real","synth","bass","retro","game","8bit"]],
+ ["real:chip:bit_buzz","8-Bit Bit Buzz",["sample","real","synth","retro","game","8bit"]],
+ ["real:chip:thin_pulse","8-Bit Thin Pulse",["sample","real","synth","retro","game","8bit"]],
+ ["real:chip:hollow_square","8-Bit Hollow Square",["sample","real","synth","retro","game","8bit"]],
+ ["real:chip:noise_lead","8-Bit Noise Lead",["sample","real","synth","retro","game","8bit"]],
+ ["real:chip:coin_pluck","8-Bit Coin Pluck",["sample","real","keys","synth","retro","game","8bit","arcade"]],
+ ["real:chip:tiny_bell","8-Bit Tiny Bell",["sample","real","keys","synth","retro","game","8bit"]],
+ ["real:chip:chip_organ","8-Bit Chip Organ",["sample","real","keys","synth","retro","game","8bit"]],
+ ["real:chip:rapid_arp","8-Bit Rapid Arp Tone",["sample","real","synth","retro","game","8bit","arcade"]],
+ ["real:chip:soft_duty","8-Bit Soft Duty Lead",["sample","real","synth","retro","game","8bit"]],
+ ["real:chip:nes_pad","8-Bit Console Pad",["sample","real","synth","retro","game","8bit"]],
+ ["real:chip:gb_bass","Gameboy Bass Sample",["sample","real","synth","bass","retro","game","8bit"]],
+ ["real:chip:gb_pluck","Gameboy Pluck Sample",["sample","real","synth","retro","game","8bit"]],
+ ["real:chip:bit_flute","8-Bit Bit Flute",["sample","real","synth","horns","retro","game","8bit"]],
+ ["real:chip:noise_pad","8-Bit Noise Pad",["sample","real","synth","retro","game","8bit"]]
+];
+const realChip16Presets=[
+ ["real:chip:fm_bell","16-Bit FM Bell",["sample","real","keys","synth","retro","game","16bit"]],
+ ["real:chip:fm_keys","16-Bit FM Keys",["sample","real","keys","synth","retro","game","16bit"]],
+ ["real:chip:fm_bass","16-Bit FM Bass",["sample","real","bass","synth","retro","game","16bit"]],
+ ["real:chip:glass_ep","16-Bit Glass EP",["sample","real","keys","synth","retro","game","16bit"]],
+ ["real:chip:mega_saw","16-Bit Mega Saw",["sample","real","synth","retro","game","16bit"]],
+ ["real:chip:mega_lead","16-Bit Mega Lead",["sample","real","synth","retro","game","16bit"]],
+ ["real:chip:pcm_pad","16-Bit PCM Pad",["sample","real","synth","retro","game","16bit"]],
+ ["real:chip:warm_pcm","16-Bit Warm PCM",["sample","real","synth","retro","game","16bit"]],
+ ["real:chip:metal_pad","16-Bit Metallic Pad",["sample","real","synth","retro","game","16bit"]],
+ ["real:chip:crystal_keys","16-Bit Crystal Keys",["sample","real","keys","synth","retro","game","16bit"]],
+ ["real:chip:digi_marimba","16-Bit Digital Marimba",["sample","real","keys","synth","retro","game","16bit"]],
+ ["real:chip:slap_bass","16-Bit Slap Bass",["sample","real","bass","synth","retro","game","16bit"]],
+ ["real:chip:pulse_strings","16-Bit Pulse Strings",["sample","real","orch","synth","retro","game","16bit"]],
+ ["real:chip:choir_pad","16-Bit Choir Pad",["sample","real","orch","synth","retro","game","16bit"]],
+ ["real:chip:soft_square","16-Bit Soft Square",["sample","real","synth","retro","game","16bit"]],
+ ["real:chip:sync_lead","16-Bit Sync Lead",["sample","real","synth","retro","game","16bit"]]
+];
+const realArcadePresets=[
+ ["real:chip:arcade_coin","Arcade Coin Synth",["sample","real","keys","synth","retro","game","8bit","arcade"]],
+ ["real:chip:bonus_bell","Arcade Bonus Bell",["sample","real","keys","synth","retro","game","arcade"]],
+ ["real:chip:laser_lead","Arcade Laser Lead",["sample","real","synth","retro","game","arcade"]],
+ ["real:chip:power_up","Arcade Power-Up Lead",["sample","real","synth","retro","game","arcade"]],
+ ["real:chip:power_down","Arcade Power-Down Lead",["sample","real","synth","retro","game","arcade"]],
+ ["real:chip:boss_bass","Arcade Boss Bass",["sample","real","bass","synth","retro","game","arcade"]],
+ ["real:chip:battle_lead","Arcade Battle Lead",["sample","real","synth","retro","game","arcade"]],
+ ["real:chip:warning_pulse","Arcade Warning Pulse",["sample","real","synth","retro","game","arcade"]],
+ ["real:chip:warp_pad","Arcade Warp Pad",["sample","real","synth","retro","game","arcade"]],
+ ["real:chip:menu_bleep","Arcade Menu Bleep",["sample","real","keys","synth","retro","game","arcade"]],
+ ["real:chip:run_arp","Arcade Run Arp Tone",["sample","real","synth","retro","game","8bit","arcade"]],
+ ["real:chip:sci_sweep","Arcade Sci-Fi Sweep",["sample","real","synth","fx","retro","game","arcade"]]
+];
+const realChipFxPresets=[
+ ["real:chipsfx:bonus_1.wav","CC0 Game Bonus 1",["sample","real","fx","retro","game","arcade","8bit"]],
+ ["real:chipsfx:bonus_2.wav","CC0 Game Bonus 2",["sample","real","fx","retro","game","arcade","8bit"]],
+ ["real:chipsfx:gem_1.wav","CC0 Game Gem 1",["sample","real","fx","retro","game","arcade"]],
+ ["real:chipsfx:gem_2.wav","CC0 Game Gem 2",["sample","real","fx","retro","game","arcade"]],
+ ["real:chipsfx:jump_bug_1.wav","CC0 Jump Blip 1",["sample","real","fx","retro","game","8bit"]],
+ ["real:chipsfx:jump_bug_2.wav","CC0 Jump Blip 2",["sample","real","fx","retro","game","8bit"]],
+ ["real:chipsfx:laser_1.wav","CC0 Laser 1",["sample","real","fx","retro","game","arcade"]],
+ ["real:chipsfx:laser_2.wav","CC0 Laser 2",["sample","real","fx","retro","game","arcade"]],
+ ["real:chipsfx:change_1.wav","CC0 Change Blip 1",["sample","real","fx","retro","game","arcade"]],
+ ["real:chipsfx:deep_charge_1.wav","CC0 Deep Charge 1",["sample","real","fx","retro","game","arcade"]],
+ ["real:chipsfx:pause.wav","CC0 Pause Blip",["sample","real","fx","retro","game","arcade"]],
+ ["real:chipsfx:signal.wav","CC0 Signal Blip",["sample","real","fx","retro","game","arcade"]],
+ ["real:chipsfx:pew.wav","CC0 Pew Shot",["sample","real","fx","retro","game","arcade"]],
+ ["real:chipsfx:ricochet_1.wav","CC0 Ricochet 1",["sample","real","fx","retro","game","arcade"]],
+ ["real:chipsfx:alien_1.wav","CC0 Alien Blip 1",["sample","real","fx","retro","game","arcade"]],
+ ["real:chipsfx:alien_2.wav","CC0 Alien Blip 2",["sample","real","fx","retro","game","arcade"]],
+ ["real:chipsfx:bonus_3.wav","CC0 Bonus Pickup 3",["sample","real","fx","retro","game","arcade","8bit"]],
+ ["real:chipsfx:toll.wav","CC0 Toll Bell",["sample","real","fx","retro","game","arcade","8bit"]]
+];
+const chipFxSampleBaseUrl="https://raw.githubusercontent.com/subsoap/chip-sounds/master/chip-sounds/";
+const chipPresetSpecs={
+ pulse12:{wave:"pulse",duty:.12,bitDepth:4,duration:1.1,gain:.38},
+ pulse25:{wave:"pulse",duty:.25,bitDepth:4,duration:1.1,gain:.4},
+ square:{wave:"pulse",duty:.5,bitDepth:4,duration:1.1,gain:.36},
+ triangle:{wave:"triangle",bitDepth:5,duration:1.2,gain:.42},
+ tri_bass:{wave:"triangle",bitDepth:5,duration:1.25,gain:.5,octave:-1},
+ sub_pulse:{wave:"pulse",duty:.36,bitDepth:4,duration:1.25,gain:.48,octave:-1,sub:.5},
+ bit_buzz:{wave:"saw",bitDepth:3,duration:1.05,gain:.32},
+ thin_pulse:{wave:"pulse",duty:.08,bitDepth:4,duration:1.05,gain:.34},
+ hollow_square:{wave:"pulse",duty:.5,bitDepth:3,duration:1.25,gain:.3,filter:"hollow"},
+ noise_lead:{wave:"pulse",duty:.18,noise:.18,bitDepth:3,duration:1.0,gain:.34},
+ coin_pluck:{wave:"pulse",duty:.2,bitDepth:4,duration:.46,gain:.46,pluck:true,pitchEnd:2.0},
+ tiny_bell:{wave:"fm",fmRatio:3,modIndex:1.8,bitDepth:5,duration:.85,gain:.44,pluck:true},
+ chip_organ:{wave:"organ",bitDepth:5,duration:1.3,gain:.34},
+ rapid_arp:{wave:"pulse",duty:.25,bitDepth:4,duration:.75,gain:.4,arp:[0,7,12,19]},
+ soft_duty:{wave:"pulse",duty:.33,bitDepth:5,duration:1.15,gain:.34},
+ nes_pad:{wave:"pulse",duty:.5,bitDepth:5,duration:1.4,gain:.25,sub:.25},
+ gb_bass:{wave:"pulse",duty:.25,bitDepth:4,duration:1.25,gain:.5,octave:-1},
+ gb_pluck:{wave:"pulse",duty:.25,bitDepth:4,duration:.62,gain:.44,pluck:true},
+ bit_flute:{wave:"triangle",bitDepth:5,duration:1.2,gain:.3,soft:true},
+ noise_pad:{wave:"triangle",noise:.12,bitDepth:4,duration:1.4,gain:.24},
+ fm_bell:{wave:"fm",fmRatio:2,modIndex:2.6,bitDepth:8,duration:1.4,gain:.36,pluck:true},
+ fm_keys:{wave:"fm",fmRatio:1.5,modIndex:1.9,bitDepth:8,duration:1.25,gain:.34},
+ fm_bass:{wave:"fm",fmRatio:.5,modIndex:2.4,bitDepth:7,duration:1.15,gain:.5,octave:-1},
+ glass_ep:{wave:"fm",fmRatio:3,modIndex:1.4,bitDepth:9,duration:1.4,gain:.32,soft:true},
+ mega_saw:{wave:"saw",detune:.006,bitDepth:7,duration:1.25,gain:.32},
+ mega_lead:{wave:"saw",detune:.012,bitDepth:7,duration:1.05,gain:.34},
+ pcm_pad:{wave:"organ",bitDepth:8,duration:1.6,gain:.25,sub:.2,soft:true},
+ warm_pcm:{wave:"triangle",bitDepth:8,duration:1.5,gain:.28,sub:.18,soft:true},
+ metal_pad:{wave:"fm",fmRatio:4,modIndex:1.2,bitDepth:7,duration:1.4,gain:.28},
+ crystal_keys:{wave:"fm",fmRatio:5,modIndex:1.6,bitDepth:8,duration:1.0,gain:.34,pluck:true},
+ digi_marimba:{wave:"triangle",bitDepth:7,duration:.7,gain:.42,pluck:true},
+ slap_bass:{wave:"saw",bitDepth:7,duration:.58,gain:.52,octave:-1,pluck:true},
+ pulse_strings:{wave:"pulse",duty:.44,bitDepth:7,duration:1.55,gain:.26,sub:.18,soft:true},
+ choir_pad:{wave:"organ",bitDepth:8,duration:1.55,gain:.24,soft:true},
+ soft_square:{wave:"pulse",duty:.5,bitDepth:8,duration:1.25,gain:.3,soft:true},
+ sync_lead:{wave:"sync",bitDepth:7,duration:1.0,gain:.34},
+ arcade_coin:{wave:"pulse",duty:.18,bitDepth:4,duration:.38,gain:.48,pluck:true,pitchEnd:2.4},
+ bonus_bell:{wave:"fm",fmRatio:4,modIndex:2.1,bitDepth:6,duration:.9,gain:.42,pluck:true,pitchEnd:1.35},
+ laser_lead:{wave:"pulse",duty:.12,bitDepth:4,duration:.7,gain:.42,pitchEnd:.55},
+ power_up:{wave:"pulse",duty:.25,bitDepth:4,duration:.8,gain:.42,pitchEnd:2.2},
+ power_down:{wave:"pulse",duty:.25,bitDepth:4,duration:.8,gain:.42,pitchEnd:.45},
+ boss_bass:{wave:"saw",noise:.08,bitDepth:4,duration:1.25,gain:.5,octave:-1},
+ battle_lead:{wave:"pulse",duty:.16,bitDepth:4,duration:1.0,gain:.42},
+ warning_pulse:{wave:"pulse",duty:.5,bitDepth:3,duration:.5,gain:.44,arp:[0,6]},
+ warp_pad:{wave:"fm",fmRatio:.75,modIndex:2.8,bitDepth:5,duration:1.4,gain:.28,pitchEnd:1.2},
+ menu_bleep:{wave:"triangle",bitDepth:5,duration:.42,gain:.45,pluck:true},
+ run_arp:{wave:"pulse",duty:.22,bitDepth:4,duration:.7,gain:.42,arp:[0,4,7,12]},
+ sci_sweep:{wave:"saw",noise:.08,bitDepth:5,duration:1.0,gain:.36,pitchEnd:1.8}
+};
 const realTonePresets=[
  ["real:tone:piano","ToneJS Piano",["sample","real","keys"]],
  ["real:tone:guitar-acoustic","ToneJS Acoustic Guitar",["sample","real","guitar"]],
@@ -599,6 +724,10 @@ const realDrumPresets=[
 ];
 const soundFontDefs=[
  {id:"realpiano",name:"Real Sample Keys",short:"RealKey",type:"keys",engine:"sample",presets:realPianoPresets,categories:["keys","sample","real"]},
+ {id:"chip8",name:"8-Bit Chip Synth Samples",short:"8-Bit",type:"synth",engine:"sample",presets:realChip8Presets,categories:["synth","keys","bass","sample","real","retro","game","8bit"]},
+ {id:"chip16",name:"16-Bit Console Synth Samples",short:"16-Bit",type:"synth",engine:"sample",presets:realChip16Presets,categories:["synth","keys","bass","sample","real","retro","game","16bit"]},
+ {id:"arcade",name:"Arcade Game Synth Samples",short:"Arcade",type:"synth",engine:"sample",presets:realArcadePresets,categories:["synth","keys","bass","fx","sample","real","retro","game","arcade"]},
+ {id:"chipfx",name:"CC0 Retro Game FX Samples",short:"ChipFX",type:"fx",engine:"sample",presets:realChipFxPresets,categories:["fx","sample","real","retro","game","arcade","8bit"]},
  {id:"realtone",name:"ToneJS Acoustic Samples",short:"Tone",type:"sample",engine:"sample",presets:realTonePresets,categories:["sample","real"]},
  {id:"realgm",name:"Real GM Acoustic Samples",short:"RealGM",type:"sample",engine:"sample",presets:realGmPresets,categories:["sample","real"]},
  {id:"realvcsl",name:"VCSL Samples",short:"VCSL",type:"sample",engine:"sample",presets:realVcslPresets,categories:["sample","real"]},
@@ -610,7 +739,7 @@ const soundFontDefs=[
  {id:"realretro",name:"Retro Game Samples",short:"Retro",type:"synth",engine:"sample",presets:realRetroPresets,categories:["synth","drums","fx","sample","real"]},
  {id:"realfx",name:"Sample Sound FX",short:"FX",type:"fx",engine:"sample",presets:realGmFxPresets,categories:["fx","sample","real"]}
 ];
-const soundFontIdMigrations={core:"realsynth",keys:"realpiano",guitarbass:"realgm",orchestra:"realgm",brasswinds:"realgm",soundfx:"realfx",acousticdrums:"realdrums",analogdrums:"realdrums",retrogamedrums:"realretro",chip8:"realretro",bits16:"realretro",analogsynth:"realsynth",console8:"realretro",sc55:"realgm",generaluser:"realgm",timgm:"realgm",chaos:"realgm",jns:"realgm",eawpats:"realgm",masterpiece:"realgm",unison:"realgm",tr808:"realdrums",tr909:"realdrums",sc55kits:"realdrums",generaluserkits:"realdrums",timgmkits:"realdrums",jnskits:"realdrums",eawkits:"realdrums"};
+const soundFontIdMigrations={core:"realsynth",keys:"realpiano",guitarbass:"realgm",orchestra:"realgm",brasswinds:"realgm",soundfx:"realfx",acousticdrums:"realdrums",analogdrums:"realdrums",retrogamedrums:"realretro",chip8:"chip8",bits16:"chip16",analogsynth:"realsynth",console8:"chip8",sc55:"realgm",generaluser:"realgm",timgm:"realgm",chaos:"realgm",jns:"realgm",eawpats:"realgm",masterpiece:"realgm",unison:"realgm",tr808:"realdrums",tr909:"realdrums",sc55kits:"realdrums",generaluserkits:"realdrums",timgmkits:"realdrums",jnskits:"realdrums",eawkits:"realdrums"};
 const state={armed:true,playing:false,chordMode:false,semitoneMode:false,tempo:120,timeSigNum:4,timeSigDen:4,subdivision:16,metronome:false,lastMetroStep:-1,inputOctave:0,tick:0,zoom:.9,viewAllTracks:false,hideFretboard:false,useSoundFont:true,sfReady:false,sfLoading:false,sampleModule:null,sampleEnginePromise:null,sampleCatalogExpanded:false,sampleCtx:null,sampleStorage:null,sampleInstruments:new Map(),loopEnabled:false,loopStart:0,loopEnd:PPQ*16,loopSetMode:0,undoStack:[],redoStack:[],scrollX:0,scrollY:250,selectedIds:new Set(),clipboardNotes:[],nextNoteId:1,tracks:[{id:1,name:"Piano",soundFontId:"realpiano",sound:"real:gm:acoustic_grand_piano",color:"blue",volume:100,fx:defaultTrackFx(),notes:[]},{id:2,name:"Bass",soundFontId:"realgm",sound:"real:gm:electric_bass_finger",color:"green",volume:100,fx:defaultTrackFx(),notes:[]},{id:3,name:"Drums",soundFontId:"realdrums",sound:"real:drum:LM-2",color:"orange",volume:100,fx:defaultTrackFx(),notes:[]}],activeTrackId:1,audioCtx:null,masterCtx:null,masterGain:null,masterCompressor:null,trackFxBuses:new Map(),activeGeneratedVoices:[],playbackStartTime:0,playbackStartTick:0,scheduledNotes:new Set(),scheduleTimer:null,liveFretLights:[],livePadLights:[],voicerAuditionTimers:[],fretDisplayChordName:"",voicerEnabled:true,voicer:defaultVoicerSettings(),voicerMemory:{previousNotes:[],previousName:"",previousRoot:-1},groovizer:defaultGroovizerSettings(),groovizerMemory:{previousEvents:[],previousName:"",previousRole:""}};
 const $=id=>document.getElementById(id),el={tempo:$("tempo"),tempoSlider:$("tempoSlider"),bpmLabel:$("bpmLabel"),bpmMenu:$("bpmMenu"),bpmCloseBtn:$("bpmCloseBtn"),subdivTop:$("subdivTop"),tsBtn:$("tsBtn"),tsMenu:$("tsMenu"),metroBtn:$("metroBtn"),loopMenu:$("loopMenu"),loopStartInput:$("loopStartInput"),loopEndInput:$("loopEndInput"),loopToggleBtn:$("loopToggleBtn"),loopApplyBtn:$("loopApplyBtn"),loopCloseBtn:$("loopCloseBtn"),settingsBtn:$("settingsBtn"),settingsMenu:$("settingsMenu"),playBtn:$("playBtn"),leftBtn:$("leftBtn"),rightBtn:$("rightBtn"),divDownBtn:$("divDownBtn"),divUpBtn:$("divUpBtn"),octDownBtn:$("octDownBtn"),octUpBtn:$("octUpBtn"),chordBtn:$("chordBtn"),recordBtn:$("recordBtn"),deleteBtn:$("deleteBtn"),newProjectBtn:$("newProjectBtn"),exportProjectBtn:$("exportProjectBtn"),importProjectBtn:$("importProjectBtn"),projectImport:$("projectImport"),trackColorMenu:$("trackColorMenu"),trackColorGrid:$("trackColorGrid"),trackColorCloseBtn:$("trackColorCloseBtn"),trackFxMenu:$("trackFxMenu"),trackFxTitle:$("trackFxTitle"),fxLowCut:$("fxLowCut"),fxLowCutValue:$("fxLowCutValue"),fxHighCut:$("fxHighCut"),fxHighCutValue:$("fxHighCutValue"),fxReverbMix:$("fxReverbMix"),fxReverbMixValue:$("fxReverbMixValue"),fxReverbTime:$("fxReverbTime"),fxReverbTimeValue:$("fxReverbTimeValue"),fxReverbType:$("fxReverbType"),fxDelayMix:$("fxDelayMix"),fxDelayMixValue:$("fxDelayMixValue"),fxDelayTime:$("fxDelayTime"),fxDelayTimeValue:$("fxDelayTimeValue"),fxChorus:$("fxChorus"),fxChorusValue:$("fxChorusValue"),fxDrive:$("fxDrive"),fxDriveValue:$("fxDriveValue"),fxCrush:$("fxCrush"),fxCrushValue:$("fxCrushValue"),fxPhaser:$("fxPhaser"),fxPhaserValue:$("fxPhaserValue"),fxAir:$("fxAir"),fxAirValue:$("fxAirValue"),fxTremolo:$("fxTremolo"),fxTremoloValue:$("fxTremoloValue"),trackFxResetBtn:$("trackFxResetBtn"),trackFxCloseBtn:$("trackFxCloseBtn"),themeBtn:$("themeBtn"),themeMenu:$("themeMenu"),themeList:$("themeList"),randomThemeBtn:$("randomThemeBtn"),randomMonoThemeBtn:$("randomMonoThemeBtn"),themeMenuCloseBtn:$("themeMenuCloseBtn"),hideFretBtn:$("hideFretBtn"),sfBtn:$("sfBtn"),sfLoadBtn:$("sfLoadBtn"),sfStatus:$("sfStatus"),exportBtn:$("exportBtn"),saveBtn:$("saveBtn"),loadBtn:$("loadBtn"),localProjectsMenu:$("localProjectsMenu"),projectNameInput:$("projectNameInput"),saveNamedProjectBtn:$("saveNamedProjectBtn"),localProjectsList:$("localProjectsList"),undoBtn:$("undoBtn"),redoBtn:$("redoBtn"),loopBtn:$("loopBtn"),focusBtn:$("focusBtn"),fretboard:$("fretboard"),fretMarkers:$("fretMarkers"),fretChordLabel:$("fretChordLabel"),timelineViewport:$("timelineViewport"),timelineContent:$("timelineContent"),barZoomHeader:$("barZoomHeader"),vZoomStrip:$("vZoomStrip"),vZoomThumb:$("vZoomThumb"),trackMenuBtn:$("trackMenuBtn"),trackStatusBtn:$("trackStatusBtn"),trackMenu:$("trackMenu"),viewAllToggleBtn:$("viewAllToggleBtn"),trackList:$("trackList"),addTrackMenuBtn:$("addTrackMenuBtn"),deleteTrackMenuBtn:$("deleteTrackMenuBtn"),trackMenuCloseBtn:$("trackMenuCloseBtn"),sfSelect:$("sfSelect"),soundSelect:$("soundSelect"),soundPickerBtn:$("soundPickerBtn"),soundPickerMenu:$("soundPickerMenu"),soundBankRow:$("soundBankRow"),soundSearch:$("soundSearch"),soundFilterRow:$("soundFilterRow"),soundRandomBtn:$("soundRandomBtn"),soundPickerList:$("soundPickerList"),soundPickerCloseBtn:$("soundPickerCloseBtn"),copyBtn:$("copyBtn"),pasteBtn:$("pasteBtn"),colorSelect:$("colorSelect"),stepReadout:$("stepReadout"),posReadout:$("posReadout"),chordReadout:$("chordReadout")};
 Object.assign(el,{voicerBtn:$("voicerBtn"),voicerMenu:$("voicerMenu"),voicerEnableBtn:$("voicerEnableBtn"),voicerKeyBtn:$("voicerKeyBtn"),voicerScaleBtn:$("voicerScaleBtn"),voicerKeyMenu:$("voicerKeyMenu"),voicerScaleMenu:$("voicerScaleMenu"),voicerStyle:$("voicerStyle"),voicerRole:$("voicerRole"),voicerPlayability:$("voicerPlayability"),voicerRakeMode:$("voicerRakeMode"),voicerChordSize:$("voicerChordSize"),voicerChordSizeValue:$("voicerChordSizeValue"),voicerRakeSpeed:$("voicerRakeSpeed"),voicerRakeSpeedValue:$("voicerRakeSpeedValue"),voicerComplexity:$("voicerComplexity"),voicerComplexityValue:$("voicerComplexityValue"),voicerVoiceLeading:$("voicerVoiceLeading"),voicerVoiceLeadingValue:$("voicerVoiceLeadingValue"),voicerOutside:$("voicerOutside"),voicerOutsideValue:$("voicerOutsideValue"),voicerVariation:$("voicerVariation"),voicerVariationValue:$("voicerVariationValue"),voicerLengthVariety:$("voicerLengthVariety"),voicerLengthVarietyValue:$("voicerLengthVarietyValue"),voicerRepeat:$("voicerRepeat"),voicerRepeatValue:$("voicerRepeatValue"),voicerMinNote:$("voicerMinNote"),voicerMaxNote:$("voicerMaxNote"),voicerReadout:$("voicerReadout"),voicerLastChord:$("voicerLastChord"),voicerLastNotes:$("voicerLastNotes"),voicerResetBtn:$("voicerResetBtn"),voicerRandomizeBtn:$("voicerRandomizeBtn"),voicerArrangeBtn:$("voicerArrangeBtn"),voicerCloseBtn:$("voicerCloseBtn")});
@@ -656,8 +785,8 @@ const legacySoundMap={
  "mdl:strings":"real:gm:string_ensemble_1","mdl:slowstrings":"real:gm:string_ensemble_2","mdl:violin":"real:gm:violin","mdl:viola":"real:gm:viola","mdl:cello":"real:gm:cello","mdl:contrabass":"real:gm:contrabass","mdl:pizz":"real:gm:pizzicato_strings","mdl:tremstrings":"real:gm:tremolo_strings","mdl:spiccato":"real:gm:pizzicato_strings","mdl:chamber":"real:gm:string_ensemble_1","mdl:cinstrings":"real:mellotron:MIXED STRGS","mdl:orchestralhit":"real:gm:orchestra_hit","mdl:timpani":"real:gm:timpani","mdl:choir":"real:gm:choir_aahs","mdl:ooh":"real:gm:voice_oohs","mdl:voxpad":"real:gm:pad_4_choir",
  "mdl:trumpet":"real:gm:trumpet","mdl:trombone":"real:gm:trombone","mdl:frenchhorn":"real:gm:french_horn","mdl:brasssection":"real:gm:brass_section","mdl:synthbrass":"real:gm:synth_brass_1","mdl:mutedtrumpet":"real:gm:muted_trumpet","mdl:tuba":"real:gm:tuba","mdl:flugel":"real:gm:trumpet","mdl:flute":"real:gm:flute","mdl:piccolo":"real:gm:piccolo","mdl:clarinet":"real:gm:clarinet","mdl:oboe":"real:gm:oboe","mdl:englishhorn":"real:gm:english_horn","mdl:bassoon":"real:gm:bassoon","mdl:soprano":"real:gm:soprano_sax","mdl:alto":"real:gm:alto_sax","mdl:tenor":"real:gm:tenor_sax","mdl:bari":"real:gm:baritone_sax","mdl:panflute":"real:gm:pan_flute","mdl:recorder":"real:gm:recorder","mdl:shaku":"real:gm:shakuhachi","mdl:ocarina":"real:gm:ocarina",
  "sfx:riser":"real:gm:fx_8_scifi","sfx:downer":"real:gm:reverse_cymbal","sfx:impact":"real:gm:orchestra_hit","sfx:subdrop":"real:gm:taiko_drum","sfx:whoosh":"real:gm:seashore","sfx:sparkle":"real:gm:fx_3_crystal","sfx:vinyl":"real:gm:breath_noise","sfx:arcade":"real:gm:fx_8_scifi","sfx:laser":"real:gm:lead_2_sawtooth","sfx:alarm":"real:gm:telephone_ring","sfx:reverse":"real:gm:reverse_cymbal","sfx:water":"real:gm:seashore","sfx:wind":"real:gm:fx_1_rain","sfx:metal":"real:gm:orchestra_hit","sfx:ghost":"real:gm:fx_7_echoes","sfx:telephone":"real:gm:telephone_ring","sfx:vinylhit":"real:gm:woodblock","sfx:powerup":"real:gm:fx_3_crystal","sfx:powerdown":"real:gm:fx_8_scifi","sfx:space":"real:gm:fx_8_scifi","sfx:clicks":"real:gm:woodblock","sfx:bubble":"real:gm:blown_bottle","sfx:static":"real:gm:breath_noise","sfx:boom":"real:gm:taiko_drum",
- "chip:pulse":"real:gm:lead_1_square","chip:triangle":"real:gm:lead_3_calliope","chip:squarebass":"real:gm:lead_8_bass__lead","chip:arp":"real:gm:lead_7_fifths","chip:organ":"real:gm:drawbar_organ","chip:noise":"real:gm:fx_8_scifi","chip:duty12":"real:gm:lead_1_square","chip:duty25":"real:gm:lead_1_square","chip:bitpluck":"real:gm:lead_4_chiff","chip:coin":"real:gm:tinkle_bell","chip:laser":"real:gm:lead_2_sawtooth","chip:underwater":"real:gm:pad_7_halo","chip:thinbass":"real:gm:synth_bass_1","chip:octave":"real:gm:lead_7_fifths","chip:gamepad":"real:gm:pad_6_metallic","chip:bellpad":"real:gm:fx_3_crystal","chip:subpulse":"real:gm:synth_bass_2","chip:glitch":"real:gm:fx_8_scifi",
- "s16:fm-bell":"real:ep:TX81Z","s16:fm-bass":"real:gm:synth_bass_1","s16:soft-square":"real:gm:lead_1_square","s16:saw-pad":"real:gm:pad_8_sweep","s16:pluck":"real:gm:lead_4_chiff","s16:brass":"real:gm:synth_brass_1","s16:glass-ep":"real:ep:TX81Z","s16:halo":"real:gm:pad_7_halo","s16:sync-lead":"real:gm:lead_2_sawtooth","s16:slap":"real:gm:slap_bass_1","s16:choir":"real:gm:synth_choir","s16:marimba":"real:gm:marimba","s16:strings":"real:gm:string_ensemble_1","s16:resobass":"real:gm:synth_bass_2","s16:crystal":"real:gm:fx_3_crystal","s16:panlead":"real:gm:lead_6_voice","s16:orchestra-hit":"real:gm:orchestra_hit","s16:digipad":"real:gm:pad_3_polysynth",
+ "chip:pulse":"real:chip:pulse25","chip:triangle":"real:chip:triangle","chip:squarebass":"real:chip:gb_bass","chip:arp":"real:chip:rapid_arp","chip:organ":"real:chip:chip_organ","chip:noise":"real:chip:noise_lead","chip:duty12":"real:chip:pulse12","chip:duty25":"real:chip:pulse25","chip:bitpluck":"real:chip:gb_pluck","chip:coin":"real:chip:arcade_coin","chip:laser":"real:chip:laser_lead","chip:underwater":"real:chip:warp_pad","chip:thinbass":"real:chip:tri_bass","chip:octave":"real:chip:run_arp","chip:gamepad":"real:chip:nes_pad","chip:bellpad":"real:chip:tiny_bell","chip:subpulse":"real:chip:sub_pulse","chip:glitch":"real:chip:sci_sweep",
+ "s16:fm-bell":"real:chip:fm_bell","s16:fm-bass":"real:chip:fm_bass","s16:soft-square":"real:chip:soft_square","s16:saw-pad":"real:chip:mega_saw","s16:pluck":"real:chip:digi_marimba","s16:brass":"real:chip:sync_lead","s16:glass-ep":"real:chip:glass_ep","s16:halo":"real:chip:warm_pcm","s16:sync-lead":"real:chip:sync_lead","s16:slap":"real:chip:slap_bass","s16:choir":"real:chip:choir_pad","s16:marimba":"real:chip:digi_marimba","s16:strings":"real:chip:pulse_strings","s16:resobass":"real:chip:fm_bass","s16:crystal":"real:chip:crystal_keys","s16:panlead":"real:chip:mega_lead","s16:orchestra-hit":"real:gm:orchestra_hit","s16:digipad":"real:chip:pcm_pad",
  "ana:mono":"real:gm:lead_2_sawtooth","ana:round":"real:gm:lead_1_square","ana:bass":"real:gm:synth_bass_1","ana:acid":"real:gm:lead_2_sawtooth","ana:poly":"real:gm:pad_3_polysynth","ana:pad":"real:gm:pad_2_warm","ana:strings":"real:gm:synth_strings_1","ana:brass":"real:gm:synth_brass_1","ana:sync":"real:gm:lead_2_sawtooth","ana:pluck":"real:gm:lead_4_chiff","ana:drone":"real:gm:pad_8_sweep","ana:noiselead":"real:gm:fx_8_scifi","ana:solina":"real:gm:synth_strings_2","ana:seq":"real:gm:lead_7_fifths","ana:pluckbass":"real:gm:synth_bass_1","ana:retrokeys":"real:gm:lead_3_calliope","ana:metalpad":"real:gm:pad_6_metallic","ana:swell":"real:gm:pad_8_sweep",
  "kit:studio":"real:drum:LM-2","kit:room":"real:drum:LM-2","kit:jazz":"real:abuse:boss-dr-110","kit:tightrock":"real:abuse:linn-lm-2","kit:bigrock":"real:abuse:linn-9000","kit:dryfunk":"real:abuse:emu-sp-12","kit:lofiroom":"real:abuse:casio-rz-1","kit:orchestral":"real:gm:timpani","kit:garage":"real:abuse:oberheim-dmx","kit:soul":"real:abuse:roland-cr-78","kit:indie":"real:drum:Casio-RZ1","kit:cinematic":"real:gm:orchestra_hit","kit:analog-tight":"real:abuse:roland-tr-606","kit:analog-deep":"real:abuse:roland-tr-808","kit:analog-crunch":"real:abuse:oberheim-dmx","kit:analog-air":"real:abuse:roland-cr-8000","kit:analog-dub":"real:abuse:roland-tr-808","kit:analog-disco":"real:abuse:linn-lm-1","kit:analog-electro":"real:abuse:roland-tr-808","kit:analog-industrial":"real:abuse:emu-sp-12","kit:analog-minimal":"real:abuse:boss-dr-55","kit:machine-606":"real:abuse:roland-tr-606","kit:machine-707":"real:abuse:roland-tr-707","kit:machine-808":"real:abuse:roland-tr-808","kit:machine-909":"real:abuse:roland-tr-909","kit:chip-square":"real:gm:synth_drum","kit:chip-noise":"real:gm:synth_drum","kit:chip-click":"real:gm:woodblock","kit:chip-dust":"real:gm:reverse_cymbal","kit:chip-metal":"real:gm:synth_drum","kit:fm-16":"real:gm:synth_drum","kit:fm-glass":"real:gm:tinkle_bell","kit:sampler-12":"real:abuse:emu-sp-12","kit:sampler-dirt":"real:abuse:casio-sk-1","kit:modular-zap":"real:abuse:simmons-sds-5","kit:arcade-room":"real:gm:synth_drum","kit:console-pop":"real:gm:melodic_tom"
 };
@@ -747,6 +876,10 @@ function soundEntryCategories(def,value,label){
  if(def?.type==="drum"||value.startsWith("kit:")||value.startsWith("drum:")||/(drum|kick|snare|hat|tom|ride|crash|perc|808|909|606|707|kit)/.test(text))cats.add("drums");
  if(/(piano|epiano|electric grand|honky|harpsichord|clav|celesta|vibra|marimba|xylophone|organ|accordion|harmonica|bell|keys|keyboard)/.test(text))cats.add("keys");
  if(def?.type==="synth"||/(synth|lead|pad|square|saw|pulse|chip|bit|fm|analog|acid|sync|poly|mono|osc|noise|arcade|retro)/.test(text))cats.add("synth");
+ if(/(retro|chip|chiptune|game|gameboy|console|8-bit|8bit|16-bit|16bit|arcade|coin|bonus|power|laser|bleep|blip)/.test(text)){cats.add("retro");cats.add("game")}
+ if(/(8-bit|8bit|gameboy|nes|pulse|square|triangle|duty|coin)/.test(text))cats.add("8bit");
+ if(/(16-bit|16bit|fm|pcm|mega|console|sync|digital)/.test(text))cats.add("16bit");
+ if(/(arcade|coin|bonus|laser|menu|warning|warp|battle)/.test(text))cats.add("arcade");
  if(/bass/.test(text))cats.add("bass");
  if(/(guitar|nylon|steel|jazz guitar|clean guitar|muted|overdrive|distortion|pluck)/.test(text))cats.add("guitar");
  if(/(string|violin|viola|cello|contrabass|pizz|choir|voice|orchestra|harp)/.test(text))cats.add("orch");
@@ -1321,6 +1454,10 @@ function sampleFallbackSound(sound){
  const s=String(sound||"").toLowerCase();
  const migrated=sampleSoundForLegacy(sound);
  if(migrated&&migrated!==sound)return migrated;
+ if(s.startsWith("real:chip:fm")||s.startsWith("real:chip:crystal")||s.startsWith("real:chip:tiny")||s.startsWith("real:chip:bonus"))return "real:gm:fx_3_crystal";
+ if(s.startsWith("real:chip:")&&s.includes("bass"))return "real:gm:lead_8_bass__lead";
+ if(s.startsWith("real:chip:")&&s.includes("saw"))return "real:gm:lead_2_sawtooth";
+ if(s.startsWith("real:chip:")||s.startsWith("real:chipsfx:"))return "real:gm:lead_1_square";
  if(s.startsWith("real:tone:guitar"))return "real:gm:acoustic_guitar_steel";
  if(s.startsWith("real:tone:bass"))return "real:gm:electric_bass_finger";
  if(s.startsWith("real:tone:violin"))return "real:gm:violin";
@@ -1479,6 +1616,155 @@ function createToneSampleInstrument(ctx,{instrument,destination,volume=100,onLoa
   dispose(){try{gain.disconnect()}catch(e){}}
  };
 }
+function chipMidiFreq(midi){return 440*Math.pow(2,(midi-69)/12)}
+function chipWaveValue(spec,phase,t,noise){
+ if(spec.wave==="triangle")return 1-4*Math.abs(Math.round(phase-.25)-(phase-.25));
+ if(spec.wave==="saw")return phase*2-1;
+ if(spec.wave==="fm"){
+  const mod=Math.sin(Math.PI*2*phase*(spec.fmRatio||2))*(spec.modIndex||1.5);
+  return Math.sin(Math.PI*2*phase+mod);
+ }
+ if(spec.wave==="organ"){
+  return Math.sin(Math.PI*2*phase)*.62+Math.sin(Math.PI*4*phase)*.24+Math.sin(Math.PI*6*phase)*.14;
+ }
+ if(spec.wave==="sync"){
+  const p=(phase*3.5)%1;
+  return (p<(spec.duty||.42)?1:-1)*.72+(phase<.5?1:-1)*.28;
+ }
+ const duty=spec.duty==null?.5:spec.duty;
+ let v=phase<duty?1:-1;
+ if(spec.filter==="hollow")v*=.55+Math.sin(Math.PI*2*phase)*.25;
+ return v+noise*(spec.noise||0);
+}
+function chipEnvelope(spec,t,dur){
+ const a=spec.attack==null?.004:spec.attack;
+ const r=spec.release==null?.08:spec.release;
+ let e=Math.min(1,t/Math.max(.001,a));
+ if(spec.pluck)e*=Math.pow(Math.max(0,1-t/dur),2.2);
+ else if(t>dur-r)e*=Math.max(0,(dur-t)/Math.max(.001,r));
+ if(spec.soft)e*=.72+.28*Math.sin(Math.PI*Math.min(1,t/dur));
+ return e;
+}
+function createChipBuffer(ctx,spec){
+ const sr=ctx.sampleRate||44100;
+ const dur=Math.max(.22,Number(spec.duration)||1.1);
+ const len=Math.max(1,Math.round(sr*dur));
+ const buf=ctx.createBuffer(1,len,sr);
+ const data=buf.getChannelData(0);
+ const baseFreq=chipMidiFreq(60+(Number(spec.octave)||0)*12);
+ let phase=0,subPhase=0,noise=0;
+ for(let i=0;i<len;i++){
+  const t=i/sr,progress=t/dur;
+  const pitch=spec.pitchEnd?Math.pow(spec.pitchEnd,progress):1;
+  let freq=baseFreq*pitch;
+  if(spec.arp&&spec.arp.length){
+   const step=spec.arp[Math.floor(progress*spec.arp.length*4)%spec.arp.length]||0;
+   freq*=Math.pow(2,step/12);
+  }
+  phase=(phase+freq/sr)%1;
+  subPhase=(subPhase+freq*.5/sr)%1;
+  noise=noise*.72+(Math.random()*2-1)*.28;
+  let v=chipWaveValue(spec,phase,t,noise);
+  if(spec.detune){
+   const p2=(phase+Math.sin(t*freq*spec.detune)*.03)%1;
+   v=(v+chipWaveValue({...spec,detune:0},p2,t,noise))*.5;
+  }
+  if(spec.sub)v=v*(1-spec.sub)+(subPhase<.5?1:-1)*spec.sub;
+  const bits=Math.max(2,Math.min(12,Number(spec.bitDepth)||6));
+  const steps=Math.pow(2,bits-1);
+  v=Math.round(v*steps)/steps;
+  data[i]=Math.max(-1,Math.min(1,v*chipEnvelope(spec,t,dur)*(spec.gain||.35)));
+ }
+ return buf;
+}
+function createGeneratedChipInstrument(ctx,{preset,destination,volume=100,onLoadProgress}={}){
+ const spec=chipPresetSpecs[preset];
+ if(!spec)throw new Error("Unknown chip sample");
+ const gain=ctx.createGain();
+ let outputVolume=volume;
+ const output={};
+ Object.defineProperty(output,"volume",{
+  get(){return outputVolume},
+  set(v){outputVolume=Number(v)||0;gain.gain.setTargetAtTime(Math.max(0,outputVolume)/100,ctx.currentTime,.012)}
+ });
+ output.volume=volume;
+ gain.connect(destination||ctx.destination);
+ const buffer=createChipBuffer(ctx,spec);
+ if(onLoadProgress)onLoadProgress({loaded:1,total:1});
+ return {
+  output,
+  ready:Promise.resolve(),
+  start(event={}){
+   const numeric=Number(event.note);
+   const midi=Number.isFinite(numeric)?numeric:60;
+   const time=Math.max(ctx.currentTime+.006,Number(event.time)||ctx.currentTime+.006);
+   const duration=Math.max(.055,Number(event.duration)||.8);
+   const release=Math.min(.13,Math.max(.025,duration*.14));
+   const velocity=Math.max(.08,Math.min(1,(Number(event.velocity)||96)/127));
+   const src=ctx.createBufferSource();
+   const env=ctx.createGain();
+   src.buffer=buffer;
+   src.loop=!spec.pluck&&duration>.22;
+   if(src.loop){src.loopStart=.025;src.loopEnd=Math.max(.05,buffer.duration-.04)}
+   src.playbackRate.setValueAtTime(Math.pow(2,(midi-60)/12),time);
+   env.gain.setValueAtTime(.0001,time);
+   env.gain.linearRampToValueAtTime(velocity,time+.006);
+   env.gain.setValueAtTime(velocity,Math.max(time+.01,time+duration-release));
+   env.gain.linearRampToValueAtTime(.0001,time+duration);
+   src.connect(env);env.connect(gain);
+   src.start(time);
+   src.stop(time+duration+.04);
+  },
+  dispose(){try{gain.disconnect()}catch(e){}}
+ };
+}
+function chipFxSampleUrl(file){return chipFxSampleBaseUrl+encodeURIComponent(file)}
+function createUrlSampleInstrument(ctx,{url,destination,volume=100,onLoadProgress,baseMidi=60,loop=false}={}){
+ const gain=ctx.createGain();
+ let outputVolume=volume,buffer=null;
+ const output={};
+ Object.defineProperty(output,"volume",{
+  get(){return outputVolume},
+  set(v){outputVolume=Number(v)||0;gain.gain.setTargetAtTime(Math.max(0,outputVolume)/100,ctx.currentTime,.012)}
+ });
+ output.volume=volume;
+ gain.connect(destination||ctx.destination);
+ const ready=(async()=>{
+  const res=await fetch(url);
+  if(!res.ok)throw new Error("Sample "+res.status);
+  buffer=await decodeToneAudio(ctx,await res.arrayBuffer());
+  if(onLoadProgress)onLoadProgress({loaded:1,total:1});
+ })();
+ return {
+  output,
+  ready,
+  start(event={}){
+   if(!buffer)return;
+   const numeric=Number(event.note);
+   const midi=Number.isFinite(numeric)?numeric:baseMidi;
+   const time=Math.max(ctx.currentTime+.006,Number(event.time)||ctx.currentTime+.006);
+   const duration=Math.max(.05,Number(event.duration)||buffer.duration);
+   const src=ctx.createBufferSource();
+   const env=ctx.createGain();
+   const velocity=Math.max(.08,Math.min(1,(Number(event.velocity)||96)/127));
+   src.buffer=buffer;
+   src.loop=!!loop;
+   src.playbackRate.setValueAtTime(Math.pow(2,(midi-baseMidi)/12),time);
+   env.gain.setValueAtTime(.0001,time);
+   env.gain.linearRampToValueAtTime(velocity,time+.006);
+   env.gain.setValueAtTime(velocity,Math.max(time+.02,time+duration-.04));
+   env.gain.linearRampToValueAtTime(.0001,time+duration);
+   src.connect(env);env.connect(gain);
+   src.start(time);
+   src.stop(time+duration+.05);
+  },
+  dispose(){try{gain.disconnect()}catch(e){}}
+ };
+}
+function sampleUsesSmplr(sound){
+ const s=String(sound||"");
+ return !(s.startsWith("real:tone:")||s.startsWith("real:chip:")||s.startsWith("real:chipsfx:"));
+}
 async function loadSampleInstrument(tr=activeTrack()){
  if(!isSampleSound(tr.sound))return null;
  if(shouldUsePhonePianoFallback(tr.sound))throw new Error("Phone safe mode uses lighter piano");
@@ -1490,7 +1776,7 @@ async function loadSampleInstrument(tr=activeTrack()){
   if(state.audioCtx&&state.audioCtx.state==="suspended")state.audioCtx.resume().catch(()=>{});
   ensureSampleRuntime();
   const sound=String(tr.sound||"");
-  const usesSmplr=!sound.startsWith("real:tone:");
+  const usesSmplr=sampleUsesSmplr(sound);
   const m=usesSmplr?await ensureSampleModule():null;
   const storage=m?sampleStorageFor(m):undefined;
   const destination=trackFxInput(tr,state.audioCtx);
@@ -1498,6 +1784,8 @@ async function loadSampleInstrument(tr=activeTrack()){
   setSfStatus("Loading "+sampleLabel(tr)+"...");
   let inst=null;
   if(sound.startsWith("real:tone:"))inst=createToneSampleInstrument(state.audioCtx,{...common,instrument:sound.slice("real:tone:".length)});
+  else if(sound.startsWith("real:chip:"))inst=createGeneratedChipInstrument(state.audioCtx,{...common,preset:sound.slice("real:chip:".length)});
+  else if(sound.startsWith("real:chipsfx:"))inst=createUrlSampleInstrument(state.audioCtx,{...common,url:chipFxSampleUrl(sound.slice("real:chipsfx:".length)),baseMidi:60});
   else if(sound==="real:piano:splendid")inst=m.SplendidGrandPiano(state.audioCtx,{...common,...splendidPianoOptions()});
   else if(sound.startsWith("real:gm:"))inst=m.Soundfont(state.audioCtx,{...common,kit:"FluidR3_GM",instrument:sound.slice("real:gm:".length)});
   else if(sound.startsWith("real:vcsl:"))inst=m.Versilian(state.audioCtx,{...common,instrument:sound.slice("real:vcsl:".length)});

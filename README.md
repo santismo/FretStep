@@ -86,15 +86,17 @@ Features:
 * Multi-select filters such as Drums + Synth
 * Random sound selection constrained by search, filters, and bank
 * Acoustic-style banks for piano, guitar, bass, strings, horns, and drums
-* Sample synth, retro game, percussion, tape, sound-effect, and drum-machine banks
-* RealKey, ToneJS, RealGM, VCSL, Mallet, Tape/Mellotron, sampled synth, retro, and sampled drum-machine banks
+* Sample synth, 8-bit chip, 16-bit console, arcade, retro game, percussion, tape, sound-effect, and drum-machine banks
+* RealKey, 8-Bit, 16-Bit, Arcade, ChipFX, ToneJS, RealGM, VCSL, Mallet, Tape/Mellotron, sampled synth, retro, and sampled drum-machine banks
 * Splendid Grand Piano, ToneJS acoustic samples, safer GM sampled pianos, VCSL pianos/harps/mallets/winds/world instruments, full FluidR3 GM guitar/bass/string/horn/synth/FX browsing, Smolken double bass, Mellotron tape sounds, GM retro/synth samples, and sampled TR/Casio/Linn/Oberheim/Korg/Yamaha/Simmons/Boss-style drum kits
+* Generated sample-backed chip synth instruments for pulse, square, triangle, noise lead, FM bell, console bass, PCM pad, arcade lead, power-up/down, and related game-style tones
+* Retro/Game/8-Bit/16-Bit/Arcade filter chips for faster sound browsing
 * Drum-kit pad mapping for sampled drum machines where the source exposes kick, snare, hats, toms, cymbals, and percussion groups
 * Phone-safe piano loading that limits Splendid Grand Piano and redirects the heaviest VCSL pianos to a lighter sampled GM piano on small touch devices
 * Legacy project migration from older internal sound IDs to equivalent sample-backed sounds
 * New projects start with Piano, Bass, and Drums tracks
 
-Sample sources include smplr/danigb sample packages and ToneJS instrument samples from nbrosowsky/tonejs-instruments. ToneJS sample content is CC-BY 3.0.
+Sample sources include smplr/danigb sample packages, CC0 chip sound effects from subsoap/chip-sounds, and ToneJS instrument samples from nbrosowsky/tonejs-instruments. ToneJS sample content is CC-BY 3.0.
 * Per-track live effects including filters, reverb, delay, chorus, drive, crush, phaser, air, and tremolo
 
 ⸻
