@@ -119,6 +119,7 @@ button.active,.primary{background:color-mix(in srgb,var(--accent) 35%,var(--pane
   <div class="voicerGrid">
     <div class="voicerControl"><label>Key</label><button id="voicerKeyBtn" class="voicerChoiceBtn">C</button><div id="voicerKeyMenu" class="choiceMenu"></div></div>
     <div class="voicerControl"><label>Scale</label><button id="voicerScaleBtn" class="voicerChoiceBtn">Ionian</button><div id="voicerScaleMenu" class="choiceMenu"></div></div>
+    <div class="voicerControl"><label for="melodizerSource">Melodizer Source</label><select id="melodizerSource"><option value="follow">Follow Chord Track</option><option value="manual">Manual Key/Scale</option></select></div>
     <div class="voicerControl"><label for="voicerStyle"><span id="voicerStyleLabel">Voicing Style</span></label><select id="voicerStyle"></select></div>
     <div class="voicerControl"><label for="voicerRole"><span id="voicerRoleLabel">Input Role</span></label><select id="voicerRole"></select></div>
     <div class="voicerControl"><label for="voicerPlayability"><span id="voicerPlayabilityLabel">Playability</span></label><select id="voicerPlayability"></select></div>
@@ -233,6 +234,7 @@ const groovePhraseNames=["Groove","Fill","Pickup","Breakdown","Build","Ending"];
 const grooveFeelNames=["Straight","Loose Swing","Shuffle","Laid Back","Pushed","Machine Tight","Triplet Roll"];
 function defaultGroovizerSettings(){return{style:"Auto Groove",trigger:"Auto",phrase:"Groove",feel:"Straight",length:1,density:.55,swing:.12,humanize:.12,fill:.25,variation:.42,ghosts:.28}}
 const melodizerModeNames=["Melody","Bass Line","Solo"];
+const melodizerSourceNames=[{value:"follow",label:"Follow Chord Track"},{value:"manual",label:"Manual Key/Scale"}];
 const melodizerShapeNames=["Balanced","Hooky","Lyrical","Motif","Sparse","Flowing","Angular","Call Response","Stepwise","Wide Leaps"];
 const melodizerFeelNames=["Straight","Swing","Laid Back","Pushed","Triplet","Syncopated","Machine Tight","Rubato"];
 const melodizerStyleGroups={
@@ -241,7 +243,7 @@ const melodizerStyleGroups={
  "Solo":["Bebop Lines","Hard Bop Solo","Jazz Ballad Solo","Blues Solo","Gospel Runs","Neo-Soul Solo","Fusion Outside","Rock Lead","Country Hybrid","Funk Horn Line","Latin Solo","Gypsy Jazz","Classical Sequence","Chopin Chromatic","Baroque Sequence","Impressionist Solo","Ambient Modal","Synthwave Solo","Chiptune Lead","8-Bit Arcade Lead","16-Bit Hero Lead","Metal Shred","Middle Eastern Solo","Afrobeat Horn","Reggae Lead","Modern Outside","R&B Ornament","Cinematic Ostinato"]
 };
 function melodizerStyleNames(mode="Melody"){return melodizerStyleGroups[mode]||melodizerStyleGroups.Melody}
-function defaultMelodizerSettings(){return{lineMode:"Melody",style:"Pop Hook",shape:"Balanced",feel:"Straight",bars:2,density:.5,rhythm:.4,targetNext:.62,outside:.08,variation:.36,lengthVariety:.28,motif:.35,minNote:48,maxNote:88}}
+function defaultMelodizerSettings(){return{lineMode:"Melody",source:"follow",style:"Pop Hook",shape:"Balanced",feel:"Straight",bars:2,density:.5,rhythm:.4,targetNext:.62,outside:.08,variation:.36,lengthVariety:.28,motif:.35,minNote:48,maxNote:88}}
 function defaultTrackFx(){return{lowCut:20,highCut:18000,reverbType:"Room",reverbMix:0,reverbTime:1.2,delayMix:0,delayTime:.25,chorus:0,drive:0,crush:0,phaser:0,air:0,tremolo:0}}
 const gmDrumPads=[
  {midi:36,label:"Kick"},{midi:38,label:"Snare"},{midi:39,label:"Clap"},{midi:42,label:"Closed Hat"},
@@ -776,7 +778,7 @@ const soundFontDefs=[
 const soundFontIdMigrations={core:"realsynth",keys:"realpiano",guitarbass:"realgm",orchestra:"realgm",brasswinds:"realgm",soundfx:"realfx",acousticdrums:"realdrums",analogdrums:"realdrums",retrogamedrums:"realretro",chip8:"chip8",bits16:"chip16",analogsynth:"realsynth",console8:"chip8",sc55:"realgm",generaluser:"realgm",timgm:"realgm",chaos:"realgm",jns:"realgm",eawpats:"realgm",masterpiece:"realgm",unison:"realgm",tr808:"realdrums",tr909:"realdrums",sc55kits:"realdrums",generaluserkits:"realdrums",timgmkits:"realdrums",jnskits:"realdrums",eawkits:"realdrums"};
 const state={armed:true,playing:false,chordMode:false,semitoneMode:false,tempo:120,timeSigNum:4,timeSigDen:4,subdivision:16,metronome:false,lastMetroStep:-1,inputOctave:0,tick:0,zoom:.9,viewAllTracks:false,hideFretboard:false,useSoundFont:true,sfReady:false,sfLoading:false,sampleModule:null,sampleEnginePromise:null,sampleCatalogExpanded:false,sampleCtx:null,sampleStorage:null,sampleInstruments:new Map(),loopEnabled:false,loopStart:0,loopEnd:PPQ*16,loopSetMode:0,undoStack:[],redoStack:[],scrollX:0,scrollY:250,selectedIds:new Set(),clipboardNotes:[],nextNoteId:1,tracks:[{id:1,name:"Piano",soundFontId:"realpiano",sound:"real:gm:acoustic_grand_piano",color:"blue",volume:100,fx:defaultTrackFx(),notes:[]},{id:2,name:"Bass",soundFontId:"realgm",sound:"real:gm:electric_bass_finger",color:"green",volume:100,fx:defaultTrackFx(),notes:[]},{id:3,name:"Drums",soundFontId:"realdrums",sound:"real:drum:LM-2",color:"orange",volume:100,fx:defaultTrackFx(),notes:[]}],activeTrackId:1,audioCtx:null,masterCtx:null,masterGain:null,masterCompressor:null,trackFxBuses:new Map(),activeGeneratedVoices:[],playbackStartTime:0,playbackStartTick:0,scheduledNotes:new Set(),scheduleTimer:null,liveFretLights:[],livePadLights:[],voicerAuditionTimers:[],fretDisplayChordName:"",voicerEnabled:true,generatorMode:"voicizer",voicer:defaultVoicerSettings(),voicerMemory:{previousNotes:[],previousName:"",previousRoot:-1},groovizer:defaultGroovizerSettings(),groovizerMemory:{previousEvents:[],previousName:"",previousRole:""},melodizer:defaultMelodizerSettings(),melodizerMemory:{previousNotes:[],previousName:"",motif:[]}};
 const $=id=>document.getElementById(id),el={tempo:$("tempo"),tempoSlider:$("tempoSlider"),bpmLabel:$("bpmLabel"),bpmMenu:$("bpmMenu"),bpmCloseBtn:$("bpmCloseBtn"),subdivTop:$("subdivTop"),tsBtn:$("tsBtn"),tsMenu:$("tsMenu"),metroBtn:$("metroBtn"),loopMenu:$("loopMenu"),loopStartInput:$("loopStartInput"),loopEndInput:$("loopEndInput"),loopToggleBtn:$("loopToggleBtn"),loopApplyBtn:$("loopApplyBtn"),loopCloseBtn:$("loopCloseBtn"),settingsBtn:$("settingsBtn"),settingsMenu:$("settingsMenu"),playBtn:$("playBtn"),leftBtn:$("leftBtn"),rightBtn:$("rightBtn"),divDownBtn:$("divDownBtn"),divUpBtn:$("divUpBtn"),octDownBtn:$("octDownBtn"),octUpBtn:$("octUpBtn"),chordBtn:$("chordBtn"),recordBtn:$("recordBtn"),midiBtn:$("midiBtn"),deleteBtn:$("deleteBtn"),newProjectBtn:$("newProjectBtn"),exportProjectBtn:$("exportProjectBtn"),importProjectBtn:$("importProjectBtn"),projectImport:$("projectImport"),trackColorMenu:$("trackColorMenu"),trackColorGrid:$("trackColorGrid"),trackColorCloseBtn:$("trackColorCloseBtn"),trackFxMenu:$("trackFxMenu"),trackFxTitle:$("trackFxTitle"),fxLowCut:$("fxLowCut"),fxLowCutValue:$("fxLowCutValue"),fxHighCut:$("fxHighCut"),fxHighCutValue:$("fxHighCutValue"),fxReverbMix:$("fxReverbMix"),fxReverbMixValue:$("fxReverbMixValue"),fxReverbTime:$("fxReverbTime"),fxReverbTimeValue:$("fxReverbTimeValue"),fxReverbType:$("fxReverbType"),fxDelayMix:$("fxDelayMix"),fxDelayMixValue:$("fxDelayMixValue"),fxDelayTime:$("fxDelayTime"),fxDelayTimeValue:$("fxDelayTimeValue"),fxChorus:$("fxChorus"),fxChorusValue:$("fxChorusValue"),fxDrive:$("fxDrive"),fxDriveValue:$("fxDriveValue"),fxCrush:$("fxCrush"),fxCrushValue:$("fxCrushValue"),fxPhaser:$("fxPhaser"),fxPhaserValue:$("fxPhaserValue"),fxAir:$("fxAir"),fxAirValue:$("fxAirValue"),fxTremolo:$("fxTremolo"),fxTremoloValue:$("fxTremoloValue"),trackFxResetBtn:$("trackFxResetBtn"),trackFxCloseBtn:$("trackFxCloseBtn"),themeBtn:$("themeBtn"),themeMenu:$("themeMenu"),themeList:$("themeList"),randomThemeBtn:$("randomThemeBtn"),randomMonoThemeBtn:$("randomMonoThemeBtn"),themeMenuCloseBtn:$("themeMenuCloseBtn"),hideFretBtn:$("hideFretBtn"),sfBtn:$("sfBtn"),sfLoadBtn:$("sfLoadBtn"),sfStatus:$("sfStatus"),exportBtn:$("exportBtn"),saveBtn:$("saveBtn"),loadBtn:$("loadBtn"),localProjectsMenu:$("localProjectsMenu"),projectNameInput:$("projectNameInput"),saveNamedProjectBtn:$("saveNamedProjectBtn"),localProjectsList:$("localProjectsList"),undoBtn:$("undoBtn"),redoBtn:$("redoBtn"),loopBtn:$("loopBtn"),focusBtn:$("focusBtn"),fretboard:$("fretboard"),fretMarkers:$("fretMarkers"),fretChordLabel:$("fretChordLabel"),timelineViewport:$("timelineViewport"),timelineContent:$("timelineContent"),barZoomHeader:$("barZoomHeader"),vZoomStrip:$("vZoomStrip"),vZoomThumb:$("vZoomThumb"),trackMenuBtn:$("trackMenuBtn"),trackStatusBtn:$("trackStatusBtn"),trackMenu:$("trackMenu"),viewAllToggleBtn:$("viewAllToggleBtn"),trackList:$("trackList"),addTrackMenuBtn:$("addTrackMenuBtn"),deleteTrackMenuBtn:$("deleteTrackMenuBtn"),trackMenuCloseBtn:$("trackMenuCloseBtn"),sfSelect:$("sfSelect"),soundSelect:$("soundSelect"),soundPickerBtn:$("soundPickerBtn"),soundPickerMenu:$("soundPickerMenu"),soundBankRow:$("soundBankRow"),soundSearch:$("soundSearch"),soundFilterRow:$("soundFilterRow"),soundRandomBtn:$("soundRandomBtn"),soundPickerList:$("soundPickerList"),soundPickerCloseBtn:$("soundPickerCloseBtn"),copyBtn:$("copyBtn"),pasteBtn:$("pasteBtn"),colorSelect:$("colorSelect"),stepReadout:$("stepReadout"),posReadout:$("posReadout"),chordReadout:$("chordReadout")};
-Object.assign(el,{voicerBtn:$("voicerBtn"),voicerMenu:$("voicerMenu"),voicerMode:$("voicerMode"),voicerEnableBtn:$("voicerEnableBtn"),voicerKeyBtn:$("voicerKeyBtn"),voicerScaleBtn:$("voicerScaleBtn"),voicerKeyMenu:$("voicerKeyMenu"),voicerScaleMenu:$("voicerScaleMenu"),voicerStyle:$("voicerStyle"),voicerRole:$("voicerRole"),voicerPlayability:$("voicerPlayability"),voicerRakeMode:$("voicerRakeMode"),voicerChordSize:$("voicerChordSize"),voicerChordSizeValue:$("voicerChordSizeValue"),voicerRakeSpeed:$("voicerRakeSpeed"),voicerRakeSpeedValue:$("voicerRakeSpeedValue"),voicerComplexity:$("voicerComplexity"),voicerComplexityValue:$("voicerComplexityValue"),voicerVoiceLeading:$("voicerVoiceLeading"),voicerVoiceLeadingValue:$("voicerVoiceLeadingValue"),voicerOutside:$("voicerOutside"),voicerOutsideValue:$("voicerOutsideValue"),voicerVariation:$("voicerVariation"),voicerVariationValue:$("voicerVariationValue"),voicerLengthVariety:$("voicerLengthVariety"),voicerLengthVarietyValue:$("voicerLengthVarietyValue"),voicerRepeat:$("voicerRepeat"),voicerRepeatValue:$("voicerRepeatValue"),voicerMinNote:$("voicerMinNote"),voicerMaxNote:$("voicerMaxNote"),voicerReadout:$("voicerReadout"),voicerLastChord:$("voicerLastChord"),voicerLastNotes:$("voicerLastNotes"),voicerResetBtn:$("voicerResetBtn"),voicerRandomizeBtn:$("voicerRandomizeBtn"),voicerArrangeBtn:$("voicerArrangeBtn"),voicerCloseBtn:$("voicerCloseBtn")});
+Object.assign(el,{voicerBtn:$("voicerBtn"),voicerMenu:$("voicerMenu"),voicerMode:$("voicerMode"),melodizerSource:$("melodizerSource"),voicerEnableBtn:$("voicerEnableBtn"),voicerKeyBtn:$("voicerKeyBtn"),voicerScaleBtn:$("voicerScaleBtn"),voicerKeyMenu:$("voicerKeyMenu"),voicerScaleMenu:$("voicerScaleMenu"),voicerStyle:$("voicerStyle"),voicerRole:$("voicerRole"),voicerPlayability:$("voicerPlayability"),voicerRakeMode:$("voicerRakeMode"),voicerChordSize:$("voicerChordSize"),voicerChordSizeValue:$("voicerChordSizeValue"),voicerRakeSpeed:$("voicerRakeSpeed"),voicerRakeSpeedValue:$("voicerRakeSpeedValue"),voicerComplexity:$("voicerComplexity"),voicerComplexityValue:$("voicerComplexityValue"),voicerVoiceLeading:$("voicerVoiceLeading"),voicerVoiceLeadingValue:$("voicerVoiceLeadingValue"),voicerOutside:$("voicerOutside"),voicerOutsideValue:$("voicerOutsideValue"),voicerVariation:$("voicerVariation"),voicerVariationValue:$("voicerVariationValue"),voicerLengthVariety:$("voicerLengthVariety"),voicerLengthVarietyValue:$("voicerLengthVarietyValue"),voicerRepeat:$("voicerRepeat"),voicerRepeatValue:$("voicerRepeatValue"),voicerMinNote:$("voicerMinNote"),voicerMaxNote:$("voicerMaxNote"),voicerReadout:$("voicerReadout"),voicerLastChord:$("voicerLastChord"),voicerLastNotes:$("voicerLastNotes"),voicerResetBtn:$("voicerResetBtn"),voicerRandomizeBtn:$("voicerRandomizeBtn"),voicerArrangeBtn:$("voicerArrangeBtn"),voicerCloseBtn:$("voicerCloseBtn")});
 Object.assign(el,{voicerTitle:$("voicerTitle"),voicerStyleLabel:$("voicerStyleLabel"),voicerRoleLabel:$("voicerRoleLabel"),voicerPlayabilityLabel:$("voicerPlayabilityLabel"),voicerRakeModeLabel:$("voicerRakeModeLabel"),voicerChordSizeLabel:$("voicerChordSizeLabel"),voicerRakeSpeedLabel:$("voicerRakeSpeedLabel"),voicerComplexityLabel:$("voicerComplexityLabel"),voicerVoiceLeadingLabel:$("voicerVoiceLeadingLabel"),voicerOutsideLabel:$("voicerOutsideLabel"),voicerVariationLabel:$("voicerVariationLabel"),voicerLengthVarietyLabel:$("voicerLengthVarietyLabel"),voicerRepeatLabel:$("voicerRepeatLabel")});
 let trackFxTarget=null,trackFxUndoArmed=false;
 const soundPickerState={filters:new Set(),query:"",bank:"all"};
@@ -2409,6 +2411,7 @@ function melodizerRegisterForMode(mode){
 function normalizeMelodizerSettings(v=state.melodizer){
  const base={...defaultMelodizerSettings(),...(v||{})};
  if(!melodizerModeNames.includes(base.lineMode))base.lineMode="Melody";
+ if(!["follow","manual"].includes(base.source))base.source="follow";
  if(!melodizerStyleNames(base.lineMode).includes(base.style))base.style=melodizerStyleNames(base.lineMode)[0];
  if(!melodizerShapeNames.includes(base.shape))base.shape="Balanced";
  if(!melodizerFeelNames.includes(base.feel))base.feel="Straight";
@@ -2491,14 +2494,36 @@ function chordInfoFromName(name,seedMidi=60){
  const scalePcs=[...new Set(scale.map(i=>mod12(root+i)))];
  return{name,root,chordPcs,scalePcs};
 }
-function melodizerSourceRegions(start,totalTicks,seedMidi){
- const end=start+totalTicks,regions=chordRegions().sort((a,b)=>a.start-b.start);
- if(!regions.length){
-  const v=normalizeVoicerSettings(state.voicer),key=selectedKeys(v)[0]??midiPc(seedMidi);
-  const scaleName=(scaleDefs[selectedScales(v)[0]]||scaleDefs[0])[0];
-  const minor=/minor|aeolian|dorian|phrygian|locrian/i.test(scaleName);
-  return[{start,end,name:noteNames[key]+(minor?"m":""),fallback:true}];
+function manualScaleChordName(key,scaleIndex,degree){
+ const scale=(scaleDefs[scaleIndex]||scaleDefs[0])[1]||scaleDefs[0][1],len=scale.length||7;
+ const d=((Math.round(degree)%len)+len)%len;
+ const offsetAt=i=>scale[i%len]+Math.floor(i/len)*12;
+ const rootOffset=offsetAt(d),third=mod12(offsetAt(d+2)-rootOffset),fifth=mod12(offsetAt(d+4)-rootOffset),root=mod12(key+rootOffset);
+ let suffix="";
+ if(third===3&&fifth===7)suffix="m";
+ else if(third===3&&fifth===6)suffix="dim";
+ else if(third===4&&fifth===8)suffix="aug";
+ return noteNames[root]+suffix;
+}
+function manualMelodizerRegions(start,totalTicks){
+ const end=start+totalTicks,v=normalizeVoicerSettings(state.voicer),keys=selectedKeys(v),scales=selectedScales(v);
+ const key=keys[0]??v.key??0,scaleIndex=scales[0]??v.scale??0,scaleName=(scaleDefs[scaleIndex]||scaleDefs[0])[0];
+ const minor=/minor|aeolian|dorian|phrygian|locrian|harmonic/i.test(scaleName);
+ const degrees=minor?[0,6,5,4,0,3,5,4]:[0,5,3,4,0,2,5,4];
+ const out=[];
+ let cursor=start,i=0;
+ while(cursor<end){
+  const next=Math.min(end,cursor+barTicks());
+  out.push({start:cursor,end:next,name:manualScaleChordName(key,scaleIndex,degrees[i++%degrees.length]),manual:true});
+  cursor=next;
  }
+ return out;
+}
+function melodizerSourceRegions(start,totalTicks,seedMidi,settings=state.melodizer){
+ const source=normalizeMelodizerSettings(settings).source,end=start+totalTicks;
+ if(source==="manual")return manualMelodizerRegions(start,totalTicks);
+ const regions=chordRegions().sort((a,b)=>a.start-b.start);
+ if(!regions.length)return[];
  const out=[];
  let cursor=start;
  while(cursor<end){
@@ -2580,7 +2605,12 @@ function generateMelodizerPhrase(seedMidi=null,tr=activeTrack()){
  const settings=normalizeMelodizerSettings(state.melodizer);
  state.melodizer=settings;
  const reg=melodizerRegisterForMode(settings.lineMode),seed=seedMidi==null?reg.center:Number(seedMidi);
- const start=quantizedInputTick(),total=settings.bars*barTicks(),end=start+total,profile=melodizerProfile(settings),regions=melodizerSourceRegions(start,total,seed);
+ const start=quantizedInputTick(),total=settings.bars*barTicks(),end=start+total,profile=melodizerProfile(settings),regions=melodizerSourceRegions(start,total,seed,settings);
+ const name=`${settings.style} ${settings.lineMode}`;
+ if(!regions.length){
+  state.melodizerMemory={previousNotes:[],previousName:name,motif:state.melodizerMemory?.motif||[]};
+  return{name,events:[],lengthTicks:total,style:settings.style,regions,missingSource:true};
+ }
  const events=[],motif=[],useOldMotif=state.melodizerMemory?.motif?.length&&Math.random()<settings.motif*.35;
  let cursor=start,last=null,idx=0;
  while(cursor<end&&events.length<420){
@@ -2606,7 +2636,6 @@ function generateMelodizerPhrase(seedMidi=null,tr=activeTrack()){
   if(motif.length<8&&Math.random()<.75)motif.push(mod12(m-chord.root));
   last=m;cursor+=dur;idx++;
  }
- const name=`${settings.style} ${settings.lineMode}`;
  state.melodizerMemory={previousNotes:events.map(e=>e.midi),previousName:name,motif:motif.length?motif:(state.melodizerMemory?.motif||[])};
  return{name,events,lengthTicks:total,style:settings.style,regions};
 }
@@ -2629,9 +2658,14 @@ function resetMelodizerEngine(){
 function insertMelodizerPhrase(seedMidi=null,recordToTimeline=true){
  const tr=activeTrack(),color=tr.color||"yellow";
  clearVoicerAuditionTimers();
- if(recordToTimeline){pushUndo();ensureReadableInputZoom()}
  const generated=generateMelodizerPhrase(seedMidi,tr);
  const start=quantizedInputTick(),groupId="m"+Date.now().toString(36)+Math.random().toString(36).slice(2,7),ids=[];
+ if(!generated.events.length){
+  const reason=generated.missingSource?"Add chord regions or switch Melodizer Source to Manual Key/Scale.":"No melody events generated.";
+  setMelodizerLastDisplay(generated.name,[],reason);
+  return;
+ }
+ if(recordToTimeline){pushUndo();ensureReadableInputZoom()}
  for(const ev of generated.events){
   const dur=Math.max(PPQ/32,ev.duration);
   if(!recordToTimeline){
@@ -2644,7 +2678,8 @@ function insertMelodizerPhrase(seedMidi=null,recordToTimeline=true){
   }
  }
  if(recordToTimeline&&ids.length)state.selectedIds=new Set(ids);
- setMelodizerLastDisplay(generated.name,generated.events,`${recordToTimeline?"Written":"Audition"} · ${generated.style}`);
+ const sourceDetail=normalizeMelodizerSettings(state.melodizer).source==="manual"?"Manual Key/Scale":"Follow Chord Track";
+ setMelodizerLastDisplay(generated.name,generated.events,`${recordToTimeline?"Written":"Audition"} · ${sourceDetail} · ${generated.style}`);
  if(recordToTimeline&&!state.chordMode&&!state.playing)state.tick+=generated.lengthTicks;
  if(recordToTimeline)revealVoicerArrangement(start,start+generated.lengthTicks);
 }
@@ -2869,8 +2904,8 @@ function resetVoicerSettings(){
 	  return;
 	 }
  if(currentPluginMode()==="melodizer"){
-  const mode=state.melodizer.lineMode||"Melody";
-  state.melodizer={...defaultMelodizerSettings(),lineMode:mode,style:melodizerStyleNames(mode)[0]};
+  const mode=state.melodizer.lineMode||"Melody",source=state.melodizer.source==="manual"?"manual":"follow";
+  state.melodizer={...defaultMelodizerSettings(),source,lineMode:mode,style:melodizerStyleNames(mode)[0]};
   syncVoicerControls();
   resetMelodizerEngine();
   if(el.voicerLastNotes)el.voicerLastNotes.textContent="Reset to defaults. Play a fret to write or audition a generated line.";
@@ -2906,14 +2941,16 @@ function setRangeSpec(control,min,max,step){
 function setText(node,text){if(node)node.textContent=text}
 function syncVoicerModeUi(mode=currentPluginMode()){
  const drum=mode==="groovizer",melodizer=mode==="melodizer";
+ const melSettings=melodizer?normalizeMelodizerSettings(state.melodizer):null,manualMelodizer=melodizer&&melSettings.source==="manual";
  state.voicerUiMode=mode;
  setText(el.voicerTitle,drum?"Groovizer":melodizer?"Melodizer":"Voicizer");
  if(el.voicerMode){
   el.voicerMode.style.display=drum?"none":"";
   el.voicerMode.value=state.generatorMode==="melodizer"?"melodizer":"voicizer";
  }
- setControlRowHidden(el.voicerKeyBtn,drum);
- setControlRowHidden(el.voicerScaleBtn,drum);
+ setControlRowHidden(el.melodizerSource,!melodizer);
+ setControlRowHidden(el.voicerKeyBtn,drum||(melodizer&&!manualMelodizer));
+ setControlRowHidden(el.voicerScaleBtn,drum||(melodizer&&!manualMelodizer));
  setControlRowHidden(el.voicerMinNote,drum);
  setControlRowHidden(el.voicerMaxNote,drum);
  setControlRowHidden(el.voicerLengthVariety,drum);
@@ -2930,12 +2967,13 @@ function syncVoicerModeUi(mode=currentPluginMode()){
  setText(el.voicerVariationLabel,drum?"Variation":"Variation");
  setText(el.voicerLengthVarietyLabel,melodizer?"Length Var":"Length Variety");
  setText(el.voicerRepeatLabel,drum?"Ghosts":melodizer?"Motif":"Repeat");
+ populateSelect(el.melodizerSource,melodizerSourceNames);
  populateSelect(el.voicerStyle,drum?grooveStyleNames:melodizer?melodizerStyleNames(state.melodizer.lineMode):voicingStyleNames);
  populateSelect(el.voicerRole,drum?grooveTriggerNames:melodizer?melodizerModeNames:roleNames);
  populateSelect(el.voicerPlayability,drum?groovePhraseNames:melodizer?melodizerShapeNames:playabilityNames);
  populateSelect(el.voicerRakeMode,drum?grooveFeelNames:melodizer?melodizerFeelNames:rakeModes);
  setRangeSpec(el.voicerChordSize,drum?1:melodizer?1:3,drum?4:melodizer?16:8,1);
- if(drum)closeChoiceMenus();
+ if(drum||(melodizer&&!manualMelodizer))closeChoiceMenus();
 }
 function closeChoiceMenus(except=null){
  for(const menu of [el.voicerKeyMenu,el.voicerScaleMenu]){
@@ -3035,10 +3073,10 @@ function setupVoicerControls(){
  if(el.voicerMode)el.voicerMode.onchange=()=>{pushUndo();state.generatorMode=el.voicerMode.value==="melodizer"?"melodizer":"voicizer";syncVoicerControls();resetVoicerEngine();render()};
  if(el.voicerKeyBtn)el.voicerKeyBtn.onclick=e=>toggleVoicerChoice("key",e);
  if(el.voicerScaleBtn)el.voicerScaleBtn.onclick=e=>toggleVoicerChoice("scale",e);
- const controls=[el.voicerStyle,el.voicerRole,el.voicerPlayability,el.voicerRakeMode,el.voicerChordSize,el.voicerRakeSpeed,el.voicerComplexity,el.voicerVoiceLeading,el.voicerOutside,el.voicerVariation,el.voicerLengthVariety,el.voicerRepeat,el.voicerMinNote,el.voicerMaxNote];
+ const controls=[el.melodizerSource,el.voicerStyle,el.voicerRole,el.voicerPlayability,el.voicerRakeMode,el.voicerChordSize,el.voicerRakeSpeed,el.voicerComplexity,el.voicerVoiceLeading,el.voicerOutside,el.voicerVariation,el.voicerLengthVariety,el.voicerRepeat,el.voicerMinNote,el.voicerMaxNote];
  controls.forEach(c=>{
   if(!c)return;
-  c.addEventListener(c.type==="range"?"input":"change",()=>{const before=state.melodizer?.lineMode;readVoicerControls();if(currentPluginMode()==="melodizer"&&c===el.voicerRole&&before!==state.melodizer.lineMode)syncVoicerControls();renderStatus()});
+  c.addEventListener(c.type==="range"?"input":"change",()=>{readVoicerControls();if(currentPluginMode()==="melodizer"&&(c===el.voicerRole||c===el.melodizerSource))syncVoicerControls();renderStatus()});
  });
  renderVoicerChoiceMenu("key");
  renderVoicerChoiceMenu("scale");
@@ -3065,6 +3103,7 @@ function readVoicerControls(){
  if(currentPluginMode()==="melodizer"){
   const v=normalizeMelodizerSettings(state.melodizer);
   const previousLineMode=v.lineMode;
+  v.source=el.melodizerSource?.value==="manual"?"manual":"follow";
   v.lineMode=el.voicerRole?.value||v.lineMode;
   if(!melodizerModeNames.includes(v.lineMode))v.lineMode="Melody";
   v.style=el.voicerStyle?.value||v.style;
@@ -3136,6 +3175,7 @@ function syncVoicerControls(){
  if(mode==="melodizer"){
   const v=normalizeMelodizerSettings(state.melodizer);
   state.melodizer=v;
+  if(el.melodizerSource)el.melodizerSource.value=v.source;
   el.voicerStyle.value=v.style;
   el.voicerRole.value=v.lineMode;
   el.voicerPlayability.value=v.shape;
@@ -3205,6 +3245,7 @@ function randomizeVoicerSettings(){
 	 }
  if(currentPluginMode()==="melodizer"){
   const v=state.melodizer,mode=v.lineMode||"Melody",styles=melodizerStyleNames(mode),reg=melodizerRegisterForMode(mode);
+  v.source=v.source==="manual"?"manual":"follow";
   v.lineMode=mode;
   v.style=styles[Math.floor(Math.random()*styles.length)];
   v.shape=melodizerShapeNames[Math.floor(Math.random()*melodizerShapeNames.length)];
@@ -4174,7 +4215,7 @@ function projectData(){
  state.groovizer=normalizeGroovizerSettings(state.groovizer);
  state.melodizer=normalizeMelodizerSettings(state.melodizer);
  return {
-	  version:29,tempo:state.tempo,timeSigNum:state.timeSigNum,timeSigDen:state.timeSigDen,metronome:state.metronome,semitoneMode:state.semitoneMode,subdivision:state.subdivision,metronome:state.metronome,inputOctave:state.inputOctave,
+	  version:30,tempo:state.tempo,timeSigNum:state.timeSigNum,timeSigDen:state.timeSigDen,metronome:state.metronome,semitoneMode:state.semitoneMode,subdivision:state.subdivision,metronome:state.metronome,inputOctave:state.inputOctave,
   tracks:state.tracks,activeTrackId:state.activeTrackId,viewAllTracks:state.viewAllTracks,
   hideFretboard:state.hideFretboard,useSoundFont:true,
   loopEnabled:state.loopEnabled,loopStart:state.loopStart,loopEnd:state.loopEnd,
@@ -4204,7 +4245,7 @@ function importProjectFile(file){
 
 function makeFreshProjectData(){
  return {
-	  version:29,
+	  version:30,
   tempo:120,
   timeSigNum:4,
   timeSigDen:4,
