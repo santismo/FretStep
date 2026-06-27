@@ -2162,7 +2162,7 @@ function insertVoicerChord(baseMidi,stringName,fret,recordToTimeline=true){
   if(recordToTimeline)
    tr.notes.push({id:state.nextNoteId++,trackId:tr.id,start:start+off,duration:dur,midi:m,displayMidi:m===actual?baseMidi:m,stringName:m===actual?stringName:"",fret:m===actual?fret:null,channel:s?s.channel:1,chordGroup:groupId,chordStart:start,chordName:generated.name});
  });
- addLiveFretLights(ordered.map(m=>({midi:m,color:tr.color||"yellow",stringName:m===actual?stringName:"",fret:m===actual?fret:null})),tr.color||"yellow",Math.max(450,Math.round(ticksToSeconds(stepTicks())*1000)),true);
+ if(!recordToTimeline)addLiveFretLights(ordered.map(m=>({midi:m,color:tr.color||"yellow",stringName:m===actual?stringName:"",fret:m===actual?fret:null})),tr.color||"yellow",Math.max(450,Math.round(ticksToSeconds(stepTicks())*1000)),true);
  setVoicerLastDisplay(generated.name,ordered,`${recordToTimeline?"Written":"Audition"}${generated.style?` · ${generated.style}`:""}`);
  if(recordToTimeline&&!state.chordMode&&!state.playing)state.tick+=stepTicks();
 }
@@ -2291,7 +2291,7 @@ function generateVoicerArrangement(){
   cursor+=len;
  }
  if(inserted.length)state.selectedIds=new Set(inserted);
- if(firstNotes.length)addLiveFretLights(firstNotes.map(m=>({midi:m,color:tr.color||"yellow"})),tr.color||"yellow",Math.max(500,Math.round(ticksToSeconds(firstLen)*700)),true);
+ if(previewArrangement&&firstNotes.length)addLiveFretLights(firstNotes.map(m=>({midi:m,color:tr.color||"yellow"})),tr.color||"yellow",Math.max(500,Math.round(ticksToSeconds(firstLen)*700)),true);
  if(!state.playing)state.tick=cursor;
  revealVoicerArrangement(start,cursor);
  setVoicerLastDisplay(last?.name||"--",last?.notes||[],`${arrangement.items.length} chord arrangement · ${arrangement.name}`);
@@ -2490,7 +2490,7 @@ function insertGroovizerPhrase(pad,recordToTimeline=true,velocity=96){
   const delay=ticksToSeconds(ev.tick);
   const dur=Math.max(PPQ/32,ev.duration);
   if(!recordToTimeline)playVoicerAuditionNote(ev.midi,dur,tr,delay);
-  queuePadLightsForNotes([ev.midi],color,delay,Math.max(120,Math.round(ticksToSeconds(dur)*1000)));
+  if(!recordToTimeline)queuePadLightsForNotes([ev.midi],color,delay,Math.max(120,Math.round(ticksToSeconds(dur)*1000)));
   if(recordToTimeline)tr.notes.push({id:state.nextNoteId++,trackId:tr.id,start:start+ev.tick,duration:dur,midi:ev.midi,displayMidi:ev.midi,stringName:"",fret:null,channel:10,drumName:ev.drumName,velocity:ev.velocity,grooveGroup:groupId,grooveStart:start,grooveName:generated.name});
  }
  setGroovizerLastDisplay(generated.name,generated.events,`${recordToTimeline?"Written":"Audition"} · ${generated.style}`);
