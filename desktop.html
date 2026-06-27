@@ -3219,23 +3219,25 @@ function detectChord(midis){
 function chordRegions(){
  const map=new Map();
  for(const t of state.tracks)for(const n of t.notes){
-  const start=n.grooveStart??n.chordStart??n.start;
-  const key=n.grooveGroup?("r:"+n.grooveGroup):n.chordGroup?("g:"+n.chordGroup):("s:"+start);
-  if(!map.has(key))map.set(key,{start,end:start,midis:[],name:n.grooveName||n.chordName||"",type:n.grooveGroup?"groove":"chord"});
+  if(n.grooveGroup||n.grooveName)continue;
+  const start=n.chordStart??n.start;
+  const key=n.chordGroup?("g:"+n.chordGroup):("s:"+start);
+  if(!map.has(key))map.set(key,{start,end:start,midis:[],name:n.chordName||"",type:"chord"});
   const item=map.get(key);
   item.start=Math.min(item.start,start);
   item.end=Math.max(item.end,n.start+n.duration);
   item.midis.push(n.midi);
-  if(n.grooveName||n.chordName)item.name=n.grooveName||n.chordName;
+  if(n.chordName)item.name=n.chordName;
  }
  const groups=[...map.values()].sort((a,b)=>a.start-b.start).filter(g=>g.name||new Set(g.midis.map(m=>m%12)).size>=2);
- return groups.map((g,i)=>({start:g.start,end:g.type==="groove"?Math.max(g.end,g.start+PPQ/4):(groups[i+1]?.start??Math.max(g.start+PPQ*4,totalTicks())),name:g.name||detectChord(g.midis)})).filter(r=>r.name&&r.name!=="—");
+ return groups.map((g,i)=>({start:g.start,end:groups[i+1]?.start??Math.max(g.start+PPQ*4,totalTicks()),name:g.name||detectChord(g.midis)})).filter(r=>r.name&&r.name!=="—");
 }
 function currentChordName(){
  const t=snapTick(state.tick),notes=[],named=[];
  for(const tr of state.tracks)for(const n of tr.notes){
-  const start=n.grooveStart??n.chordStart??n.start;
-  if(start===t){notes.push(n.midi);if(n.grooveName||n.chordName)named.push(n.grooveName||n.chordName)}
+  if(n.grooveGroup||n.grooveName)continue;
+  const start=n.chordStart??n.start;
+  if(start===t){notes.push(n.midi);if(n.chordName)named.push(n.chordName)}
  }
  return named[0]||detectChord(notes);
 }
