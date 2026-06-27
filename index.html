@@ -414,6 +414,51 @@ const realRetroPresets=[
  ["real:gm:pad_7_halo","Halo PCM Pad Sample",["sample","real","synth","retro"]],
  ["real:gm:orchestra_hit","16-Bit Orchestra Hit Sample",["sample","real","orch","retro"]]
 ];
+const realTonePresets=[
+ ["real:tone:piano","ToneJS Piano",["sample","real","keys"]],
+ ["real:tone:guitar-acoustic","ToneJS Acoustic Guitar",["sample","real","guitar"]],
+ ["real:tone:guitar-nylon","ToneJS Nylon Guitar",["sample","real","guitar"]],
+ ["real:tone:guitar-electric","ToneJS Electric Guitar",["sample","real","guitar"]],
+ ["real:tone:bass-electric","ToneJS Electric Bass",["sample","real","bass"]],
+ ["real:tone:violin","ToneJS Violin",["sample","real","orch"]],
+ ["real:tone:cello","ToneJS Cello",["sample","real","orch"]],
+ ["real:tone:contrabass","ToneJS Contrabass",["sample","real","bass","orch"]],
+ ["real:tone:harp","ToneJS Harp",["sample","real","orch","guitar"]],
+ ["real:tone:flute","ToneJS Flute",["sample","real","horns"]],
+ ["real:tone:clarinet","ToneJS Clarinet",["sample","real","horns"]],
+ ["real:tone:saxophone","ToneJS Saxophone",["sample","real","horns"]],
+ ["real:tone:trumpet","ToneJS Trumpet",["sample","real","horns"]],
+ ["real:tone:trombone","ToneJS Trombone",["sample","real","horns"]],
+ ["real:tone:french-horn","ToneJS French Horn",["sample","real","horns"]],
+ ["real:tone:tuba","ToneJS Tuba",["sample","real","horns"]],
+ ["real:tone:bassoon","ToneJS Bassoon",["sample","real","horns"]],
+ ["real:tone:organ","ToneJS Organ",["sample","real","keys"]],
+ ["real:tone:harmonium","ToneJS Harmonium",["sample","real","keys","world"]],
+ ["real:tone:xylophone","ToneJS Xylophone",["sample","real","keys"]]
+];
+const toneSampleBaseUrl="https://nbrosowsky.github.io/tonejs-instruments/samples/";
+const toneSampleMaps={
+ "bass-electric":{"A#1":"As1.mp3","A#3":"As3.mp3","C#1":"Cs1.mp3","C#3":"Cs3.mp3","E1":"E1.mp3","E3":"E3.mp3","G1":"G1.mp3","G3":"G3.mp3"},
+ "bassoon":{"A2":"A2.mp3","C4":"C4.mp3","E4":"E4.mp3","G3":"G3.mp3","A4":"A4.mp3"},
+ "cello":{"D#2":"Ds2.mp3","G#2":"Gs2.mp3","C#3":"Cs3.mp3","E3":"E3.mp3","F#3":"Fs3.mp3","A4":"A4.mp3","B4":"B4.mp3"},
+ "clarinet":{"D3":"D3.mp3","D4":"D4.mp3","F4":"F4.mp3","A#4":"As4.mp3","D6":"D6.mp3","F#6":"Fs6.mp3"},
+ "contrabass":{"C2":"C2.mp3","D2":"D2.mp3","F#2":"Fs2.mp3","G#2":"Gs2.mp3","A2":"A2.mp3","E3":"E3.mp3","B3":"B3.mp3"},
+ "flute":{"A4":"A4.mp3","C5":"C5.mp3","E5":"E5.mp3","A6":"A6.mp3","C7":"C7.mp3"},
+ "french-horn":{"A1":"A1.mp3","C2":"C2.mp3","D#2":"Ds2.mp3","D3":"D3.mp3","F5":"F5.mp3"},
+ "guitar-acoustic":{"D2":"D2.mp3","F2":"F2.mp3","A2":"A2.mp3","D#3":"Ds3.mp3","G3":"G3.mp3","C4":"C4.mp3","F4":"F4.mp3","A#4":"As4.mp3"},
+ "guitar-electric":{"E2":"E2.mp3","C3":"C3.mp3","D#3":"Ds3.mp3","A3":"A3.mp3","F#4":"Fs4.mp3","C6":"C6.mp3"},
+ "guitar-nylon":{"F#2":"Fs2.mp3","G3":"G3.mp3","B3":"B3.mp3","D#4":"Ds4.mp3","C#5":"Cs5.mp3","E5":"E5.mp3","G#5":"Gs5.mp3","A5":"A5.mp3"},
+ "harmonium":{"C2":"C2.mp3","E2":"E2.mp3","C#3":"Cs3.mp3","A3":"A3.mp3","D4":"D4.mp3","F4":"F4.mp3","G4":"G4.mp3"},
+ "harp":{"G1":"G1.mp3","B1":"B1.mp3","A2":"A2.mp3","E3":"E3.mp3","F4":"F4.mp3","C5":"C5.mp3","D6":"D6.mp3","B6":"B6.mp3"},
+ "organ":{"F#1":"Fs1.mp3","A2":"A2.mp3","C3":"C3.mp3","D#3":"Ds3.mp3","F#4":"Fs4.mp3","A5":"A5.mp3","C6":"C6.mp3"},
+ "piano":{"C1":"C1.mp3","D#1":"Ds1.mp3","F#2":"Fs2.mp3","C#4":"Cs4.mp3","A#4":"As4.mp3","E5":"E5.mp3","G6":"G6.mp3","A7":"A7.mp3"},
+ "saxophone":{"C#3":"Cs3.mp3","F3":"F3.mp3","B3":"B3.mp3","D4":"D4.mp3","F#4":"Fs4.mp3","A4":"A4.mp3","D#5":"Ds5.mp3","G5":"G5.mp3"},
+ "trombone":{"A#1":"As1.mp3","C#2":"Cs2.mp3","A#3":"As3.mp3","D4":"D4.mp3","D#4":"Ds4.mp3","F4":"F4.mp3"},
+ "trumpet":{"C4":"C4.mp3","D#4":"Ds4.mp3","F4":"F4.mp3","G4":"G4.mp3","A5":"A5.mp3","C6":"C6.mp3"},
+ "tuba":{"A#1":"As1.mp3","D#2":"Ds2.mp3","F2":"F2.mp3","A#2":"As2.mp3","D3":"D3.mp3"},
+ "violin":{"A3":"A3.mp3","C4":"C4.mp3","E4":"E4.mp3","G5":"G5.mp3","A5":"A5.mp3","C6":"C6.mp3","E6":"E6.mp3"},
+ "xylophone":{"G4":"G4.mp3","C5":"C5.mp3","G5":"G5.mp3","C6":"C6.mp3","G6":"G6.mp3","C7":"C7.mp3","G7":"G7.mp3","C8":"C8.mp3"}
+};
 const realVcslPresets=[
  ["real:vcsl:Chordophones/Composite Chordophones/Folk Harp","VCSL Folk Harp",["sample","real","orch"]],
  ["real:vcsl:Chordophones/Composite Chordophones/Concert Harp","VCSL Concert Harp",["sample","real","orch"]],
@@ -554,6 +599,7 @@ const realDrumPresets=[
 ];
 const soundFontDefs=[
  {id:"realpiano",name:"Real Sample Keys",short:"RealKey",type:"keys",engine:"sample",presets:realPianoPresets,categories:["keys","sample","real"]},
+ {id:"realtone",name:"ToneJS Acoustic Samples",short:"Tone",type:"sample",engine:"sample",presets:realTonePresets,categories:["sample","real"]},
  {id:"realgm",name:"Real GM Acoustic Samples",short:"RealGM",type:"sample",engine:"sample",presets:realGmPresets,categories:["sample","real"]},
  {id:"realvcsl",name:"VCSL Samples",short:"VCSL",type:"sample",engine:"sample",presets:realVcslPresets,categories:["sample","real"]},
  {id:"realmallet",name:"Sample Mallets",short:"Mallet",type:"keys",engine:"sample",presets:realMalletPresets,categories:["keys","sample","real"]},
@@ -1155,6 +1201,28 @@ function gmPresetListForName(name){
  if(/piano|organ|clavinet|celesta|glockenspiel|music_box|vibraphone|marimba|xylophone|tubular_bells|dulcimer|tinkle_bell|accordion|harmonica/.test(n))return realPianoPresets;
  return realGmPresets;
 }
+function gmCategoriesForName(name){
+ const n=String(name||"").toLowerCase();
+ const cats=["sample","real"];
+ if(/lead_|pad_|synth_|new_age|warm|poly|halo|sweep|calliope|charang|chiff|fifths/.test(n))cats.push("synth");
+ if(/bass/.test(n))cats.push("bass");
+ if(/guitar|banjo|sitar|shamisen|koto|harp/.test(n))cats.push("guitar");
+ if(/string|violin|viola|cello|contrabass|choir|voice|orchestra/.test(n))cats.push("orch");
+ if(/trumpet|trombone|tuba|horn|sax|flute|piccolo|clarinet|oboe|bassoon|recorder|shakuhachi|ocarina|bagpipe|shanai|harmonica|bottle|whistle/.test(n))cats.push("horns");
+ if(/piano|organ|clavinet|celesta|glockenspiel|music_box|vibraphone|marimba|xylophone|tubular_bells|dulcimer|tinkle_bell|accordion|kalimba|steel_drums/.test(n))cats.push("keys");
+ if(/drum|cymbal|agogo|woodblock|taiko|tom|timpani/.test(n))cats.push("drums");
+ if(/fx_|bird|telephone|helicopter|applause|gunshot|seashore|breath|fret_noise|reverse/.test(n))cats.push("fx");
+ if(/lead_|pad_|fx_|synth_|music_box|tinkle_bell|orchestra_hit|reverse_cymbal/.test(n))cats.push("retro");
+ if(/sitar|shamisen|koto|kalimba|bagpipe|shanai|steel_drums|taiko|agogo|woodblock/.test(n))cats.push("world");
+ return [...new Set(cats)];
+}
+function expandStaticSampleCatalog(){
+ for(const name of gmProgramSampleIds){
+  const list=gmPresetListForName(name);
+  addSamplePreset(list,"real:gm:"+name,"GM "+sampleTitleFromId(name),gmCategoriesForName(name));
+ }
+}
+expandStaticSampleCatalog();
 function expandSampleCatalog(m){
  if(!m||state.sampleCatalogExpanded)return;
  state.sampleCatalogExpanded=true;
@@ -1162,7 +1230,7 @@ function expandSampleCatalog(m){
   if(typeof m.getSoundfontNames==="function"){
    for(const name of m.getSoundfontNames()){
     const list=gmPresetListForName(name);
-    addSamplePreset(list,"real:gm:"+name,"GM "+sampleTitleFromId(name),["sample","real"]);
+    addSamplePreset(list,"real:gm:"+name,"GM "+sampleTitleFromId(name),gmCategoriesForName(name));
    }
   }
   if(typeof m.getElectricPianoNames==="function")for(const name of m.getElectricPianoNames())addSamplePreset(realPianoPresets,"real:ep:"+name,sampleTitleFromId(name),["sample","real","keys"]);
@@ -1253,6 +1321,16 @@ function sampleFallbackSound(sound){
  const s=String(sound||"").toLowerCase();
  const migrated=sampleSoundForLegacy(sound);
  if(migrated&&migrated!==sound)return migrated;
+ if(s.startsWith("real:tone:guitar"))return "real:gm:acoustic_guitar_steel";
+ if(s.startsWith("real:tone:bass"))return "real:gm:electric_bass_finger";
+ if(s.startsWith("real:tone:violin"))return "real:gm:violin";
+ if(s.startsWith("real:tone:cello"))return "real:gm:cello";
+ if(s.startsWith("real:tone:contrabass"))return "real:gm:contrabass";
+ if(s.startsWith("real:tone:harp"))return "real:gm:orchestral_harp";
+ if(s.startsWith("real:tone:tuba"))return "real:gm:tuba";
+ if(s.startsWith("real:tone:french-horn"))return "real:gm:french_horn";
+ if(s.startsWith("real:tone:organ")||s.startsWith("real:tone:harmonium"))return "real:gm:church_organ";
+ if(s.startsWith("real:tone:xylophone"))return "real:gm:xylophone";
  if(s.includes(":drum:")||s.includes(":abuse:")||s.includes("bass drum")||s.includes("snare")||s.includes("timpani"))return "real:drum:TR-808";
  if(s.includes("guitar"))return "real:gm:acoustic_guitar_steel";
  if(s.includes("bass"))return "real:gm:electric_bass_finger";
@@ -1321,6 +1399,86 @@ function sampleDrumNoteName(midi,inst){
  }
  return midi;
 }
+function toneNoteToMidi(note){
+ const m=String(note||"").match(/^([A-G])(#?)(-?\d+)$/);
+ if(!m)return 60;
+ const pcs={C:0,D:2,E:4,F:5,G:7,A:9,B:11};
+ return (Number(m[3])+1)*12+pcs[m[1]]+(m[2]?1:0);
+}
+function nearestToneSample(map,midi){
+ let best=null,bestDist=Infinity;
+ for(const [note,file] of Object.entries(map||{})){
+  const sm=toneNoteToMidi(note),dist=Math.abs(sm-midi);
+  if(dist<bestDist){best={note,file,midi:sm};bestDist=dist}
+ }
+ return best;
+}
+function toneSampleUrl(instrument,file){
+ return toneSampleBaseUrl+encodeURIComponent(instrument)+"/"+encodeURIComponent(file);
+}
+async function decodeToneAudio(ctx,data){
+ const copy=data.slice(0);
+ return new Promise((resolve,reject)=>{
+  const p=ctx.decodeAudioData(copy,resolve,reject);
+  if(p&&typeof p.then==="function")p.then(resolve,reject);
+ });
+}
+async function loadToneBuffer(ctx,instrument,file){
+ const res=await fetch(toneSampleUrl(instrument,file));
+ if(!res.ok)throw new Error("ToneJS sample "+res.status);
+ const data=await res.arrayBuffer();
+ return decodeToneAudio(ctx,data);
+}
+function createToneSampleInstrument(ctx,{instrument,destination,volume=100,onLoadProgress}={}){
+ const map=toneSampleMaps[instrument];
+ if(!map)throw new Error("Unknown ToneJS instrument");
+ const gain=ctx.createGain();
+ let outputVolume=volume;
+ const output={};
+ Object.defineProperty(output,"volume",{
+  get(){return outputVolume},
+  set(v){outputVolume=Number(v)||0;gain.gain.setTargetAtTime(Math.max(0,outputVolume)/100,ctx.currentTime,.012)}
+ });
+ output.volume=volume;
+ gain.connect(destination||ctx.destination);
+ const entries=Object.entries(map);
+ const buffers=new Map();
+ let loaded=0;
+ const ready=Promise.all(entries.map(async([note,file])=>{
+  const buffer=await loadToneBuffer(ctx,instrument,file);
+  buffers.set(note,{buffer,midi:toneNoteToMidi(note),file});
+  loaded++;
+  if(onLoadProgress)onLoadProgress({loaded,total:entries.length});
+ })).then(()=>undefined);
+ return {
+  output,
+  ready,
+  start(event={}){
+   const numeric=Number(event.note);
+   const midi=Number.isFinite(numeric)?numeric:toneNoteToMidi(event.note);
+   const picked=nearestToneSample(map,midi);
+   const loadedSample=picked&&buffers.get(picked.note);
+   if(!loadedSample)return;
+   const time=Math.max(ctx.currentTime+.006,Number(event.time)||ctx.currentTime+.006);
+   const duration=Math.max(.06,Number(event.duration)||1);
+   const release=Math.min(.18,Math.max(.045,duration*.18));
+   const velocity=Math.max(.08,Math.min(1,(Number(event.velocity)||92)/127));
+   const src=ctx.createBufferSource();
+   const env=ctx.createGain();
+   src.buffer=loadedSample.buffer;
+   src.playbackRate.setValueAtTime(Math.pow(2,(midi-loadedSample.midi)/12),time);
+   env.gain.setValueAtTime(.0001,time);
+   env.gain.linearRampToValueAtTime(velocity,time+.008);
+   env.gain.setValueAtTime(velocity,Math.max(time+.01,time+duration-release));
+   env.gain.linearRampToValueAtTime(.0001,time+duration);
+   src.connect(env);
+   env.connect(gain);
+   src.start(time);
+   src.stop(time+duration+.04);
+  },
+  dispose(){try{gain.disconnect()}catch(e){}}
+ };
+}
 async function loadSampleInstrument(tr=activeTrack()){
  if(!isSampleSound(tr.sound))return null;
  if(shouldUsePhonePianoFallback(tr.sound))throw new Error("Phone safe mode uses lighter piano");
@@ -1328,14 +1486,19 @@ async function loadSampleInstrument(tr=activeTrack()){
  const cached=state.sampleInstruments.get(key);
  if(cached)return Promise.resolve(cached).then(inst=>{if(inst?.output)inst.output.volume=trackVolume(tr);return inst});
  const promise=(async()=>{
-  const m=await ensureSampleModule();
-  const storage=sampleStorageFor(m);
+  ensureAudio();
+  if(state.audioCtx&&state.audioCtx.state==="suspended")state.audioCtx.resume().catch(()=>{});
+  ensureSampleRuntime();
+  const sound=String(tr.sound||"");
+  const usesSmplr=!sound.startsWith("real:tone:");
+  const m=usesSmplr?await ensureSampleModule():null;
+  const storage=m?sampleStorageFor(m):undefined;
   const destination=trackFxInput(tr,state.audioCtx);
   const common={destination,volume:trackVolume(tr),storage,onLoadProgress:sampleProgress(sampleLabel(tr))};
-  const sound=String(tr.sound||"");
   setSfStatus("Loading "+sampleLabel(tr)+"...");
   let inst=null;
-  if(sound==="real:piano:splendid")inst=m.SplendidGrandPiano(state.audioCtx,{...common,...splendidPianoOptions()});
+  if(sound.startsWith("real:tone:"))inst=createToneSampleInstrument(state.audioCtx,{...common,instrument:sound.slice("real:tone:".length)});
+  else if(sound==="real:piano:splendid")inst=m.SplendidGrandPiano(state.audioCtx,{...common,...splendidPianoOptions()});
   else if(sound.startsWith("real:gm:"))inst=m.Soundfont(state.audioCtx,{...common,kit:"FluidR3_GM",instrument:sound.slice("real:gm:".length)});
   else if(sound.startsWith("real:vcsl:"))inst=m.Versilian(state.audioCtx,{...common,instrument:sound.slice("real:vcsl:".length)});
   else if(sound.startsWith("real:mallet:"))inst=m.Mallet(state.audioCtx,{...common,instrument:sound.slice("real:mallet:".length)});
