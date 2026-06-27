@@ -2147,7 +2147,7 @@ function setVoicerLastDisplay(name,notes,detail=""){
 }
 function insertVoicerChord(baseMidi,stringName,fret,recordToTimeline=true){
  const s=strings.find(x=>x.name===stringName),actual=baseMidi+state.inputOctave*12,tr=activeTrack();
- if(!recordToTimeline)clearVoicerAuditionTimers();
+ clearVoicerAuditionTimers();
  const generated=generateVoicerChord(actual);
  const start=quantizedInputTick();
  const groupId="v"+Date.now().toString(36)+Math.random().toString(36).slice(2,7);
@@ -2158,8 +2158,7 @@ function insertVoicerChord(baseMidi,stringName,fret,recordToTimeline=true){
   const off=offsets[i]||0;
   const dur=Math.max(PPQ/16,stepTicks()+lastOffset-off);
   const delay=rakeDelaySeconds(off,recordToTimeline);
-  if(recordToTimeline)playNote(m,dur,tr,delay);
-  else playVoicerAuditionNote(m,dur,tr,delay);
+  if(!recordToTimeline)playVoicerAuditionNote(m,dur,tr,delay);
   if(recordToTimeline)
    tr.notes.push({id:state.nextNoteId++,trackId:tr.id,start:start+off,duration:dur,midi:m,displayMidi:m===actual?baseMidi:m,stringName:m===actual?stringName:"",fret:m===actual?fret:null,channel:s?s.channel:1,chordGroup:groupId,chordStart:start,chordName:generated.name});
  });
@@ -2279,12 +2278,14 @@ function generateVoicerArrangement(){
  if(isDrumTrack(tr))return;
  state.voicer=settings;
  const harmony=voicerArrangementHarmony(settings),arrangement=voicerArrangementPlan(settings),start=quantizedInputTick();
+ const previewArrangement=!state.armed;
  let cursor=start,last=null,firstNotes=[],firstLen=stepTicks();
  const inserted=[];
+ if(!previewArrangement)clearVoicerAuditionTimers();
  state.voicerMemory={previousNotes:[],previousName:"",previousRoot:-1};
  for(let i=0;i<arrangement.items.length;i++){
   const item=arrangement.items[i],input=voicerDegreeMidi(harmony.key,harmony.intervals,item,i,settings),len=Math.max(PPQ/2,Math.round(item.beats*PPQ));
-  last=writeVoicerArrangementChord(input,cursor,len,tr,i===0);
+  last=writeVoicerArrangementChord(input,cursor,len,tr,previewArrangement&&i===0);
   inserted.push(...last.ids);
   if(i===0){firstNotes=last.notes;firstLen=len}
   cursor+=len;
@@ -2481,15 +2482,14 @@ function resetGroovizerEngine(){
 }
 function insertGroovizerPhrase(pad,recordToTimeline=true,velocity=96){
  const tr=activeTrack(),color=tr.color||"yellow";
- if(!recordToTimeline)clearVoicerAuditionTimers();
- else{pushUndo();ensureReadableInputZoom()}
+ clearVoicerAuditionTimers();
+ if(recordToTimeline){pushUndo();ensureReadableInputZoom()}
  const generated=generateGroovizerPhrase(pad,tr,velocity);
  const start=quantizedInputTick(),groupId="r"+Date.now().toString(36)+Math.random().toString(36).slice(2,7);
  for(const ev of generated.events){
   const delay=ticksToSeconds(ev.tick);
   const dur=Math.max(PPQ/32,ev.duration);
-  if(recordToTimeline)playNote(ev.midi,dur,tr,delay);
-  else playVoicerAuditionNote(ev.midi,dur,tr,delay);
+  if(!recordToTimeline)playVoicerAuditionNote(ev.midi,dur,tr,delay);
   queuePadLightsForNotes([ev.midi],color,delay,Math.max(120,Math.round(ticksToSeconds(dur)*1000)));
   if(recordToTimeline)tr.notes.push({id:state.nextNoteId++,trackId:tr.id,start:start+ev.tick,duration:dur,midi:ev.midi,displayMidi:ev.midi,stringName:"",fret:null,channel:10,drumName:ev.drumName,velocity:ev.velocity,grooveGroup:groupId,grooveStart:start,grooveName:generated.name});
  }
