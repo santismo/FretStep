@@ -6,7 +6,7 @@ Desktop Chrome/MIDI page:
 
 https://santismo.github.io/FretStep/desktop.html
 
-FretStep2 is a mobile-first MIDI composition tool designed for guitar-oriented step input workflows, chord discovery, and internal Web Audio playback.
+FretStep2 is a mobile-first MIDI composition tool designed for guitar-oriented step input workflows, chord discovery, and sample-backed Web Audio playback.
 
 Instead of entering notes from a piano keyboard, notes are entered from a virtual 6-string guitar fretboard laid out in standard tuning. Each string automatically maps to its own MIDI channel, making it easy to preserve string information while composing.
 
@@ -75,9 +75,9 @@ Single notes are ignored and do not create chord regions.
 
 Playback Engine
 
-Hybrid Web Audio Playback
+Sample-Based Web Audio Playback
 
-FretStep2 uses built-in procedural engines for instant reliable playback, plus optional sampled instruments that load on demand and cache in the browser.
+FretStep2 uses a sample-first instrument library. Sampled instruments load on demand, cache in the browser, and replace the older exposed procedural engine banks.
 
 Features:
 
@@ -86,12 +86,13 @@ Features:
 * Multi-select filters such as Drums + Synth
 * Random sound selection constrained by search, filters, and bank
 * Acoustic-style banks for piano, guitar, bass, strings, horns, and drums
-* Synth, chiptune, 16-bit, analog, retro drum, and sound-effect banks
-* Sample-backed RealKey, RealGM, VCSL, Mallet, Tape/Mellotron, and sampled drum-machine banks
-* Splendid Grand Piano, safer GM sampled pianos, VCSL pianos/harps/mallets/winds/world instruments, FluidR3 GM guitars/basses/strings/horns, Smolken double bass, Mellotron tape sounds, and sampled TR/Casio/Linn/Oberheim/Korg/Yamaha/Simmons/Boss-style drum kits
+* Sample synth, retro game, percussion, tape, sound-effect, and drum-machine banks
+* RealKey, RealGM, VCSL, Mallet, Tape/Mellotron, sampled synth, retro, and sampled drum-machine banks
+* Splendid Grand Piano, safer GM sampled pianos, VCSL pianos/harps/mallets/winds/world instruments, FluidR3 GM guitars/basses/strings/horns, Smolken double bass, Mellotron tape sounds, GM retro/synth samples, and sampled TR/Casio/Linn/Oberheim/Korg/Yamaha/Simmons/Boss-style drum kits
 * Drum-kit pad mapping for sampled drum machines where the source exposes kick, snare, hats, toms, cymbals, and percussion groups
 * Phone-safe piano loading that limits Splendid Grand Piano and redirects the heaviest VCSL pianos to a lighter sampled GM piano on small touch devices
-* Internal fallback sounds if a sampled instrument cannot load
+* Legacy project migration from older internal sound IDs to equivalent sample-backed sounds
+* New projects start with Piano, Bass, and Drums tracks
 * Per-track live effects including filters, reverb, delay, chorus, drive, crush, phaser, air, and tremolo
 
 ⸻
@@ -267,7 +268,7 @@ Contains:
 * Import Project
 * Show / Hide Fretboard
 * Theme Selection
-* Internal sound browser
+* Sample sound browser
 * Track FX controls
 
 Long-pressing the gear icon toggles fretboard visibility.
