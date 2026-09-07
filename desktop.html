@@ -1051,8 +1051,7 @@ function renderSoundPicker(forceList=false){
  if(!el.soundPickerBtn)return;
  const tr=activeTrack();
  el.soundPickerBtn.textContent=currentSoundLabel(tr);
- if(!el.soundPickerList)return;
- if(!forceList&&!el.soundPickerMenu?.classList.contains("open"))return;
+ if(!el.soundPickerList||!forceList)return;
  updateSoundPickerBounds();
  if(el.soundSearch&&el.soundSearch.value!==soundPickerState.query)el.soundSearch.value=soundPickerState.query;
  if(el.soundBankRow){
