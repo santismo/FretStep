@@ -14,7 +14,7 @@
 html,body{margin:0;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;touch-action:none}
 body{padding:env(safe-area-inset-top) 8px 0;display:flex;justify-content:center;overflow:hidden}
 #app{width:min(100vw,500px);height:calc(var(--appH,100svh) - env(safe-area-inset-top) - 4px);max-height:calc(var(--appH,100svh) - env(safe-area-inset-top) - 4px);display:flex;flex-direction:column;gap:3px;overflow:hidden}
-header{flex:0 0 auto;display:grid;grid-template-columns:58px 46px 1fr 34px 36px;gap:6px;align-items:center;padding-top:3px}
+header{flex:0 0 auto;display:grid;grid-template-columns:58px 46px 1fr 36px;gap:6px;align-items:center;padding-top:3px}
 button,select{min-width:0;color:var(--text);background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:3px 3px;font-size:9px;font-weight:800;min-height:24px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 button:active{transform:scale(.97)}button.active{border-color:var(--accent2);background:rgba(0,224,164,.13)}button.primary{border-color:var(--accent);background:rgba(124,92,255,.2)}
 #recordBtn{background:rgba(255,59,92,.08);border-color:rgba(255,59,92,.35)}#recordBtn.active{background:rgba(255,59,92,.22);border-color:var(--danger);box-shadow:0 0 16px rgba(255,59,92,.25)}#loopBtn.active,#metroBtn.active{background:rgba(0,224,164,.18);border-color:var(--accent2);color:var(--accent2);box-shadow:0 0 12px rgba(0,224,164,.18)}
@@ -36,7 +36,7 @@ input[type=number]{width:44px;background:#090b12;border:1px solid var(--line);bo
 .pianoRow{position:absolute;left:38px;right:0;border-bottom:1px solid rgba(255,255,255,.035)}.pianoRow.white{background:rgba(255,255,255,.075)}.pianoRow.black{background:rgba(255,255,255,.03)}
 .gridLine{position:absolute;top:0;bottom:0;width:1px;background:rgba(255,255,255,.055);z-index:1}.gridLine.beat{background:rgba(255,255,255,.14)}.gridLine.bar{background:rgba(124,92,255,.38)}
 .note{box-sizing:border-box;min-width:10px;position:absolute;height:10px;border-radius:4px;background:var(--noteColor);border:1px solid rgba(255,255,255,.32);box-shadow:0 2px 7px rgba(0,0,0,.35);z-index:4;touch-action:none}.note.selected{outline:2px solid white;filter:brightness(1.35)}
-.chordLane{position:absolute;left:38px;right:0;top:13px;height:20px;z-index:11;background:rgba(255,207,90,.055);border-bottom:1px solid rgba(255,207,90,.14);touch-action:none}.chordLane::before{content:"Chord Track · tap to label at playhead";position:absolute;left:4px;top:3px;color:rgba(255,207,90,.4);font-size:7px;font-weight:800;pointer-events:none;white-space:nowrap}.chordRegion{position:absolute;top:17px!important;height:15px!important;border-radius:5px;background:rgba(255,207,90,.26);border:1px solid rgba(255,207,90,.72);color:var(--chord);font-size:8px;font-weight:900;padding:1px 3px;z-index:12;white-space:nowrap;overflow:hidden;text-overflow:clip;min-width:0;cursor:pointer;touch-action:none}.chordRegion.inferred{opacity:.68;border-style:dashed}.chordRegion.manual{background:rgba(255,207,90,.36);box-shadow:0 0 8px rgba(255,207,90,.13)}
+.chordLane{position:absolute;left:38px;right:0;top:13px;height:20px;z-index:11;background:rgba(255,207,90,.055);border-bottom:1px solid rgba(255,207,90,.14);touch-action:none}.chordRegion{position:absolute;top:17px!important;height:15px!important;border-radius:5px;background:rgba(255,207,90,.26);border:1px solid rgba(255,207,90,.72);color:var(--chord);font-size:8px;font-weight:900;padding:1px 3px;z-index:12;white-space:nowrap;overflow:hidden;text-overflow:clip;min-width:0;cursor:pointer;touch-action:none}.chordRegion.inferred{opacity:.68;border-style:dashed}.chordRegion.manual{background:rgba(255,207,90,.36);box-shadow:0 0 8px rgba(255,207,90,.13)}
 #playhead{position:absolute;top:0;bottom:0;width:2px;background:#fff;box-shadow:0 0 10px rgba(255,255,255,.85);z-index:10;pointer-events:none}.loopRegion{position:absolute!important;top:0!important;height:13px!important;z-index:28!important;background:rgba(0,255,160,.38)!important;border:2px solid rgba(0,255,190,.95)!important;border-radius:5px!important;box-shadow:0 0 12px rgba(0,255,170,.45)!important;pointer-events:none}.selectBox{position:absolute;border:1px solid rgba(255,255,255,.9);background:rgba(124,92,255,.18);z-index:30;pointer-events:none;border-radius:4px}
 .zoomControls{flex:0 0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:3px}.middleControls{flex:0 0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:3px}.statusRow{display:none;flex:0 0 auto}
 .pill{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:4px 6px;color:var(--muted);font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pill b{color:var(--text)}
@@ -84,6 +84,7 @@ button.active,.primary{background:color-mix(in srgb,var(--accent) 35%,var(--pane
 .trackMixerRow.activeTrack{background:color-mix(in srgb,var(--accent) 28%,var(--panel2))!important;border-color:var(--accent)!important;box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 45%,transparent) inset}
 .trackMixerRow.activeTrack button{background:color-mix(in srgb,var(--accent) 22%,var(--panel2))!important}
 .chordEditorMenu{position:fixed!important;left:8px!important;right:8px!important;top:auto!important;bottom:calc(env(safe-area-inset-bottom) + 8px)!important;width:auto!important;max-height:min(42dvh,250px)!important;overflow:auto;z-index:101!important}
+#loopMenu{position:fixed!important;left:8px!important;right:8px!important;top:auto!important;bottom:calc(env(safe-area-inset-bottom) + 8px)!important;width:auto!important;max-height:min(42dvh,250px)!important;overflow:auto;z-index:101!important}.chordLane::before{display:none!important}#settingsMenu .voicerWrap{width:100%}#settingsMenu #voicerBtn{width:100%;height:auto;min-height:30px;justify-content:flex-start;padding:5px 7px;font-size:10px}
 .tempoBox{display:grid!important;grid-template-columns:25px 36px 44px minmax(32px,1fr);gap:2px!important;padding:3px 4px!important}.tempoBox>*{min-width:0}#tsBtn{min-width:25px!important;width:25px!important;padding:0!important;font-size:9px!important;overflow:visible!important;text-overflow:clip!important;letter-spacing:-.04em}.bpmLabel{min-width:36px!important;height:24px!important;padding:0 3px!important;font-size:8px!important;color:var(--accent2)!important;border-color:rgba(0,224,164,.38)!important;background:rgba(0,224,164,.10)!important}.bpmMetroBtn{min-height:30px!important;font-size:11px!important}#subdivTop{min-width:0!important;padding:4px 3px!important;font-size:9px!important}
 @media(max-height:720px){#app{gap:5px}.keyboardShell{min-height:285px}.timelineShell{min-height:170px}button{min-height:31px;font-size:10px}.statusRow{display:none;flex:0 0 auto}#voicerMenu{max-height:48dvh;width:min(94vw,410px)}}
 </style>
@@ -93,7 +94,7 @@ button.active,.primary{background:color-mix(in srgb,var(--accent) 35%,var(--pane
 <header>
 <button id="recordBtn"><span class="dot"></span>REC</button><button id="loopBtn">Loop</button>
 <div class="tempoBox"><button id="tsBtn" class="tsBtn">4/4</button><button id="bpmLabel" class="bpmLabel" aria-label="Open BPM and metronome controls">BPM ▾</button><input id="tempo" type="number" min="40" max="240" value="120"/><span id="subdivTop">1/16</span></div>
-<div class="voicerWrap"><button id="voicerBtn" title="Voicizer"><span class="chordGlyph"><i></i><i></i><i></i></span></button><div id="voicerMenu">
+<div class="settingsWrap"><button id="settingsBtn">⚙︎</button><div id="settingsMenu"><div class="voicerWrap"><button id="voicerBtn" title="Voicizer settings">Voicizer Settings</button><div id="voicerMenu">
   <div class="voicerTop"><div id="voicerTitle" class="voicerTitle">Voicizer</div><select id="voicerMode" class="voicerModeSelect"><option value="voicizer">Voicizer</option><option value="melodizer">Melodizer</option></select><button id="voicerEnableBtn">On</button></div>
   <div class="voicerGrid">
     <div class="voicerControl"><label>Key</label><button id="voicerKeyBtn" class="voicerChoiceBtn">C</button><div id="voicerKeyMenu" class="choiceMenu"></div></div>
@@ -116,12 +117,11 @@ button.active,.primary{background:color-mix(in srgb,var(--accent) 35%,var(--pane
     <div class="voicerControl voicerWide"><div id="voicerReadout" class="voicerReadout"><div class="voicerLast">Last: <span id="voicerLastChord">--</span></div><div id="voicerLastNotes" class="voicerHint">Play a fret to write or audition a voiced chord.</div></div></div>
   </div>
   <div class="voicerButtons"><button id="voicerResetBtn">Reset</button><button id="voicerRandomizeBtn">Randomize</button><button id="voicerArrangeBtn">Arrange</button></div>
-</div></div>
-<div class="settingsWrap"><button id="settingsBtn">⚙︎</button><div id="settingsMenu"><button id="exportBtn">Export MIDI</button><button id="saveBtn">Save Local</button><button id="loadBtn">Load Local</button><button id="exportProjectBtn">Export Project</button><button id="importProjectBtn">Import Project</button><button id="newProjectBtn">New Project</button><button id="themeBtn">Themes</button><button id="hideFretBtn">Hide Fretboard</button><button id="voicerSettingsBtn">Voicizer: Off</button><button id="chordDetectBtn">Auto Chord Detect: Off</button><button id="sfBtn">Engine: Samples</button><button id="sfLoadBtn" style="display:none">Samples Ready</button><div id="sfStatus" style="font-size:10px;color:var(--muted);line-height:1.1;padding:1px 4px;">Sample library ready</div></div></div>
+</div></div><button id="exportBtn">Export MIDI</button><button id="saveBtn">Save Local</button><button id="loadBtn">Load Local</button><button id="exportProjectBtn">Export Project</button><button id="importProjectBtn">Import Project</button><button id="newProjectBtn">New Project</button><button id="themeBtn">Themes</button><button id="hideFretBtn">Hide Fretboard</button><button id="voicerSettingsBtn">Voicizer: Off</button><button id="chordDetectBtn">Auto Chord Detect: Off</button><button id="sfBtn">Engine: Samples</button><button id="sfLoadBtn" style="display:none">Samples Ready</button><div id="sfStatus" style="font-size:10px;color:var(--muted);line-height:1.1;padding:1px 4px;">Sample library ready</div></div></div>
 </header>
 <section class="timelineShell"><div class="timelineHeader"><button id="trackMenuBtn" class="miniBtn">Tracks</button><button id="soundPickerBtn" class="soundPickerBtn miniBtn">Sound</button><select id="sfSelect" class="sfSelect hiddenSoundSelect"></select><select id="soundSelect" class="soundSelect hiddenSoundSelect"><option value="real:gm:acoustic_grand_piano">Grand Piano</option><option value="real:piano:splendid">Splendid Grand</option><option value="real:gm:acoustic_guitar_steel">Steel Guitar</option><option value="real:gm:string_ensemble_1">String Ensemble</option><option value="real:gm:trumpet">Trumpet</option><option value="real:drum:LM-2">Sample Kit</option><option value="real:gm:pad_3_polysynth">Sample Poly Pad</option><option value="real:gm:lead_1_square">Square Lead Sample</option></select><button id="copyBtn" class="miniBtn">Copy</button><button id="pasteBtn" class="miniBtn">Paste</button><span id="trackStatusBtn" style="display:none"></span></div><div id="soundPickerMenu" class="popupMenu soundPickerMenu"><div class="soundPickerTop"><b>Sound</b><button id="soundRandomBtn">Random</button><button id="soundPickerCloseBtn">Close</button></div><div id="soundBankRow" class="soundBankRow"></div><input id="soundSearch" class="soundSearch" type="text" placeholder="Search sounds"/><div id="soundFilterRow" class="soundFilterRow"><button class="soundFilterBtn active" data-filter="all">All</button><button class="soundFilterBtn" data-filter="sample">Sample</button><button class="soundFilterBtn" data-filter="retro">Retro</button><button class="soundFilterBtn" data-filter="game">Game</button><button class="soundFilterBtn" data-filter="8bit">8-Bit</button><button class="soundFilterBtn" data-filter="16bit">16-Bit</button><button class="soundFilterBtn" data-filter="arcade">Arcade</button><button class="soundFilterBtn" data-filter="drums">Drums</button><button class="soundFilterBtn" data-filter="synth">Synth</button><button class="soundFilterBtn" data-filter="keys">Keys</button><button class="soundFilterBtn" data-filter="bass">Bass</button><button class="soundFilterBtn" data-filter="guitar">Guitar</button><button class="soundFilterBtn" data-filter="orch">Orch</button><button class="soundFilterBtn" data-filter="horns">Horns</button><button class="soundFilterBtn" data-filter="fx">FX</button></div><div id="soundPickerList" class="soundPickerList"></div></div><div id="timelineViewport"><div id="timelineContent"></div><div id="pianoStripMask" class="pianoStripMask"></div><div id="barZoomHeader" class="barZoomHeader"></div><div id="vZoomStrip" class="vZoomStrip"><div id="vZoomThumb" class="vZoomThumb"></div></div></div></section>
-<section class="zoomControls"><button id="playBtn" class="primary">▶︎ Play</button><button id="undoBtn">Undo</button><button id="redoBtn">Redo</button><button id="focusBtn">View</button></section>
-<section class="middleControls"><button id="leftBtn">◀︎ Step</button><button id="rightBtn">Step ▶︎</button><button id="chordBtn">Chord</button><button id="deleteBtn">Delete</button><button id="divDownBtn">Div −</button><button id="divUpBtn">Div +</button><button id="octDownBtn">Oct −</button><button id="octUpBtn">Oct +</button></section>
+<section class="zoomControls"><button id="playBtn" class="primary">▶︎ Play</button><button id="focusBtn">View</button><button id="leftBtn">◀︎ Step</button><button id="rightBtn">Step ▶︎</button></section>
+<section class="middleControls"><button id="undoBtn">Undo</button><button id="redoBtn">Redo</button><button id="divDownBtn">Div −</button><button id="divUpBtn">Div +</button><button id="deleteBtn">Delete</button><button id="chordBtn">Chord</button><button id="octDownBtn">Oct −</button><button id="octUpBtn">Oct +</button></section>
 <section class="statusRow"><div class="pill">Input: <b id="stepReadout">1/16 · Oct +0</b></div><div class="pill">Playhead: <b id="posReadout">1.1.000</b></div><div class="pill">Chord: <b id="chordReadout">—</b></div></section>
 <section class="keyboardShell"><div class="fretboardWrap"><div id="fretboard"></div><div id="fretChordLabel" class="fretChordLabel"></div><div id="fretMarkers" class="fretMarkers"></div></div></section>
 <div id="trackColorMenu" class="popupMenu trackColorMenu">
@@ -186,9 +186,10 @@ button.active,.primary{background:color-mix(in srgb,var(--accent) 35%,var(--pane
 <div id="loopMenu" class="popupMenu">
   <b>Loop Region</b>
   <label>Start bar <input id="loopStartInput" type="text" inputmode="numeric" pattern="[0-9]*" enterkeyhint="done" min="1" value="1"/></label>
-  <label>End bar <input id="loopEndInput" type="text" inputmode="numeric" pattern="[0-9]*" enterkeyhint="done" min="1" value="5"/></label>
-  <button id="loopToggleBtn">Loop On/Off</button>
-  <button id="loopCloseBtn">Close</button>
+  <label>End bar (coarse) <input id="loopEndInput" type="text" inputmode="numeric" pattern="[0-9]*" enterkeyhint="done" min="1" value="5"/></label>
+  <div id="loopLengthReadout" class="chordLengthReadout">4 bars</div>
+  <div class="chordEditorButtons"><button id="loopLengthStepBtn">1 Step</button><button id="loopLengthHalveBtn">÷2</button><button id="loopLengthDoubleBtn">×2</button></div>
+  <div class="chordEditorFooter"><button id="loopToggleBtn">Loop: Off</button><button id="loopCloseBtn">Close</button></div>
 </div>
 <div id="chordEditorMenu" class="popupMenu chordEditorMenu">
   <b>Chord Track · at Playhead</b>
@@ -811,7 +812,7 @@ const state={armed:true,playing:false,chordMode:false,semitoneMode:false,tempo:1
 const $=id=>document.getElementById(id),el={tempo:$("tempo"),tempoSlider:$("tempoSlider"),bpmLabel:$("bpmLabel"),bpmMenu:$("bpmMenu"),bpmCloseBtn:$("bpmCloseBtn"),subdivTop:$("subdivTop"),tsBtn:$("tsBtn"),tsMenu:$("tsMenu"),metroBtn:$("metroBtn"),loopMenu:$("loopMenu"),loopStartInput:$("loopStartInput"),loopEndInput:$("loopEndInput"),loopToggleBtn:$("loopToggleBtn"),loopApplyBtn:$("loopApplyBtn"),loopCloseBtn:$("loopCloseBtn"),settingsBtn:$("settingsBtn"),settingsMenu:$("settingsMenu"),playBtn:$("playBtn"),leftBtn:$("leftBtn"),rightBtn:$("rightBtn"),divDownBtn:$("divDownBtn"),divUpBtn:$("divUpBtn"),octDownBtn:$("octDownBtn"),octUpBtn:$("octUpBtn"),chordBtn:$("chordBtn"),recordBtn:$("recordBtn"),deleteBtn:$("deleteBtn"),newProjectBtn:$("newProjectBtn"),exportProjectBtn:$("exportProjectBtn"),importProjectBtn:$("importProjectBtn"),projectImport:$("projectImport"),trackColorMenu:$("trackColorMenu"),trackColorGrid:$("trackColorGrid"),trackColorCloseBtn:$("trackColorCloseBtn"),trackFxMenu:$("trackFxMenu"),trackFxTitle:$("trackFxTitle"),fxLowCut:$("fxLowCut"),fxLowCutValue:$("fxLowCutValue"),fxHighCut:$("fxHighCut"),fxHighCutValue:$("fxHighCutValue"),fxReverbMix:$("fxReverbMix"),fxReverbMixValue:$("fxReverbMixValue"),fxReverbTime:$("fxReverbTime"),fxReverbTimeValue:$("fxReverbTimeValue"),fxReverbType:$("fxReverbType"),fxDelayMix:$("fxDelayMix"),fxDelayMixValue:$("fxDelayMixValue"),fxDelayTime:$("fxDelayTime"),fxDelayTimeValue:$("fxDelayTimeValue"),fxChorus:$("fxChorus"),fxChorusValue:$("fxChorusValue"),fxDrive:$("fxDrive"),fxDriveValue:$("fxDriveValue"),fxCrush:$("fxCrush"),fxCrushValue:$("fxCrushValue"),fxPhaser:$("fxPhaser"),fxPhaserValue:$("fxPhaserValue"),fxAir:$("fxAir"),fxAirValue:$("fxAirValue"),fxTremolo:$("fxTremolo"),fxTremoloValue:$("fxTremoloValue"),trackFxResetBtn:$("trackFxResetBtn"),trackFxCloseBtn:$("trackFxCloseBtn"),themeBtn:$("themeBtn"),themeMenu:$("themeMenu"),themeList:$("themeList"),randomThemeBtn:$("randomThemeBtn"),randomMonoThemeBtn:$("randomMonoThemeBtn"),themeMenuCloseBtn:$("themeMenuCloseBtn"),hideFretBtn:$("hideFretBtn"),sfBtn:$("sfBtn"),sfLoadBtn:$("sfLoadBtn"),sfStatus:$("sfStatus"),exportBtn:$("exportBtn"),saveBtn:$("saveBtn"),loadBtn:$("loadBtn"),localProjectsMenu:$("localProjectsMenu"),projectNameInput:$("projectNameInput"),saveNamedProjectBtn:$("saveNamedProjectBtn"),localProjectsList:$("localProjectsList"),undoBtn:$("undoBtn"),redoBtn:$("redoBtn"),loopBtn:$("loopBtn"),focusBtn:$("focusBtn"),fretboard:$("fretboard"),fretMarkers:$("fretMarkers"),fretChordLabel:$("fretChordLabel"),timelineViewport:$("timelineViewport"),timelineContent:$("timelineContent"),barZoomHeader:$("barZoomHeader"),vZoomStrip:$("vZoomStrip"),vZoomThumb:$("vZoomThumb"),trackMenuBtn:$("trackMenuBtn"),trackStatusBtn:$("trackStatusBtn"),trackMenu:$("trackMenu"),viewAllToggleBtn:$("viewAllToggleBtn"),trackList:$("trackList"),addTrackMenuBtn:$("addTrackMenuBtn"),deleteTrackMenuBtn:$("deleteTrackMenuBtn"),songizerMenuBtn:$("songizerMenuBtn"),songizerMenu:$("songizerMenu"),songizerStyle:$("songizerStyle"),songizerBars:$("songizerBars"),songizerTrackMode:$("songizerTrackMode"),songizerInstrumentMode:$("songizerInstrumentMode"),songizerSoloMode:$("songizerSoloMode"),songizerUniformity:$("songizerUniformity"),songizerUniformityValue:$("songizerUniformityValue"),songizerEnergy:$("songizerEnergy"),songizerEnergyValue:$("songizerEnergyValue"),songizerComplexity:$("songizerComplexity"),songizerComplexityValue:$("songizerComplexityValue"),songizerLengthVariety:$("songizerLengthVariety"),songizerLengthVarietyValue:$("songizerLengthVarietyValue"),songizerGenerateBtn:$("songizerGenerateBtn"),songizerRandomizeAllBtn:$("songizerRandomizeAllBtn"),songizerRandomizeInstrumentsBtn:$("songizerRandomizeInstrumentsBtn"),songizerCloseBtn:$("songizerCloseBtn"),trackMenuCloseBtn:$("trackMenuCloseBtn"),sfSelect:$("sfSelect"),soundSelect:$("soundSelect"),soundPickerBtn:$("soundPickerBtn"),soundPickerMenu:$("soundPickerMenu"),soundBankRow:$("soundBankRow"),soundSearch:$("soundSearch"),soundFilterRow:$("soundFilterRow"),soundRandomBtn:$("soundRandomBtn"),soundPickerList:$("soundPickerList"),soundPickerCloseBtn:$("soundPickerCloseBtn"),copyBtn:$("copyBtn"),pasteBtn:$("pasteBtn"),colorSelect:$("colorSelect"),stepReadout:$("stepReadout"),posReadout:$("posReadout"),chordReadout:$("chordReadout")};
 Object.assign(el,{voicerBtn:$("voicerBtn"),voicerMenu:$("voicerMenu"),voicerMode:$("voicerMode"),melodizerSource:$("melodizerSource"),voicerEnableBtn:$("voicerEnableBtn"),voicerKeyBtn:$("voicerKeyBtn"),voicerScaleBtn:$("voicerScaleBtn"),voicerKeyMenu:$("voicerKeyMenu"),voicerScaleMenu:$("voicerScaleMenu"),voicerStyle:$("voicerStyle"),voicerRole:$("voicerRole"),voicerPlayability:$("voicerPlayability"),voicerRakeMode:$("voicerRakeMode"),voicerChordSize:$("voicerChordSize"),voicerChordSizeValue:$("voicerChordSizeValue"),voicerRakeSpeed:$("voicerRakeSpeed"),voicerRakeSpeedValue:$("voicerRakeSpeedValue"),voicerComplexity:$("voicerComplexity"),voicerComplexityValue:$("voicerComplexityValue"),voicerVoiceLeading:$("voicerVoiceLeading"),voicerVoiceLeadingValue:$("voicerVoiceLeadingValue"),voicerOutside:$("voicerOutside"),voicerOutsideValue:$("voicerOutsideValue"),voicerVariation:$("voicerVariation"),voicerVariationValue:$("voicerVariationValue"),voicerLengthVariety:$("voicerLengthVariety"),voicerLengthVarietyValue:$("voicerLengthVarietyValue"),voicerRepeat:$("voicerRepeat"),voicerRepeatValue:$("voicerRepeatValue"),voicerMinNote:$("voicerMinNote"),voicerMaxNote:$("voicerMaxNote"),voicerReadout:$("voicerReadout"),voicerLastChord:$("voicerLastChord"),voicerLastNotes:$("voicerLastNotes"),voicerResetBtn:$("voicerResetBtn"),voicerRandomizeBtn:$("voicerRandomizeBtn"),voicerArrangeBtn:$("voicerArrangeBtn"),voicerCloseBtn:$("voicerCloseBtn")});
 Object.assign(el,{voicerTitle:$("voicerTitle"),voicerStyleLabel:$("voicerStyleLabel"),voicerRoleLabel:$("voicerRoleLabel"),voicerPlayabilityLabel:$("voicerPlayabilityLabel"),voicerRakeModeLabel:$("voicerRakeModeLabel"),voicerChordSizeLabel:$("voicerChordSizeLabel"),voicerRakeSpeedLabel:$("voicerRakeSpeedLabel"),voicerComplexityLabel:$("voicerComplexityLabel"),voicerVoiceLeadingLabel:$("voicerVoiceLeadingLabel"),voicerOutsideLabel:$("voicerOutsideLabel"),voicerVariationLabel:$("voicerVariationLabel"),voicerLengthVarietyLabel:$("voicerLengthVarietyLabel"),voicerRepeatLabel:$("voicerRepeatLabel")});
-Object.assign(el,{voicerSettingsBtn:$("voicerSettingsBtn"),chordDetectBtn:$("chordDetectBtn"),chordEditorMenu:$("chordEditorMenu"),chordLabelInput:$("chordLabelInput"),chordLengthReadout:$("chordLengthReadout"),chordLengthStepBtn:$("chordLengthStepBtn"),chordLengthHalveBtn:$("chordLengthHalveBtn"),chordLengthDoubleBtn:$("chordLengthDoubleBtn"),chordDeleteBtn:$("chordDeleteBtn"),chordEditorDoneBtn:$("chordEditorDoneBtn")});
+Object.assign(el,{loopLengthReadout:$("loopLengthReadout"),loopLengthStepBtn:$("loopLengthStepBtn"),loopLengthHalveBtn:$("loopLengthHalveBtn"),loopLengthDoubleBtn:$("loopLengthDoubleBtn"),voicerSettingsBtn:$("voicerSettingsBtn"),chordDetectBtn:$("chordDetectBtn"),chordEditorMenu:$("chordEditorMenu"),chordLabelInput:$("chordLabelInput"),chordLengthReadout:$("chordLengthReadout"),chordLengthStepBtn:$("chordLengthStepBtn"),chordLengthHalveBtn:$("chordLengthHalveBtn"),chordLengthDoubleBtn:$("chordLengthDoubleBtn"),chordDeleteBtn:$("chordDeleteBtn"),chordEditorDoneBtn:$("chordEditorDoneBtn")});
 let trackFxTarget=null,trackFxUndoArmed=false;
 const soundPickerState={filters:new Set(),query:"",bank:"all"};
 
@@ -4148,6 +4149,7 @@ function renderStatus(){
  if(el.voicerBtn){
   el.voicerBtn.classList.toggle("active",state.voicerEnabled);
   const pluginName=pluginMode==="groovizer"?"Groovizer":pluginMode==="melodizer"?"Melodizer":"Voicizer";
+  el.voicerBtn.textContent="Voicizer Settings";
   el.voicerBtn.title=state.voicerEnabled?pluginName+" on":pluginName+" off";
  }
  if(el.voicerEnableBtn){
@@ -4165,6 +4167,7 @@ function renderStatus(){
  el.sfBtn.textContent="Engine: Samples";
  el.loopBtn.textContent="Loop";
  el.loopBtn.classList.toggle("active",state.loopEnabled);
+ if(el.loopToggleBtn){el.loopToggleBtn.textContent="Loop: "+(state.loopEnabled?"On":"Off");el.loopToggleBtn.classList.toggle("active",state.loopEnabled)}
  if(el.copyBtn)el.copyBtn.disabled=!state.selectedIds.size;
  if(el.pasteBtn)el.pasteBtn.disabled=!(state.clipboardNotes&&state.clipboardNotes.length);
  document.getElementById("app").classList.toggle("hideFretboard",state.hideFretboard);
@@ -4813,7 +4816,7 @@ if(el.voicerBtn){
  el.voicerBtn.addEventListener("pointerup",e=>{
   e.stopPropagation();
   clearTimeout(voicerPressTimer);
-  if(!voicerLongPress){el.settingsMenu.classList.remove("open");el.voicerMenu.classList.toggle("open")}
+  if(!voicerLongPress)el.voicerMenu.classList.toggle("open");
  });
  el.voicerBtn.addEventListener("pointercancel",()=>clearTimeout(voicerPressTimer));
 }
@@ -4833,6 +4836,9 @@ el.loopEndInput.oninput=()=>applyLoopFields(true);
 el.loopStartInput.onchange=()=>applyLoopFields(true);
 el.loopEndInput.onchange=()=>applyLoopFields(true);
 el.loopToggleBtn.onclick=()=>{pushUndo();state.loopEnabled=!state.loopEnabled;render()};
+if(el.loopLengthStepBtn)el.loopLengthStepBtn.onclick=()=>changeLoopLength("step");
+if(el.loopLengthHalveBtn)el.loopLengthHalveBtn.onclick=()=>changeLoopLength("halve");
+if(el.loopLengthDoubleBtn)el.loopLengthDoubleBtn.onclick=()=>changeLoopLength("double");
 if(el.loopApplyBtn)el.loopApplyBtn.onclick=()=>{applyLoopFields(true);el.loopMenu.classList.remove("open")};
 el.bpmLabel.onclick=e=>{e.stopPropagation();el.bpmMenu.classList.toggle("open")};
 el.tempoSlider.oninput=()=>{state.tempo=Number(el.tempoSlider.value);el.tempo.value=state.tempo;el.tempoSlider.value=state.tempo;render()};
@@ -4856,8 +4862,7 @@ el.loopBtn.addEventListener("pointerup",e=>{
  e.stopPropagation();
  clearTimeout(loopPressTimer);
  if(loopLongPress)return;
- el.loopStartInput.value=Math.floor(state.loopStart/barTicks())+1;
- el.loopEndInput.value=Math.max(1,Math.ceil(state.loopEnd/barTicks())+1);
+ syncLoopEditor();
  el.loopMenu.classList.toggle("open");
 });
 function setupRecordButton(){
@@ -4900,14 +4905,14 @@ function setupFocusButton(){
   clearTimeout(focusPressTimer);
   focusPressTimer=setTimeout(()=>{
    focusLongPress=true;
-   snapPlayheadToBarOne();
+   focusAllNotes();
   },520);
  });
  el.focusBtn.addEventListener("pointerup",e=>{
   e.stopPropagation();
   clearTimeout(focusPressTimer);
   if(focusLongPress)return;
-  focusAllNotes();
+  snapPlayheadToBarOne();
  });
  el.focusBtn.addEventListener("pointercancel",()=>clearTimeout(focusPressTimer));
 }
@@ -4996,6 +5001,31 @@ function applyLoopFields(autoEnable=true){
  state.loopStart=(s-1)*barTicks();
  state.loopEnd=(en-1)*barTicks();
  if(autoEnable)state.loopEnabled=true;
+ updateLoopLengthReadout();
+ render();
+}
+function updateLoopLengthReadout(){
+ if(!el.loopLengthReadout)return;
+ const duration=Math.max(stepTicks(),Math.round(state.loopEnd-state.loopStart));
+ el.loopLengthReadout.textContent=chordLengthLabel(duration);
+}
+function syncLoopEditor(){
+ if(el.loopStartInput)el.loopStartInput.value=Math.floor(state.loopStart/barTicks())+1;
+ if(el.loopEndInput)el.loopEndInput.value=Math.max(1,Math.ceil(state.loopEnd/barTicks())+1);
+ updateLoopLengthReadout();
+}
+function changeLoopLength(mode){
+ pushUndo();
+ const start=Math.max(0,snapTick(state.loopStart));
+ const current=Math.max(stepTicks(),snapTick(state.loopEnd-start));
+ let duration=current;
+ if(mode==="step")duration=stepTicks();
+ else if(mode==="halve")duration=Math.max(stepTicks(),snapTick(current/2));
+ else duration=Math.max(stepTicks(),snapTick(current*2));
+ state.loopStart=start;
+ state.loopEnd=start+duration;
+ state.loopEnabled=true;
+ syncLoopEditor();
  render();
 }
 
